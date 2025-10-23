@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hidraliso Original - Alisamento Profissional em Casa</title>
     <style>
         * {
@@ -19,10 +19,13 @@
             min-height: 100%;
             overflow-x: hidden;
             width: 100%;
+            position: relative;
         }
         
         html {
             height: 100%;
+            overflow-x: hidden;
+            width: 100%;
         }
         
         .hero-section {
@@ -577,9 +580,11 @@
             padding: 12px 16px;
             border: 1px solid #ddd;
             border-radius: 25px;
-            font-size: 14px;
+            font-size: 16px;
             outline: none;
             transition: border-color 0.3s ease;
+            -webkit-appearance: none;
+            -webkit-border-radius: 25px;
         }
 
         .chat-input:focus {
@@ -755,7 +760,9 @@
                 width: calc(100vw - 30px);
                 max-width: 320px;
                 height: 400px;
-                right: -5px;
+                right: 0;
+                left: 15px;
+                bottom: 70px;
             }
             
             .chat-tooltip {
@@ -1040,7 +1047,12 @@
         chatToggle.addEventListener('click', () => {
             chatWindow.classList.toggle('active');
             if (chatWindow.classList.contains('active')) {
-                chatInput.focus();
+                // Delay focus to prevent zoom on mobile
+                setTimeout(() => {
+                    if (window.innerWidth > 768) {
+                        chatInput.focus();
+                    }
+                }, 100);
                 chatTooltip.style.display = 'none';
             } else {
                 chatTooltip.style.display = 'block';
@@ -1129,6 +1141,23 @@
                 chatWindow.classList.remove('active');
             }
         });
+        
+        // Prevent horizontal scroll on mobile
+        document.addEventListener('touchmove', (e) => {
+            if (chatWindow.classList.contains('active')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        // Fix viewport on orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => {
+                    document.body.style.overflow = '';
+                }, 100);
+            }, 100);
+        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99332c9360e31a9a',t:'MTc2MTI0Mjg0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9933340655d0f1dd',t:'MTc2MTI0MzE1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
