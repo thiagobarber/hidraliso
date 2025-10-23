@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hidraliso Original - Alisamento Profissional em Casa</title>
     <style>
-        body {
+        * {
             box-sizing: border-box;
+        }
+        
+        body {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #6a5acd 0%, #5d4e8a 100%);
             color: white;
             line-height: 1.6;
             min-height: 100%;
+            overflow-x: hidden;
+            width: 100%;
         }
         
         html {
@@ -71,7 +76,7 @@
             line-height: 1.1;
             letter-spacing: -0.02em;
             text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            background: linear-gradient(135deg, #ffd700, #ffb347, #ff6b6b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -88,13 +93,13 @@
         }
         
         .product-showcase {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(20px);
             border-radius: 30px;
             padding: 50px;
             margin-bottom: 50px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
         
         .product-image {
@@ -148,19 +153,37 @@
         }
         
         .guarantee-box {
-            background: rgba(255, 167, 38, 0.2);
-            border: 2px solid #ffa726;
-            padding: 30px;
-            border-radius: 20px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border: 3px solid #ffffff;
+            padding: 35px;
+            border-radius: 25px;
             margin: 40px 0;
+            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guarantee-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, transparent 50%);
+            pointer-events: none;
         }
         
         .guarantee-text {
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: 800;
             margin: 0;
-            color: #ffa726;
+            color: #ffffff;
             text-align: center;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.5px;
         }
         
         .benefits-section {
@@ -171,12 +194,13 @@
         }
         
         .benefit-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             padding: 30px 20px;
             border-radius: 15px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         
         .benefit-card:hover {
@@ -201,40 +225,71 @@
         }
         
         .timer-section {
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
-            padding: 30px;
-            border-radius: 20px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border: 2px solid #e67e22;
+            padding: 40px;
+            border-radius: 25px;
             margin: 50px 0;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 20px 50px rgba(44, 62, 80, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .timer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(230, 126, 34, 0.1) 0%, transparent 60%);
+            pointer-events: none;
         }
         
         .timer-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            color: #e67e22;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
         }
         
         .countdown-display {
-            font-size: 2.5rem;
+            font-size: 3.2rem;
             font-weight: 900;
-            font-family: 'Courier New', monospace;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            color: #ffffff;
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 3px;
         }
         
         .testimonials-section {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             padding: 40px;
             border-radius: 20px;
             margin: 50px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .testimonial-card {
             margin-bottom: 30px;
             padding: 25px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 15px;
             border-left: 4px solid #ffa726;
+            backdrop-filter: blur(5px);
         }
         
         .testimonial-text {
@@ -371,7 +426,41 @@
             bottom: 20px;
             right: 20px;
             z-index: 1000;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .chat-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: white;
+            color: #333;
+            padding: 12px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            white-space: nowrap;
+            animation: bounce-tooltip 2s infinite;
+            border: 2px solid #ffa726;
+        }
+
+        .chat-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid white;
+        }
+
+        @keyframes bounce-tooltip {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
         .chat-toggle {
@@ -570,50 +659,130 @@
         }
 
         @media (max-width: 768px) {
-            .chat-window {
-                width: 300px;
-                height: 400px;
+            .hero-section {
+                padding: 40px 15px;
             }
-        }
-
-        @media (max-width: 768px) {
+            
+            .container {
+                max-width: 100%;
+                padding: 0 10px;
+            }
+            
             .main-title {
-                font-size: 3rem;
+                font-size: 2.5rem;
+                line-height: 1.2;
             }
             
             .subtitle {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                padding: 0 10px;
             }
             
             .product-showcase {
-                padding: 30px 20px;
+                padding: 25px 15px;
+                margin: 30px 0;
+            }
+            
+            .product-image {
+                max-width: 280px;
             }
             
             .cta-primary {
-                padding: 20px 35px;
-                font-size: 1.3rem;
+                padding: 18px 30px;
+                font-size: 1.1rem;
+                width: 90%;
+                max-width: 300px;
             }
             
             .benefits-section {
                 grid-template-columns: 1fr;
+                gap: 20px;
+                margin: 30px 0;
+            }
+            
+            .benefit-card {
+                padding: 25px 15px;
             }
             
             .countdown-display {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            
+            .timer-section {
+                padding: 25px 15px;
+                margin: 30px 0;
+            }
+            
+            .testimonials-section {
+                padding: 25px 15px;
+                margin: 30px 0;
+            }
+            
+            .testimonial-card {
+                padding: 20px 15px;
             }
             
             .footer-section {
-                padding: 50px 15px 20px;
+                padding: 40px 15px 20px;
             }
             
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 25px;
+            }
+            
+            .footer-column {
+                padding: 20px 15px;
             }
             
             .footer-legal {
                 flex-direction: column;
                 text-align: center;
+                gap: 15px;
+            }
+            
+            .footer-links {
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .chat-widget {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .chat-window {
+                width: calc(100vw - 30px);
+                max-width: 320px;
+                height: 400px;
+                right: -5px;
+            }
+            
+            .chat-tooltip {
+                font-size: 12px;
+                padding: 10px 14px;
+                bottom: 65px;
+                right: -10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .urgency-banner {
+                font-size: 0.8rem;
+                padding: 10px 20px;
+            }
+            
+            .cta-primary {
+                font-size: 1rem;
+                padding: 16px 25px;
+            }
+            
+            .countdown-display {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -622,59 +791,59 @@
     <main class="hero-section">
         <div class="container">
             <div class="urgency-banner">
-                ⚠️ Últimas 47 Unidades Disponíveis
+                ⚠️ Estoque Limitado - Últimas Unidades Disponíveis
             </div>
             
-
+            <h1 class="main-title">HIDRALISO ORIGINAL</h1>
             
             <p class="subtitle">
-                O único produto que alisa e hidrata seus cabelos em casa com resultado de salão profissional
+                Sistema profissional de alisamento e hidratação capilar para uso domiciliar com tecnologia de salão
             </p>
             
             <div class="product-showcase">
                 <img src="https://imgur.com/ppjyg3O.jpg" alt="Hidraliso Original - Produto para Alisamento" class="product-image" onerror="this.src=''; this.alt='Produto Hidraliso Original'; this.style.display='none';">
                 
                 <div class="social-proof-badge">
-                    <h3>✓ Mais de 50.000 Mulheres Aprovam</h3>
+                    <h3>✓ Mais de 50.000 Clientes Satisfeitas</h3>
                 </div>
                 
                 <a href="https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8" target="_blank" rel="noopener noreferrer" class="cta-primary">
-                    Quero Meu Hidraliso Agora
+                    Adquirir Hidraliso Original
                 </a>
                 
                 <div class="guarantee-box">
                     <p class="guarantee-text">
-                        ✓ GARANTIA DE 7 DIAS<br>
-                        Não funcionou? Devolvemos 100% do seu dinheiro!
+                        ✓ GARANTIA INCONDICIONAL DE 7 DIAS<br>
+                        Satisfação garantida ou reembolso integral
                     </p>
                 </div>
             </div>
             
             <div class="timer-section">
-                <p class="timer-title">⏱ OFERTA EXPIRA EM:</p>
-                <div class="countdown-display" id="timer">23:47:12</div>
+                <p class="timer-title">⏱ PROMOÇÃO LIMITADA ENCERRA EM:</p>
+                <div class="countdown-display" id="timer">00:15:00</div>
             </div>
             
             <div class="benefits-section">
                 <div class="benefit-card">
                     <span class="benefit-icon">⟡</span>
-                    <h3 class="benefit-title">Resultado Imediato</h3>
-                    <p class="benefit-description">Veja a diferença já na primeira aplicação</p>
+                    <h3 class="benefit-title">Eficácia Comprovada</h3>
+                    <p class="benefit-description">Resultados visíveis desde a primeira aplicação</p>
                 </div>
                 <div class="benefit-card">
                     <span class="benefit-icon">⌂</span>
-                    <h3 class="benefit-title">Use em Casa</h3>
-                    <p class="benefit-description">Praticidade total no conforto do seu lar</p>
+                    <h3 class="benefit-title">Uso Domiciliar</h3>
+                    <p class="benefit-description">Tecnologia profissional adaptada para casa</p>
                 </div>
                 <div class="benefit-card">
-                    <span class="benefit-icon">◈</span>
+                    <span class="benefit-icon">★</span>
                     <h3 class="benefit-title">Qualidade Premium</h3>
-                    <p class="benefit-description">Fórmula profissional de alta performance</p>
+                    <p class="benefit-description">Fórmula desenvolvida com ingredientes selecionados</p>
                 </div>
                 <div class="benefit-card">
-                    <span class="benefit-icon">⟐</span>
-                    <h3 class="benefit-title">Frete Grátis</h3>
-                    <p class="benefit-description">Entregamos em todo o Brasil sem custo</p>
+                    <img src="https://imgur.com/jhd8gYa.jpg" alt="Entrega Gratuita" class="benefit-icon" style="width: 40px; height: 40px; filter: brightness(0) invert(1); margin: 0 auto;" onerror="this.src=''; this.style.display='none';">
+                    <h3 class="benefit-title">Entrega Gratuita</h3>
+                    <p class="benefit-description">Frete grátis para todo território nacional</p>
                 </div>
             </div>
             
@@ -682,22 +851,22 @@
                 <div class="testimonial-card">
                     <div class="rating-stars">★★★★★</div>
                     <p class="testimonial-text">
-                        "Incrível! Meu cabelo ficou liso e sedoso como nunca antes. O resultado durou semanas e economizei muito comparado ao salão."
+                        "Produto excepcional. Obtive resultados profissionais no conforto da minha casa. A durabilidade do alisamento superou minhas expectativas e o investimento se mostrou muito vantajoso."
                     </p>
-                    <p class="testimonial-author">- Ana Carolina, Rio de Janeiro</p>
+                    <p class="testimonial-author">- Ana Carolina M., Rio de Janeiro</p>
                 </div>
                 
                 <div class="testimonial-card">
                     <div class="rating-stars">★★★★★</div>
                     <p class="testimonial-text">
-                        "Estava cética no início, mas o Hidraliso superou todas as minhas expectativas. Agora é parte da minha rotina de beleza!"
+                        "Inicialmente hesitei, mas o Hidraliso demonstrou eficácia superior ao esperado. Tornou-se um item essencial na minha rotina de cuidados capilares."
                     </p>
-                    <p class="testimonial-author">- Mariana Santos, São Paulo</p>
+                    <p class="testimonial-author">- Mariana S., São Paulo</p>
                 </div>
             </div>
             
             <a href="https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8" target="_blank" rel="noopener noreferrer" class="cta-primary">
-                Garantir Meu Hidraliso Agora
+                Solicitar Hidraliso Original
             </a>
         </div>
     </main>
@@ -707,38 +876,38 @@
             <div class="footer-grid">
                 <div class="footer-column">
                     <h3 class="footer-title">Hidraliso Original</h3>
-                    <p class="footer-text">Revolucionando o cuidado capilar com tecnologia avançada para alisamento e hidratação profissional em casa. Transforme seus cabelos com segurança e qualidade.</p>
+                    <p class="footer-text">Empresa especializada em soluções capilares inovadoras, oferecendo tecnologia profissional de alisamento e hidratação para uso domiciliar com padrão de qualidade internacional.</p>
                 </div>
                 
                 <div class="footer-column">
                     <h4 class="footer-subtitle">Atendimento ao Cliente</h4>
                     <ul class="footer-list">
-                        <li>▶ Suporte via WhatsApp</li>
-                        <li>✉ contato@hidraliso.co</li>
-                        <li>◐ Segunda a Sexta: 9h às 18h</li>
-                        <li>◐ Sábado: 9h às 14h</li>
-                        <li>☎ 0800-123-4567</li>
+                        <li>▶ Suporte técnico especializado</li>
+                        <li>✉ atendimento@hidraliso.co</li>
+                        <li>◐ Segunda a Sexta: 8h às 18h</li>
+                        <li>◐ Sábado: 8h às 14h</li>
+                        <li>☎ Central de Atendimento: 0800-123-4567</li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h4 class="footer-subtitle">Informações Importantes</h4>
+                    <h4 class="footer-subtitle">Informações Comerciais</h4>
                     <ul class="footer-list">
-                        <li>✓ Garantia incondicional de 7 dias</li>
-                        <li>▶ Entrega expressa em todo Brasil</li>
-                        <li>◆ Pagamento 100% seguro</li>
-                        <li>▣ Aceita Pix, cartão e boleto</li>
-                        <li>▣ Embalagem discreta</li>
+                        <li>✓ Garantia incondicional de satisfação</li>
+                        <li>▶ Logística expressa nacional</li>
+                        <li>◆ Transações com certificação de segurança</li>
+                        <li>▣ Múltiplas formas de pagamento</li>
+                        <li>▣ Embalagem com discrição total</li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h4 class="footer-subtitle">Dados da Empresa</h4>
+                    <h4 class="footer-subtitle">Informações Corporativas</h4>
                     <ul class="footer-list">
                         <li>CNPJ: 47.074.851/0001-11</li>
                         <li>Razão Social: Hidraliso Commerce Ltda</li>
-                        <li>▲ Belo Horizonte - MG</li>
-                        <li>Rua dos Comerciários, 444</li>
+                        <li>▲ Sede: Belo Horizonte - MG</li>
+                        <li>Endereço: Rua dos Comerciários, 444</li>
                         <li>CEP: 30112-000</li>
                     </ul>
                 </div>
@@ -764,6 +933,7 @@
     
     <!-- Chat Widget -->
     <div class="chat-widget">
+        <div class="chat-tooltip" id="chatTooltip">Tire suas dúvidas</div>
         <button class="chat-toggle" id="chatToggle">💬</button>
         <div class="chat-window" id="chatWindow">
             <div class="chat-header">
@@ -772,7 +942,7 @@
             </div>
             <div class="chat-messages" id="chatMessages">
                 <div class="message bot">
-                    Olá! 👋 Sou a assistente do Hidraliso. Como posso te ajudar hoje?
+                    Olá! 👋 Sou a consultora especializada do Hidraliso Original. Como posso auxiliá-la hoje?
                 </div>
             </div>
             <div class="typing-indicator" id="typingIndicator">
@@ -790,9 +960,9 @@
     <script>
         // Sistema de countdown timer
         function initializeCountdown() {
-            let hours = 23;
-            let minutes = 47;
-            let seconds = 12;
+            let hours = 0;
+            let minutes = 15;
+            let seconds = 0;
             
             const timerInterval = setInterval(() => {
                 seconds--;
@@ -852,25 +1022,32 @@
         
         // Respostas da IA
         const botResponses = {
-            'preço': 'O Hidraliso está com desconto especial hoje! Você pode conferir o preço promocional clicando no botão abaixo:',
-            'funciona': 'Sim! O Hidraliso tem mais de 50.000 clientes satisfeitas. É um produto testado e aprovado que realmente funciona. Veja mais detalhes:',
-            'garantia': 'Oferecemos garantia total de 7 dias! Se não ficar satisfeita, devolvemos 100% do seu dinheiro. Sem perguntas!',
-            'entrega': 'A entrega é GRÁTIS para todo o Brasil! Enviamos de forma expressa e discreta. Confira:',
-            'como usar': 'É super fácil de usar! Basta aplicar no cabelo limpo, deixar agir e enxaguar. Resultado profissional em casa!',
-            'ingredientes': 'O Hidraliso possui fórmula premium com ingredientes de alta qualidade para alisamento e hidratação profissional.',
-            'cabelo cacheado': 'Perfeito para cabelos cacheados! O Hidraliso alisa e hidrata todos os tipos de cabelo com segurança.',
-            'tempo': 'O resultado é imediato! Já na primeira aplicação você vê a diferença. E dura semanas!',
-            'comprar': 'Que ótimo! Você está fazendo a escolha certa. Clique no botão abaixo para garantir seu Hidraliso:',
-            'default': 'Entendo sua dúvida! O Hidraliso é realmente incrível e vai transformar seus cabelos. Veja todos os detalhes:'
+            'preço': 'O Hidraliso Original está disponível com condições especiais. Consulte os valores promocionais através do link abaixo:',
+            'funciona': 'Certamente. O Hidraliso Original conta com mais de 50.000 clientes satisfeitas e possui eficácia comprovada. Confira os detalhes técnicos:',
+            'garantia': 'Oferecemos garantia incondicional de 7 dias com política de reembolso integral. Sua satisfação é nossa prioridade.',
+            'entrega': 'Disponibilizamos logística gratuita para todo território nacional com envio expresso e embalagem discreta. Saiba mais:',
+            'como usar': 'O processo de aplicação é simples e intuitivo: aplicar no cabelo limpo, aguardar o tempo de ação e enxaguar. Tecnologia profissional adaptada para uso domiciliar.',
+            'ingredientes': 'O Hidraliso Original possui formulação premium desenvolvida com ingredientes selecionados para alisamento e hidratação de alta performance.',
+            'cabelo cacheado': 'O produto é adequado para todos os tipos capilares, incluindo cabelos cacheados. Nossa fórmula oferece alisamento e hidratação com segurança.',
+            'tempo': 'Os resultados são perceptíveis desde a primeira aplicação, com durabilidade prolongada de várias semanas.',
+            'comprar': 'Excelente decisão. Você está investindo em um produto de qualidade superior. Acesse o link para finalizar sua aquisição:',
+            'default': 'Compreendo sua consulta. O Hidraliso Original é uma solução inovadora que transformará seus cuidados capilares. Veja as informações completas:'
         };
         
         // Toggle chat window
+        const chatTooltip = document.getElementById('chatTooltip');
+        
         chatToggle.addEventListener('click', () => {
             chatWindow.classList.toggle('active');
             if (chatWindow.classList.contains('active')) {
                 chatInput.focus();
+                chatTooltip.style.display = 'none';
+            } else {
+                chatTooltip.style.display = 'block';
             }
         });
+        
+        // Keep tooltip always visible - removed auto-hide
         
         // Send message function
         function sendMessage() {
@@ -904,7 +1081,7 @@
                 ctaButton.target = '_blank';
                 ctaButton.rel = 'noopener noreferrer';
                 ctaButton.className = 'cta-button-chat';
-                ctaButton.textContent = 'Ver Oferta Especial';
+                ctaButton.textContent = 'Consultar Condições';
                 messageDiv.appendChild(document.createElement('br'));
                 messageDiv.appendChild(ctaButton);
             }
@@ -953,5 +1130,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9932d754c148f1df',t:'MTc2MTIzOTM1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99332c9360e31a9a',t:'MTc2MTI0Mjg0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
