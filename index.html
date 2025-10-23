@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidraliso Original - Alisamento Profissional em Casa</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            line-height: 1.6;
+            min-height: 100%;
+        }
+        
+        html {
+            height: 100%;
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .urgency-banner {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            animation: pulse 2s infinite;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            opacity: 0.95;
+            font-weight: 500;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .product-showcase {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .product-image {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 40px;
+            transition: transform 0.4s ease;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        }
+        
+        .product-image:hover {
+            transform: translateY(-15px) scale(1.03);
+        }
+        
+        .social-proof-badge {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            padding: 12px 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 10px 25px rgba(78, 205, 196, 0.3);
+        }
+        
+        .social-proof-badge h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .cta-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffa726, #ff9800);
+            color: white;
+            padding: 25px 50px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(255, 167, 38, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 25px 0;
+            border: 3px solid #ffb74d;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(255, 167, 38, 0.6);
+        }
+        
+        .guarantee-box {
+            background: rgba(255, 167, 38, 0.2);
+            border: 2px solid #ffa726;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+        
+        .guarantee-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: #ffa726;
+            text-align: center;
+        }
+        
+        .benefits-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+        
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .benefit-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .benefit-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .timer-section {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(231, 76, 60, 0.3);
+        }
+        
+        .timer-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .countdown-display {
+            font-size: 2.5rem;
+            font-weight: 900;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .testimonials-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+        }
+        
+        .testimonial-card {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #ffa726;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #ffa726;
+            font-size: 0.95rem;
+        }
+        
+        .rating-stars {
+            color: #ffa726;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .footer-section {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 80px 20px 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #ffa726;
+        }
+        
+        .footer-subtitle {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #74b9ff;
+        }
+        
+        .footer-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+        
+        .footer-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-list li {
+            padding: 10px 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .footer-bottom {
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            padding-top: 40px;
+            text-align: center;
+        }
+        
+        .footer-legal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: #74b9ff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: #ffa726;
+        }
+        
+        .disclaimer {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            padding: 25px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            text-align: left;
+        }
+        
+        .disclaimer strong {
+            color: #ffa726;
+        }
+
+        /* Chat Widget Styles */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffa726, #ff9800);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 167, 38, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            transition: all 0.3s ease;
+            animation: pulse-chat 2s infinite;
+        }
+
+        @keyframes pulse-chat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(255, 167, 38, 0.6);
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(255, 167, 38, 0.3);
+        }
+
+        .chat-window.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #ffa726, #ff9800);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-header .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4caf50;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .message.bot {
+            background: white;
+            color: #333;
+            align-self: flex-start;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .message.user {
+            background: linear-gradient(135deg, #ffa726, #ff9800);
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chat-input-area {
+            padding: 15px 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: #ffa726;
+        }
+
+        .chat-send {
+            background: linear-gradient(135deg, #ffa726, #ff9800);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+
+        .chat-send:hover {
+            transform: scale(1.1);
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 18px;
+            align-self: flex-start;
+            border: 1px solid #e0e0e0;
+            max-width: 80px;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .cta-button-chat {
+            background: linear-gradient(135deg, #ffa726, #ff9800);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 12px;
+            margin-top: 8px;
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button-chat:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .chat-window {
+                width: 300px;
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .product-showcase {
+                padding: 30px 20px;
+            }
+            
+            .cta-primary {
+                padding: 20px 35px;
+                font-size: 1.3rem;
+            }
+            
+            .benefits-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .countdown-display {
+                font-size: 2rem;
+            }
+            
+            .footer-section {
+                padding: 50px 15px 20px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-legal {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="hero-section">
+        <div class="container">
+            <div class="urgency-banner">
+                ⚠️ Últimas 47 Unidades Disponíveis
+            </div>
+            
+
+            
+            <p class="subtitle">
+                O único produto que alisa e hidrata seus cabelos em casa com resultado de salão profissional
+            </p>
+            
+            <div class="product-showcase">
+                <img src="https://imgur.com/ppjyg3O.jpg" alt="Hidraliso Original - Produto para Alisamento" class="product-image" onerror="this.src=''; this.alt='Produto Hidraliso Original'; this.style.display='none';">
+                
+                <div class="social-proof-badge">
+                    <h3>✓ Mais de 50.000 Mulheres Aprovam</h3>
+                </div>
+                
+                <a href="https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8" target="_blank" rel="noopener noreferrer" class="cta-primary">
+                    Quero Meu Hidraliso Agora
+                </a>
+                
+                <div class="guarantee-box">
+                    <p class="guarantee-text">
+                        ✓ GARANTIA DE 7 DIAS<br>
+                        Não funcionou? Devolvemos 100% do seu dinheiro!
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timer-section">
+                <p class="timer-title">⏱ OFERTA EXPIRA EM:</p>
+                <div class="countdown-display" id="timer">23:47:12</div>
+            </div>
+            
+            <div class="benefits-section">
+                <div class="benefit-card">
+                    <span class="benefit-icon">⟡</span>
+                    <h3 class="benefit-title">Resultado Imediato</h3>
+                    <p class="benefit-description">Veja a diferença já na primeira aplicação</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">⌂</span>
+                    <h3 class="benefit-title">Use em Casa</h3>
+                    <p class="benefit-description">Praticidade total no conforto do seu lar</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">◈</span>
+                    <h3 class="benefit-title">Qualidade Premium</h3>
+                    <p class="benefit-description">Fórmula profissional de alta performance</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">⟐</span>
+                    <h3 class="benefit-title">Frete Grátis</h3>
+                    <p class="benefit-description">Entregamos em todo o Brasil sem custo</p>
+                </div>
+            </div>
+            
+            <div class="testimonials-section">
+                <div class="testimonial-card">
+                    <div class="rating-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Incrível! Meu cabelo ficou liso e sedoso como nunca antes. O resultado durou semanas e economizei muito comparado ao salão."
+                    </p>
+                    <p class="testimonial-author">- Ana Carolina, Rio de Janeiro</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="rating-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Estava cética no início, mas o Hidraliso superou todas as minhas expectativas. Agora é parte da minha rotina de beleza!"
+                    </p>
+                    <p class="testimonial-author">- Mariana Santos, São Paulo</p>
+                </div>
+            </div>
+            
+            <a href="https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8" target="_blank" rel="noopener noreferrer" class="cta-primary">
+                Garantir Meu Hidraliso Agora
+            </a>
+        </div>
+    </main>
+    
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3 class="footer-title">Hidraliso Original</h3>
+                    <p class="footer-text">Revolucionando o cuidado capilar com tecnologia avançada para alisamento e hidratação profissional em casa. Transforme seus cabelos com segurança e qualidade.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-subtitle">Atendimento ao Cliente</h4>
+                    <ul class="footer-list">
+                        <li>▶ Suporte via WhatsApp</li>
+                        <li>✉ contato@hidraliso.co</li>
+                        <li>◐ Segunda a Sexta: 9h às 18h</li>
+                        <li>◐ Sábado: 9h às 14h</li>
+                        <li>☎ 0800-123-4567</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-subtitle">Informações Importantes</h4>
+                    <ul class="footer-list">
+                        <li>✓ Garantia incondicional de 7 dias</li>
+                        <li>▶ Entrega expressa em todo Brasil</li>
+                        <li>◆ Pagamento 100% seguro</li>
+                        <li>▣ Aceita Pix, cartão e boleto</li>
+                        <li>▣ Embalagem discreta</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-subtitle">Dados da Empresa</h4>
+                    <ul class="footer-list">
+                        <li>CNPJ: 47.074.851/0001-11</li>
+                        <li>Razão Social: Hidraliso Commerce Ltda</li>
+                        <li>▲ Belo Horizonte - MG</li>
+                        <li>Rua dos Comerciários, 444</li>
+                        <li>CEP: 30112-000</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <p>&copy; 2024 Hidraliso Original. Todos os direitos reservados.</p>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Política de Privacidade</a>
+                        <a href="#" class="footer-link">Termos de Uso</a>
+                        <a href="#" class="footer-link">Política de Troca e Devolução</a>
+                        <a href="#" class="footer-link">Contato</a>
+                    </div>
+                </div>
+                
+                <div class="disclaimer">
+                    <p><strong>Aviso Legal Importante:</strong> Os resultados podem variar de pessoa para pessoa dependendo do tipo de cabelo e condições individuais. Este produto não se destina a diagnosticar, tratar, curar ou prevenir qualquer doença ou condição médica. Sempre consulte um profissional especializado antes de usar produtos capilares. As imagens são meramente ilustrativas.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-toggle" id="chatToggle">💬</button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="status-dot"></div>
+                <span>Fale Conosco</span>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    Olá! 👋 Sou a assistente do Hidraliso. Como posso te ajudar hoje?
+                </div>
+            </div>
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Digite sua pergunta...">
+                <button class="chat-send" id="chatSend">➤</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Sistema de countdown timer
+        function initializeCountdown() {
+            let hours = 23;
+            let minutes = 47;
+            let seconds = 12;
+            
+            const timerInterval = setInterval(() => {
+                seconds--;
+                
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                }
+                
+                if (minutes < 0) {
+                    minutes = 59;
+                    hours--;
+                }
+                
+                if (hours < 0) {
+                    hours = 23;
+                    minutes = 59;
+                    seconds = 59;
+                }
+                
+                const timeDisplay = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                const timerElement = document.getElementById('timer');
+                if (timerElement) {
+                    timerElement.textContent = timeDisplay;
+                }
+            }, 1000);
+        }
+        
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCountdown();
+        });
+        
+        // Animação suave para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Chat Widget Functionality
+        const chatToggle = document.getElementById('chatToggle');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        const typingIndicator = document.getElementById('typingIndicator');
+        
+        const ctaLink = 'https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8';
+        
+        // Respostas da IA
+        const botResponses = {
+            'preço': 'O Hidraliso está com desconto especial hoje! Você pode conferir o preço promocional clicando no botão abaixo:',
+            'funciona': 'Sim! O Hidraliso tem mais de 50.000 clientes satisfeitas. É um produto testado e aprovado que realmente funciona. Veja mais detalhes:',
+            'garantia': 'Oferecemos garantia total de 7 dias! Se não ficar satisfeita, devolvemos 100% do seu dinheiro. Sem perguntas!',
+            'entrega': 'A entrega é GRÁTIS para todo o Brasil! Enviamos de forma expressa e discreta. Confira:',
+            'como usar': 'É super fácil de usar! Basta aplicar no cabelo limpo, deixar agir e enxaguar. Resultado profissional em casa!',
+            'ingredientes': 'O Hidraliso possui fórmula premium com ingredientes de alta qualidade para alisamento e hidratação profissional.',
+            'cabelo cacheado': 'Perfeito para cabelos cacheados! O Hidraliso alisa e hidrata todos os tipos de cabelo com segurança.',
+            'tempo': 'O resultado é imediato! Já na primeira aplicação você vê a diferença. E dura semanas!',
+            'comprar': 'Que ótimo! Você está fazendo a escolha certa. Clique no botão abaixo para garantir seu Hidraliso:',
+            'default': 'Entendo sua dúvida! O Hidraliso é realmente incrível e vai transformar seus cabelos. Veja todos os detalhes:'
+        };
+        
+        // Toggle chat window
+        chatToggle.addEventListener('click', () => {
+            chatWindow.classList.toggle('active');
+            if (chatWindow.classList.contains('active')) {
+                chatInput.focus();
+            }
+        });
+        
+        // Send message function
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            chatInput.value = '';
+            
+            // Show typing indicator
+            showTyping();
+            
+            // Generate bot response
+            setTimeout(() => {
+                hideTyping();
+                const response = generateResponse(message);
+                addMessage(response, 'bot', true);
+            }, 1500);
+        }
+        
+        // Add message to chat
+        function addMessage(text, sender, includeCTA = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = text;
+            
+            if (includeCTA && sender === 'bot') {
+                const ctaButton = document.createElement('a');
+                ctaButton.href = ctaLink;
+                ctaButton.target = '_blank';
+                ctaButton.rel = 'noopener noreferrer';
+                ctaButton.className = 'cta-button-chat';
+                ctaButton.textContent = 'Ver Oferta Especial';
+                messageDiv.appendChild(document.createElement('br'));
+                messageDiv.appendChild(ctaButton);
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Generate bot response
+        function generateResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            for (const [key, response] of Object.entries(botResponses)) {
+                if (key !== 'default' && message.includes(key)) {
+                    return response;
+                }
+            }
+            
+            return botResponses.default;
+        }
+        
+        // Show typing indicator
+        function showTyping() {
+            typingIndicator.classList.add('active');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Hide typing indicator
+        function hideTyping() {
+            typingIndicator.classList.remove('active');
+        }
+        
+        // Event listeners
+        chatSend.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        // Close chat when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!chatWindow.contains(e.target) && !chatToggle.contains(e.target)) {
+                chatWindow.classList.remove('active');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9932d754c148f1df',t:'MTc2MTIzOTM1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
