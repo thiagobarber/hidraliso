@@ -2,1300 +2,1038 @@
 <html lang="pt-BR">
  <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Hidraliso Original - Sistema Profissional de Alisamento Capilar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hidraliso - Transforme Seus Cabelos</title>
+  <script src="/_sdk/element_sdk.js"></script>
   <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(106, 17, 203, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 20px 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-cta {
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-            color: #1a1a1a;
-            padding: 12px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            border: 1px solid #ffc107;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            padding: 100px 40px;
-            background: transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 193, 7, 0.03) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(76, 175, 80, 0.03) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .badge-dot {
-            width: 6px;
-            height: 6px;
-            background: #4caf50;
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .hero-title {
-            font-size: 64px;
-            font-weight: 900;
-            line-height: 1.1;
-            color: #ffffff;
-            margin-bottom: 24px;
-            letter-spacing: -2px;
-        }
-
-        .hero-title .highlight {
-            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-description {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 40px;
-            line-height: 1.7;
-            font-weight: 400;
-        }
-
-        .hero-cta-group {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-            color: #1a1a1a;
-            padding: 18px 40px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            border: 2px solid #ffc107;
-            box-shadow: 0 4px 20px rgba(255, 193, 7, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(255, 193, 7, 0.6);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            padding: 18px 40px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-secondary:hover {
-            border-color: rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .trust-indicators {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .trust-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .trust-number {
-            font-size: 28px;
-            font-weight: 800;
-            color: #ffffff;
-            line-height: 1;
-            margin-bottom: 4px;
-        }
-
-        .trust-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 500;
-        }
-
-        .hero-visual {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .product-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 60px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ffc107, #ff9800);
-        }
-
-        .product-image-wrapper {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .product-image {
-            max-width: 100%;
-            height: auto;
-            max-height: 400px;
-            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
-            transition: transform 0.4s ease;
-        }
-
-        .product-image:hover {
-            transform: scale(1.05);
-        }
-
-        .guarantee-badge {
-            background: linear-gradient(135deg, #4caf50, #45a049);
-            color: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 14px;
-            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .guarantee-badge:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.5);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 120px 40px;
-            background: transparent;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 80px;
-        }
-
-        .section-subtitle {
-            color: #ffc107;
-            font-weight: 700;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 900;
-            color: #ffffff;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        .section-description {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.7;
-        }
-
-        .features-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 193, 7, 0.5);
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            margin-bottom: 24px;
-        }
-
-        .feature-title {
-            font-size: 22px;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 12px;
-        }
-
-        .feature-description {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.7;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 120px 40px;
-            background: transparent;
-        }
-
-        .testimonials-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 32px;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            transition: all 0.3s ease;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .stars {
-            color: #ffc107;
-            font-size: 18px;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .testimonial-text {
-            font-size: 16px;
-            color: #333;
-            line-height: 1.8;
-            margin-bottom: 24px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .author-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: white;
-            font-size: 18px;
-        }
-
-        .author-info {
-            flex: 1;
-        }
-
-        .author-name {
-            font-weight: 700;
-            color: #1a1a1a;
-            font-size: 15px;
-            margin-bottom: 2px;
-        }
-
-        .author-location {
-            font-size: 13px;
-            color: #666;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 120px 40px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(255, 193, 7, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .cta-container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-title {
-            font-size: 56px;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 24px;
-            line-height: 1.2;
-            letter-spacing: -1.5px;
-        }
-
-        .cta-description {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 40px;
-            line-height: 1.7;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-            color: #1a1a1a;
-            padding: 24px 60px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 18px;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(255, 193, 7, 0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 50px rgba(255, 193, 7, 0.5);
-        }
-
-        .timer-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 24px;
-            border-radius: 12px;
-            margin-top: 40px;
-            display: inline-block;
-        }
-
-        .timer-label {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .timer-display {
-            font-size: 48px;
-            font-weight: 900;
-            color: #ffc107;
-            font-family: 'Inter', monospace;
-            letter-spacing: 4px;
-        }
-
-        /* Footer */
-        .footer {
-            background: #0a0a0a;
-            color: rgba(255, 255, 255, 0.7);
-            padding: 80px 40px 40px;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
-        }
-
-        .footer-column h3 {
-            color: white;
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 24px;
-        }
-
-        .footer-column p {
-            font-size: 14px;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #ffc107;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-legal a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-legal a:hover {
-            color: white;
-        }
-
-        /* Chat Widget */
-        .chat-widget {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-
-        .chat-button {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #000000, #2c2c2c);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            border: none;
-            font-size: 28px;
-        }
-
-        .chat-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .chat-window {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 380px;
-            height: 500px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid #e0e0e0;
-        }
-
-        .chat-window.active {
-            display: flex;
-        }
-
-        .chat-header {
-            background: linear-gradient(135deg, #000000, #2c2c2c);
-            color: white;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .chat-status {
-            width: 10px;
-            height: 10px;
-            background: #4caf50;
-            border-radius: 50%;
-            animation: pulse-status 2s infinite;
-        }
-
-        @keyframes pulse-status {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .chat-header-text h4 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
-        .chat-header-text p {
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 24px;
-            overflow-y: auto;
-            background: #fafafa;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .message.bot {
-            background: white;
-            color: #333;
-            align-self: flex-start;
-            border: 1px solid #e0e0e0;
-        }
-
-        .message.user {
-            background: linear-gradient(135deg, #000000, #2c2c2c);
-            color: white;
-            align-self: flex-end;
-        }
-
-        .chat-input-area {
-            padding: 20px;
-            background: white;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            gap: 12px;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .chat-input:focus {
-            border-color: #000000;
-        }
-
-        .chat-send {
-            background: linear-gradient(135deg, #000000, #2c2c2c);
-            color: white;
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .chat-send:hover {
-            transform: scale(1.05);
-        }
-
-        .typing-indicator {
-            display: none;
-            align-items: center;
-            gap: 6px;
-            padding: 12px 16px;
-            background: white;
-            border-radius: 12px;
-            align-self: flex-start;
-            border: 1px solid #e0e0e0;
-        }
-
-        .typing-indicator.active {
-            display: flex;
-        }
-
-        .typing-dot {
-            width: 6px;
-            height: 6px;
-            background: #999;
-            border-radius: 50%;
-            animation: typing-animation 1.4s infinite;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typing-animation {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-8px); }
-        }
-
-        .cta-link-chat {
-            display: inline-block;
-            background: linear-gradient(135deg, #ffc107, #ff9800);
-            color: #1a1a1a;
-            padding: 8px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 12px;
-            margin-top: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .cta-link-chat:hover {
-            transform: scale(1.05);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-
-            .hero-visual {
-                order: -1;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 0 20px;
-            }
-
-            .hero {
-                padding: 60px 20px;
-            }
-
-            .hero-title {
-                font-size: 42px;
-            }
-
-            .hero-description {
-                font-size: 18px;
-            }
-
-            .hero-cta-group {
-                flex-direction: column;
-            }
-
-            .trust-indicators {
-                flex-wrap: wrap;
-            }
-
-            .product-card {
-                padding: 40px 24px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .cta-title {
-                font-size: 38px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .chat-window {
-                width: calc(100vw - 40px);
-                right: 0;
-            }
-
-            .features, .testimonials, .cta-section {
-                padding: 80px 20px;
-            }
-        }
-    </style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+    
+    .page-wrapper {
+      width: 100%;
+      min-height: 100%;
+      background: linear-gradient(180deg, #8b5cf6 0%, #a78bfa 50%, #c4b5fd 100%);
+      overflow-x: hidden;
+    }
+    
+    .app-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Timer Bar */
+    .timer-bar {
+      width: 100%;
+      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+      color: white;
+      padding: 16px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .timer-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      font-family: 'Courier New', monospace;
+      flex-wrap: wrap;
+      padding: 0 10px;
+    }
+    
+    .timer-label {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.95;
+    }
+    
+    .timer-display {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    
+    .timer-value {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 24px;
+      font-weight: 700;
+      min-width: 50px;
+      text-align: center;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .timer-separator {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 4px;
+      opacity: 0.8;
+    }
+    
+    @media (max-width: 768px) {
+      .timer-container {
+        gap: 12px;
+      }
+      
+      .timer-label {
+        font-size: 11px;
+        letter-spacing: 1px;
+        width: 100%;
+        text-align: center;
+      }
+      
+      .timer-display {
+        gap: 8px;
+      }
+      
+      .timer-value {
+        padding: 6px 10px;
+        font-size: 20px;
+        min-width: 42px;
+      }
+      
+      .timer-separator {
+        font-size: 20px;
+      }
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      padding: 80px 0 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+    
+    .hero-title {
+      font-size: 56px;
+      font-weight: 900;
+      color: #1a1a1a;
+      margin-bottom: 24px;
+      line-height: 1.1;
+      animation: fadeInUp 0.8s ease-out 0.2s backwards;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      letter-spacing: -1px;
+    }
+    
+    .hero-subtitle {
+      font-size: 22px;
+      color: #374151;
+      margin-bottom: 50px;
+      line-height: 1.6;
+      animation: fadeInUp 0.8s ease-out 0.4s backwards;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+    }
+    
+    .product-image-container {
+      margin: 50px auto 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1s ease-out 0.6s backwards;
+      position: relative;
+    }
+    
+    .product-image-container::before {
+      content: '';
+      position: absolute;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+      z-index: 0;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    
+    .product-image {
+      max-width: 450px;
+      width: 100%;
+      height: auto;
+      background: transparent;
+      filter: drop-shadow(0 30px 60px rgba(124, 58, 237, 0.4));
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+    
+    .product-image:hover {
+      transform: scale(1.02);
+    }
+    
+    .cta-button-wrapper {
+      text-align: center;
+      margin: 40px auto 0;
+      display: block;
+      width: 100%;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      color: white;
+      padding: 22px 60px;
+      border-radius: 50px;
+      font-size: 20px;
+      font-weight: 800;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: fadeInUp 0.8s ease-out 0.8s backwards, pulseButton 2.5s ease-in-out 1s infinite;
+      box-shadow: 0 20px 50px rgba(124, 58, 237, 0.4), 0 5px 15px rgba(124, 58, 237, 0.3);
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    
+    .cta-button:hover {
+      background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 25px 60px rgba(124, 58, 237, 0.5), 0 10px 20px rgba(124, 58, 237, 0.4);
+    }
+    
+    .cta-button:active {
+      transform: translateY(-1px) scale(1);
+    }
+    
+    .guarantee {
+      margin-top: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: white;
+      font-weight: 700;
+      animation: fadeIn 1s ease-out 1s backwards;
+      background: rgba(5, 150, 105, 0.9);
+      padding: 16px 32px;
+      border-radius: 50px;
+      border: 2px solid rgba(5, 150, 105, 1);
+      font-size: 16px;
+      box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3);
+    }
+    
+    .guarantee-wrapper {
+      text-align: center;
+      margin-top: 32px;
+    }
+    
+    /* Benefits Section */
+    .benefits-section {
+      padding: 100px 0;
+      position: relative;
+    }
+    
+    .benefits-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+    
+    .benefit-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+      border-radius: 24px;
+      padding: 50px 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: fadeInUp 0.8s ease-out backwards;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+    }
+    
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #7c3aed, #a78bfa);
+    }
+    
+    .benefit-card:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+    
+    .benefit-card:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    
+    .benefit-card:nth-child(2)::before {
+      background: linear-gradient(90deg, #a78bfa, #c4b5fd);
+    }
+    
+    .benefit-card:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+    
+    .benefit-card:nth-child(3)::before {
+      background: linear-gradient(90deg, #c4b5fd, #ddd6fe);
+    }
+    
+    .benefit-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2), 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .benefit-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      color: white;
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
+    }
+    
+    .benefit-card:nth-child(2) .benefit-number {
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+      box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
+    }
+    
+    .benefit-card:nth-child(3) .benefit-number {
+      background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%);
+      box-shadow: 0 8px 24px rgba(196, 181, 253, 0.3);
+    }
+    
+    .benefit-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    
+    .benefit-description {
+      font-size: 17px;
+      color: #4b5563;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+    
+    /* Testimonials Section */
+    .testimonials-section {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+      position: relative;
+    }
+    
+    .testimonials-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.2), transparent);
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 44px;
+      font-weight: 900;
+      color: #1a1a1a;
+      margin-bottom: 70px;
+      letter-spacing: -1px;
+      position: relative;
+      padding-bottom: 20px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #7c3aed, #a78bfa);
+      border-radius: 2px;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+    
+    .testimonial-card {
+      background: white;
+      border-radius: 24px;
+      padding: 45px 40px;
+      animation: fadeInUp 0.8s ease-out backwards;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 2px solid transparent;
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      font-size: 80px;
+      color: rgba(124, 58, 237, 0.08);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(124, 58, 237, 0.15), 0 4px 16px rgba(0, 0, 0, 0.08);
+      border-color: rgba(124, 58, 237, 0.2);
+    }
+    
+    .testimonial-card:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+    
+    .testimonial-card:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    
+    .testimonial-card:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+    
+    .stars {
+      color: #fbbf24;
+      font-size: 22px;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+    }
+    
+    .testimonial-text {
+      font-size: 17px;
+      color: #374151;
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .testimonial-name {
+      font-weight: 800;
+      color: #7c3aed;
+      font-size: 17px;
+      font-style: normal;
+    }
+    
+    /* Final CTA Section */
+    .final-cta-section {
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .final-cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    
+    .final-cta-title {
+      font-size: 48px;
+      font-weight: 900;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .final-cta-subtitle {
+      font-size: 22px;
+      color: #374151;
+      margin-bottom: 40px;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Urgency Section */
+    .urgency-section {
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .urgency-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 20px,
+        rgba(255, 255, 255, 0.03) 20px,
+        rgba(255, 255, 255, 0.03) 40px
+      );
+      animation: slide 20s linear infinite;
+    }
+    
+    @keyframes slide {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(50px, 50px);
+      }
+    }
+    
+    .urgency-text {
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      animation: pulseText 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulseText {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.85;
+      }
+    }
+    
+    .stock-text {
+      font-size: 20px;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+      font-weight: 600;
+    }
+    
+    /* Footer */
+    .footer-section {
+      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+      color: white;
+      padding: 50px 0;
+      text-align: center;
+      position: relative;
+    }
+    
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    }
+    
+    .footer-text {
+      font-size: 15px;
+      opacity: 0.7;
+      letter-spacing: 0.3px;
+      line-height: 1.6;
+    }
+    
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+    }
+    
+    @keyframes pulseButton {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.03);
+      }
+    }
+    
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 32px;
+      }
+      
+      .hero-subtitle {
+        font-size: 18px;
+      }
+      
+      .benefits-grid,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .final-cta-title {
+        font-size: 28px;
+      }
+      
+      .urgency-text {
+        font-size: 20px;
+      }
+    }
+  </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
   <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
- <body><!-- Navigation -->
-  <nav class="navbar">
-   <div class="nav-container">
-    <div class="logo">
-     HIDRALISO
-    </div><a href="https://www.hidraliso.co/?pv=proyyn2e&amp;af=afimem4yp8" target="_blank" rel="noopener noreferrer" class="nav-cta">Adquirir Agora</a>
-   </div>
-  </nav><!-- Hero Section -->
-  <section class="hero">
-   <div class="hero-container">
-    <div class="hero-content">
-     <div class="badge"><span class="badge-dot"></span> Tecnologia Profissional
+ <body>
+  <div class="page-wrapper"><!-- Timer Bar -->
+   <div class="timer-bar">
+    <div class="timer-container" id="timer"><span class="timer-label">OFERTA EXPIRA EM</span>
+     <div class="timer-display"><span class="timer-value" id="minutes">15</span> <span class="timer-separator">:</span> <span class="timer-value" id="seconds">00</span>
      </div>
-     <h1 class="hero-title">Alisamento <span class="highlight">Profissional</span> em Casa</h1>
-     <p class="hero-description">Sistema avançado de alisamento e hidratação capilar com tecnologia de salão. Resultados visíveis desde a primeira aplicação.</p>
-     <div class="hero-cta-group"><a href="https://www.hidraliso.co/?pv=proyyn2e&amp;af=afimem4yp8" target="_blank" rel="noopener noreferrer" class="btn-primary"> Começar Agora → </a> <a href="#features" class="btn-secondary">Saiba Mais</a>
+    </div>
+   </div><!-- Hero Section -->
+   <section class="hero-section">
+    <div class="app-container">
+     <h1 class="hero-title" id="hero-title">Transforme Seus Cabelos em Minutos</h1>
+     <p class="hero-subtitle" id="hero-subtitle">Hidratação profunda e brilho intenso com a fórmula exclusiva do Hidraliso</p>
+     <div class="product-image-container"><img src="https://i.imgur.com/1QsK4Yl.png" alt="Hidraliso - Produto para Cabelos" class="product-image" onerror="this.src=''; this.alt='Imagem do produto'; this.style.display='none';">
      </div>
-     <div class="trust-indicators">
-      <div class="trust-item">
-       <div class="trust-number">
-        50K+
-       </div>
-       <div class="trust-label">
-        Clientes Satisfeitas
-       </div>
-      </div>
-      <div class="trust-item">
-       <div class="trust-number">
-        4.9/5
-       </div>
-       <div class="trust-label">
-        Avaliação Média
-       </div>
-      </div>
-      <div class="trust-item">
-       <div class="trust-number">
-        7 Dias
-       </div>
-       <div class="trust-label">
-        Garantia Total
-       </div>
+     <div class="cta-button-wrapper"><a href="https://www.hidraliso.co/?pv=proyyn2e&amp;af=afimem4yp8" target="_blank" rel="noopener noreferrer" class="cta-button" id="cta-button">QUERO MEU CABELO LISO</a>
+     </div>
+     <div class="guarantee-wrapper">
+      <div class="guarantee" id="guarantee">
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+       </svg><span>Garantia de Satisfação de 30 Dias</span>
       </div>
      </div>
     </div>
-    <div class="hero-visual">
-     <div class="product-card">
-      <div class="product-image-wrapper"><img src="https://imgur.com/ppjyg3O.jpg" alt="Hidraliso Original - Sistema Profissional" class="product-image" onerror="this.style.display='none';">
-      </div><a href="https://www.hidraliso.co/?pv=proyyn2e&amp;af=afimem4yp8" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-       <div class="guarantee-badge">
-        ✓ Garantia Incondicional de 7 Dias
-       </div></a>
-     </div>
-    </div>
-   </div>
-  </section><!-- Features Section -->
-  <section class="features" id="features">
-   <div class="section-header">
-    <div class="section-subtitle">
-     Benefícios
-    </div>
-    <h2 class="section-title">Por Que Escolher o Hidraliso?</h2>
-    <p class="section-description">Tecnologia profissional adaptada para uso domiciliar com resultados comprovados e aprovação de milhares de clientes.</p>
-   </div>
-   <div class="features-grid">
-    <div class="feature-card">
-     <div class="feature-icon">
-      ✨
-     </div>
-     <h3 class="feature-title">Resultados Imediatos</h3>
-     <p class="feature-description">Perceba a diferença desde a primeira aplicação. Cabelos lisos, brilhantes e saudáveis em minutos.</p>
-    </div>
-    <div class="feature-card">
-     <div class="feature-icon">
-      🏠
-     </div>
-     <h3 class="feature-title">Uso Domiciliar</h3>
-     <p class="feature-description">Economize tempo e dinheiro. Tecnologia de salão no conforto da sua casa com aplicação simples.</p>
-    </div>
-    <div class="feature-card">
-     <div class="feature-icon">
-      🔬
-     </div>
-     <h3 class="feature-title">Fórmula Premium</h3>
-     <p class="feature-description">Desenvolvida com ingredientes de alta qualidade para alisamento eficaz e hidratação profunda.</p>
-    </div>
-    <div class="feature-card">
-     <div class="feature-icon">
-      🚚
-     </div>
-     <h3 class="feature-title">Entrega Gratuita</h3>
-     <p class="feature-description">Frete grátis para todo Brasil com envio expresso e embalagem discreta para sua privacidade.</p>
-    </div>
-    <div class="feature-card">
-     <div class="feature-icon">
-      🛡️
-     </div>
-     <h3 class="feature-title">Seguro e Testado</h3>
-     <p class="feature-description">Produto dermatologicamente testado e aprovado para todos os tipos de cabelo.</p>
-    </div>
-    <div class="feature-card">
-     <div class="feature-icon">
-      ⏱️
-     </div>
-     <h3 class="feature-title">Longa Duração</h3>
-     <p class="feature-description">Resultados duradouros por semanas. Mantenha seus cabelos lisos e alinhados por mais tempo.</p>
-    </div>
-   </div>
-  </section><!-- Testimonials Section -->
-  <section class="testimonials">
-   <div class="section-header">
-    <div class="section-subtitle">
-     Depoimentos
-    </div>
-    <h2 class="section-title">O Que Nossas Clientes Dizem</h2>
-    <p class="section-description">Mais de 50.000 mulheres já transformaram seus cabelos com o Hidraliso Original.</p>
-   </div>
-   <div class="testimonials-grid">
-    <div class="testimonial-card">
-     <div class="stars">
-      ★★★★★
-     </div>
-     <p class="testimonial-text">"Simplesmente incrível! Meu cabelo nunca esteve tão liso e brilhante. O produto é muito fácil de usar e os resultados são profissionais. Recomendo demais!"</p>
-     <div class="testimonial-author">
-      <div class="author-avatar">
-       AC
+   </section><!-- Benefits Section -->
+   <section class="benefits-section">
+    <div class="app-container">
+     <div class="benefits-grid">
+      <div class="benefit-card">
+       <div class="benefit-number">
+        1
+       </div>
+       <h3 class="benefit-title" id="benefit-1-title">Hidratação Profunda</h3>
+       <p class="benefit-description" id="benefit-1-description">Fórmula exclusiva que penetra nos fios, restaurando a saúde e o brilho natural dos seus cabelos.</p>
       </div>
-      <div class="author-info">
-       <div class="author-name">
-        Ana Carolina Martins
+      <div class="benefit-card">
+       <div class="benefit-number">
+        2
        </div>
-       <div class="author-location">
-        Rio de Janeiro, RJ
+       <h3 class="benefit-title" id="benefit-2-title">Resultado Imediato</h3>
+       <p class="benefit-description" id="benefit-2-description">Veja a transformação já na primeira aplicação. Cabelos macios, brilhosos e incrivelmente sedosos.</p>
+      </div>
+      <div class="benefit-card">
+       <div class="benefit-number">
+        3
        </div>
+       <h3 class="benefit-title" id="benefit-3-title">Proteção Duradoura</h3>
+       <p class="benefit-description" id="benefit-3-description">Protege seus cabelos contra danos externos, mantendo-os saudáveis e bonitos por muito mais tempo.</p>
       </div>
      </div>
     </div>
-    <div class="testimonial-card">
-     <div class="stars">
-      ★★★★★
-     </div>
-     <p class="testimonial-text">"Estava cética no início, mas o Hidraliso superou todas as minhas expectativas. Economizei muito dinheiro que gastava no salão e o resultado é igualmente perfeito."</p>
-     <div class="testimonial-author">
-      <div class="author-avatar">
-       MS
+   </section><!-- Testimonials Section -->
+   <section class="testimonials-section">
+    <div class="app-container">
+     <h2 class="section-title">O Que Nossas Clientes Dizem</h2>
+     <div class="testimonials-grid">
+      <div class="testimonial-card">
+       <div class="stars">
+        ★★★★★
+       </div>
+       <p class="testimonial-text" id="testimonial-1-text">"Meu cabelo estava muito danificado e sem vida. Depois do Hidraliso, ele ficou incrível! Nunca imaginei que poderia ter cabelos tão bonitos."</p>
+       <p class="testimonial-name" id="testimonial-1-name">- Maria Silva</p>
       </div>
-      <div class="author-info">
-       <div class="author-name">
-        Mariana Silva
+      <div class="testimonial-card">
+       <div class="stars">
+        ★★★★★
        </div>
-       <div class="author-location">
-        São Paulo, SP
-       </div>
+       <p class="testimonial-text" id="testimonial-2-text">"Produto maravilhoso! Uso há 3 meses e meu cabelo mudou completamente. Muito mais hidratado, brilhoso e fácil de pentear."</p>
+       <p class="testimonial-name" id="testimonial-2-name">- Ana Paula Costa</p>
       </div>
-     </div>
-    </div>
-    <div class="testimonial-card">
-     <div class="stars">
-      ★★★★★
-     </div>
-     <p class="testimonial-text">"Produto excelente! Meu cabelo está liso, hidratado e com muito brilho. A aplicação é simples e rápida. Já comprei mais para presentear minhas amigas."</p>
-     <div class="testimonial-author">
-      <div class="author-avatar">
-       JO
-      </div>
-      <div class="author-info">
-       <div class="author-name">
-        Juliana Oliveira
+      <div class="testimonial-card">
+       <div class="stars">
+        ★★★★★
        </div>
-       <div class="author-location">
-        Belo Horizonte, MG
-       </div>
+       <p class="testimonial-text" id="testimonial-3-text">"Melhor investimento que fiz para meus cabelos! Resultado profissional em casa. Recomendo para todas as minhas amigas!"</p>
+       <p class="testimonial-name" id="testimonial-3-name">- Juliana Santos</p>
       </div>
      </div>
     </div>
-   </div>
-  </section><!-- CTA Section -->
-  <section class="cta-section">
-   <div class="cta-container">
-    <h2 class="cta-title">Transforme Seus Cabelos Hoje</h2>
-    <p class="cta-description">Junte-se a milhares de mulheres que já descobriram o poder do Hidraliso Original. Garantia de satisfação ou seu dinheiro de volta.</p><a href="https://www.hidraliso.co/?pv=proyyn2e&amp;af=afimem4yp8" target="_blank" rel="noopener noreferrer" class="cta-button"> Adquirir Hidraliso Original </a>
-    <div class="timer-box">
-     <div class="timer-label">
-      Oferta Especial Encerra Em
-     </div>
-     <div class="timer-display" id="countdown">
-      00:15:00
-     </div>
+   </section><!-- Final CTA Section -->
+   <section class="final-cta-section">
+    <div class="app-container">
+     <h2 class="final-cta-title" id="final-cta-title">Pronta Para a Transformação?</h2>
+     <p class="final-cta-subtitle" id="final-cta-subtitle">Junte-se a milhares de mulheres que já transformaram seus cabelos</p><a href="https://www.hidraliso.co/?pv=proyyn2e&amp;af=afimem4yp8" target="_blank" rel="noopener noreferrer" class="cta-button">QUERO MEU CABELO LISO</a>
     </div>
-   </div>
-  </section><!-- Footer -->
-  <footer class="footer">
-   <div class="footer-container">
-    <div class="footer-grid">
-     <div class="footer-column">
-      <h3>Hidraliso Original</h3>
-      <p>Líder em soluções capilares profissionais para uso domiciliar. Tecnologia de ponta com resultados comprovados e aprovação de dermatologistas.</p>
-     </div>
-     <div class="footer-column">
-      <h3>Suporte</h3>
-      <ul class="footer-links">
-       <li><a href="#">Central de Ajuda</a></li>
-       <li><a href="#">Como Usar</a></li>
-       <li><a href="#">FAQ</a></li>
-       <li><a href="#">Contato</a></li>
-      </ul>
-     </div>
-     <div class="footer-column">
-      <h3>Empresa</h3>
-      <ul class="footer-links">
-       <li><a href="#">Sobre Nós</a></li>
-       <li><a href="#">Garantia</a></li>
-       <li><a href="#">Envio</a></li>
-       <li><a href="#">Devoluções</a></li>
-      </ul>
-     </div>
-     <div class="footer-column">
-      <h3>Legal</h3>
-      <ul class="footer-links">
-       <li><a href="#">Termos de Uso</a></li>
-       <li><a href="#">Privacidade</a></li>
-       <li><a href="#">Cookies</a></li>
-       <li><a href="#">Compliance</a></li>
-      </ul>
-     </div>
+   </section><!-- Urgency Section -->
+   <section class="urgency-section">
+    <div class="app-container">
+     <p class="urgency-text" id="urgency-text">⚡ Atenção: Oferta por Tempo Limitado!</p>
+     <p class="stock-text" id="stock-text">Apenas 47 unidades restantes em estoque</p>
     </div>
-    <div class="footer-bottom">
-     <p>© 2024 Hidraliso Original. Todos os direitos reservados.</p>
-     <div class="footer-legal"><a href="#">CNPJ: 47.074.851/0001-11</a> <a href="#">Hidraliso Commerce Ltda</a>
-     </div>
+   </section><!-- Footer -->
+   <footer class="footer-section">
+    <div class="app-container">
+     <p class="footer-text" id="footer-text">© 2024 Hidraliso. Todos os direitos reservados. Transforme seus cabelos hoje mesmo.</p>
     </div>
-   </div>
-  </footer><!-- Chat Widget -->
-  <div class="chat-widget"><button class="chat-button" id="chatToggle">💬</button>
-   <div class="chat-window" id="chatWindow">
-    <div class="chat-header">
-     <div class="chat-status"></div>
-     <div class="chat-header-text">
-      <h4>Atendimento Hidraliso</h4>
-      <p>Online agora</p>
-     </div>
-    </div>
-    <div class="chat-messages" id="chatMessages">
-     <div class="message bot">
-      Olá! 👋 Seja bem-vinda ao Hidraliso Original. Como posso ajudá-la hoje?
-     </div>
-    </div>
-    <div class="typing-indicator" id="typingIndicator">
-     <div class="typing-dot"></div>
-     <div class="typing-dot"></div>
-     <div class="typing-dot"></div>
-    </div>
-    <div class="chat-input-area"><input type="text" class="chat-input" id="chatInput" placeholder="Digite sua mensagem..."> <button class="chat-send" id="chatSend">→</button>
-    </div>
-   </div>
+   </footer>
   </div>
   <script>
-        // Countdown Timer
-        function initCountdown() {
-            let totalSeconds = 15 * 60; // 15 minutes
-            
-            const countdownElement = document.getElementById('countdown');
-            
-            setInterval(() => {
-                const hours = Math.floor(totalSeconds / 3600);
-                const minutes = Math.floor((totalSeconds % 3600) / 60);
-                const seconds = totalSeconds % 60;
-                
-                countdownElement.textContent = 
-                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                
-                totalSeconds--;
-                
-                if (totalSeconds < 0) {
-                    totalSeconds = 15 * 60;
-                }
-            }, 1000);
-        }
+    const defaultConfig = {
+      background_gradient_start: "#8b5cf6",
+      background_gradient_middle: "#a78bfa",
+      background_gradient_end: "#c4b5fd",
+      primary_color: "#7c3aed",
+      secondary_color: "#a78bfa",
+      text_color: "#1a1a1a",
+      cta_button_color: "#7c3aed",
+      font_family: "Inter",
+      font_size: 16,
+      hero_title: "Transforme Seus Cabelos em Minutos",
+      hero_subtitle: "Hidratação profunda e brilho intenso com a fórmula exclusiva do Hidraliso",
+      cta_button_text: "QUERO MEU CABELO LISO",
+      guarantee_text: "Garantia de Satisfação de 30 Dias",
+      benefit_1_title: "Hidratação Profunda",
+      benefit_1_description: "Fórmula exclusiva que penetra nos fios, restaurando a saúde e o brilho natural dos seus cabelos.",
+      benefit_2_title: "Resultado Imediato",
+      benefit_2_description: "Veja a transformação já na primeira aplicação. Cabelos macios, brilhosos e incrivelmente sedosos.",
+      benefit_3_title: "Proteção Duradoura",
+      benefit_3_description: "Protege seus cabelos contra danos externos, mantendo-os saudáveis e bonitos por muito mais tempo.",
+      testimonial_1_name: "- Maria Silva",
+      testimonial_1_text: "\"Meu cabelo estava muito danificado e sem vida. Depois do Hidraliso, ele ficou incrível! Nunca imaginei que poderia ter cabelos tão bonitos.\"",
+      testimonial_2_name: "- Ana Paula Costa",
+      testimonial_2_text: "\"Produto maravilhoso! Uso há 3 meses e meu cabelo mudou completamente. Muito mais hidratado, brilhoso e fácil de pentear.\"",
+      testimonial_3_name: "- Juliana Santos",
+      testimonial_3_text: "\"Melhor investimento que fiz para meus cabelos! Resultado profissional em casa. Recomendo para todas as minhas amigas!\"",
+      final_cta_title: "Pronta Para a Transformação?",
+      final_cta_subtitle: "Junte-se a milhares de mulheres que já transformaram seus cabelos",
+      urgency_text: "⚡ Atenção: Oferta por Tempo Limitado!",
+      stock_text: "Apenas 47 unidades restantes em estoque",
+      footer_text: "© 2024 Hidraliso. Todos os direitos reservados. Transforme seus cabelos hoje mesmo."
+    };
 
-        // Chat Widget
-        const chatToggle = document.getElementById('chatToggle');
-        const chatWindow = document.getElementById('chatWindow');
-        const chatMessages = document.getElementById('chatMessages');
-        const chatInput = document.getElementById('chatInput');
-        const chatSend = document.getElementById('chatSend');
-        const typingIndicator = document.getElementById('typingIndicator');
+    // Timer functionality
+    let timeLeft = 15 * 60;
+    
+    function updateTimer() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+      
+      if (timeLeft > 0) {
+        timeLeft--;
+      } else {
+        timeLeft = 15 * 60;
+      }
+    }
+    
+    setInterval(updateTimer, 1000);
+    updateTimer();
 
-        const ctaLink = 'https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8';
+    async function onConfigChange(config) {
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif';
+      
+      const pageWrapper = document.querySelector('.page-wrapper');
+      pageWrapper.style.background = `linear-gradient(180deg, ${config.background_gradient_start || defaultConfig.background_gradient_start} 0%, ${config.background_gradient_middle || defaultConfig.background_gradient_middle} 50%, ${config.background_gradient_end || defaultConfig.background_gradient_end} 100%)`;
+      
+      const ctaButtons = document.querySelectorAll('.cta-button');
+      ctaButtons.forEach(button => {
+        button.style.background = `linear-gradient(135deg, ${config.cta_button_color || defaultConfig.cta_button_color} 0%, ${config.primary_color || defaultConfig.primary_color} 100%)`;
+      });
+      
+      const benefitNumbers = document.querySelectorAll('.benefit-number');
+      if (benefitNumbers[0]) benefitNumbers[0].style.background = `linear-gradient(135deg, ${config.primary_color || defaultConfig.primary_color} 0%, ${config.primary_color || defaultConfig.primary_color} 100%)`;
+      if (benefitNumbers[1]) benefitNumbers[1].style.background = `linear-gradient(135deg, ${config.secondary_color || defaultConfig.secondary_color} 0%, ${config.primary_color || defaultConfig.primary_color} 100%)`;
+      if (benefitNumbers[2]) benefitNumbers[2].style.background = `linear-gradient(135deg, ${config.secondary_color || defaultConfig.secondary_color} 0%, ${config.secondary_color || defaultConfig.secondary_color} 100%)`;
+      
+      const testimonialNames = document.querySelectorAll('.testimonial-name');
+      testimonialNames.forEach(name => {
+        name.style.color = config.primary_color || defaultConfig.primary_color;
+      });
+      
+      const urgencySection = document.querySelector('.urgency-section');
+      urgencySection.style.background = `linear-gradient(135deg, ${config.primary_color || defaultConfig.primary_color} 0%, ${config.primary_color || defaultConfig.primary_color} 100%)`;
+      
+      const textElements = document.querySelectorAll('.hero-title, .section-title, .benefit-title, .final-cta-title');
+      textElements.forEach(el => {
+        el.style.color = config.text_color || defaultConfig.text_color;
+      });
+      
+      document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      
+      document.querySelector('.hero-title').style.fontSize = `${baseSize * 3.5}px`;
+      document.querySelector('.hero-subtitle').style.fontSize = `${baseSize * 1.375}px`;
+      document.querySelectorAll('.cta-button').forEach(btn => btn.style.fontSize = `${baseSize * 1.25}px`);
+      document.querySelector('.guarantee').style.fontSize = `${baseSize}px`;
+      document.querySelectorAll('.benefit-title').forEach(el => el.style.fontSize = `${baseSize * 1.625}px`);
+      document.querySelectorAll('.benefit-description').forEach(el => el.style.fontSize = `${baseSize * 1.0625}px`);
+      document.querySelectorAll('.section-title').forEach(el => el.style.fontSize = `${baseSize * 2.75}px`);
+      document.querySelectorAll('.testimonial-text').forEach(el => el.style.fontSize = `${baseSize * 1.0625}px`);
+      document.querySelectorAll('.testimonial-name').forEach(el => el.style.fontSize = `${baseSize * 1.0625}px`);
+      document.querySelector('.final-cta-title').style.fontSize = `${baseSize * 3}px`;
+      document.querySelector('.final-cta-subtitle').style.fontSize = `${baseSize * 1.375}px`;
+      document.querySelector('.urgency-text').style.fontSize = `${baseSize * 1.75}px`;
+      document.querySelector('.stock-text').style.fontSize = `${baseSize * 1.25}px`;
+      document.querySelector('.footer-text').style.fontSize = `${baseSize * 0.9375}px`;
+      
+      document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      
+      const ctaButtonElements = document.querySelectorAll('.cta-button');
+      ctaButtonElements.forEach(btn => btn.textContent = config.cta_button_text || defaultConfig.cta_button_text);
+      
+      const guaranteeSpan = document.querySelector('.guarantee span');
+      guaranteeSpan.textContent = config.guarantee_text || defaultConfig.guarantee_text;
+      
+      document.getElementById('benefit-1-title').textContent = config.benefit_1_title || defaultConfig.benefit_1_title;
+      document.getElementById('benefit-1-description').textContent = config.benefit_1_description || defaultConfig.benefit_1_description;
+      document.getElementById('benefit-2-title').textContent = config.benefit_2_title || defaultConfig.benefit_2_title;
+      document.getElementById('benefit-2-description').textContent = config.benefit_2_description || defaultConfig.benefit_2_description;
+      document.getElementById('benefit-3-title').textContent = config.benefit_3_title || defaultConfig.benefit_3_title;
+      document.getElementById('benefit-3-description').textContent = config.benefit_3_description || defaultConfig.benefit_3_description;
+      
+      document.getElementById('testimonial-1-name').textContent = config.testimonial_1_name || defaultConfig.testimonial_1_name;
+      document.getElementById('testimonial-1-text').textContent = config.testimonial_1_text || defaultConfig.testimonial_1_text;
+      document.getElementById('testimonial-2-name').textContent = config.testimonial_2_name || defaultConfig.testimonial_2_name;
+      document.getElementById('testimonial-2-text').textContent = config.testimonial_2_text || defaultConfig.testimonial_2_text;
+      document.getElementById('testimonial-3-name').textContent = config.testimonial_3_name || defaultConfig.testimonial_3_name;
+      document.getElementById('testimonial-3-text').textContent = config.testimonial_3_text || defaultConfig.testimonial_3_text;
+      
+      document.getElementById('final-cta-title').textContent = config.final_cta_title || defaultConfig.final_cta_title;
+      document.getElementById('final-cta-subtitle').textContent = config.final_cta_subtitle || defaultConfig.final_cta_subtitle;
+      document.getElementById('urgency-text').textContent = config.urgency_text || defaultConfig.urgency_text;
+      document.getElementById('stock-text').textContent = config.stock_text || defaultConfig.stock_text;
+      document.getElementById('footer-text').textContent = config.footer_text || defaultConfig.footer_text;
+    }
 
-        const responses = {
-            'preço': 'O Hidraliso Original está com condições especiais! Confira nossa oferta exclusiva:',
-            'valor': 'Temos promoções incríveis disponíveis agora. Veja os preços especiais:',
-            'funciona': 'Sim! Mais de 50.000 clientes comprovam a eficácia do Hidraliso. Veja mais detalhes:',
-            'como usar': 'A aplicação é muito simples: lave o cabelo, aplique o produto, aguarde o tempo indicado e enxágue. Veja o passo a passo completo:',
-            'entrega': 'Entregamos para todo Brasil com frete grátis! Saiba mais sobre prazos:',
-            'garantia': 'Oferecemos garantia incondicional de 7 dias. Satisfação total ou reembolso integral!',
-            'tempo': 'Os resultados aparecem desde a primeira aplicação e duram semanas!',
-            'cabelo': 'O Hidraliso é adequado para todos os tipos de cabelo. Confira mais informações:',
-            'comprar': 'Ótima escolha! Você está prestes a transformar seus cabelos. Finalize seu pedido:',
-            'default': 'Entendo sua dúvida! O Hidraliso Original é a solução perfeita para você. Veja mais:'
-        };
-
-        chatToggle.addEventListener('click', () => {
-            chatWindow.classList.toggle('active');
-            if (chatWindow.classList.contains('active') && window.innerWidth > 768) {
-                chatInput.focus();
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_gradient_start || defaultConfig.background_gradient_start,
+            set: (value) => {
+              config.background_gradient_start = value;
+              window.elementSdk.setConfig({ background_gradient_start: value });
             }
-        });
-
-        function sendMessage() {
-            const message = chatInput.value.trim();
-            if (!message) return;
-
-            addMessage(message, 'user');
-            chatInput.value = '';
-
-            showTyping();
-
-            setTimeout(() => {
-                hideTyping();
-                const response = getResponse(message);
-                addMessage(response, 'bot', true);
-            }, 1500);
-        }
-
-        function addMessage(text, sender, includeCTA = false) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
-            messageDiv.textContent = text;
-
-            if (includeCTA && sender === 'bot') {
-                const ctaButton = document.createElement('a');
-                ctaButton.href = ctaLink;
-                ctaButton.target = '_blank';
-                ctaButton.rel = 'noopener noreferrer';
-                ctaButton.className = 'cta-link-chat';
-                ctaButton.textContent = 'Ver Ofertas';
-                messageDiv.appendChild(document.createElement('br'));
-                messageDiv.appendChild(ctaButton);
+          },
+          {
+            get: () => config.background_gradient_middle || defaultConfig.background_gradient_middle,
+            set: (value) => {
+              config.background_gradient_middle = value;
+              window.elementSdk.setConfig({ background_gradient_middle: value });
             }
-
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function getResponse(message) {
-            const lowerMessage = message.toLowerCase();
-            
-            for (const [key, response] of Object.entries(responses)) {
-                if (key !== 'default' && lowerMessage.includes(key)) {
-                    return response;
-                }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              config.primary_color = value;
+              window.elementSdk.setConfig({ primary_color: value });
             }
-            
-            return responses.default;
-        }
-
-        function showTyping() {
-            typingIndicator.classList.add('active');
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function hideTyping() {
-            typingIndicator.classList.remove('active');
-        }
-
-        chatSend.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                sendMessage();
+          },
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              config.secondary_color = value;
+              window.elementSdk.setConfig({ secondary_color: value });
             }
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!chatWindow.contains(e.target) && !chatToggle.contains(e.target)) {
-                chatWindow.classList.remove('active');
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
             }
-        });
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            initCountdown();
-        });
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["hero_title", config.hero_title || defaultConfig.hero_title],
+        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+        ["cta_button_text", config.cta_button_text || defaultConfig.cta_button_text],
+        ["guarantee_text", config.guarantee_text || defaultConfig.guarantee_text],
+        ["benefit_1_title", config.benefit_1_title || defaultConfig.benefit_1_title],
+        ["benefit_1_description", config.benefit_1_description || defaultConfig.benefit_1_description],
+        ["benefit_2_title", config.benefit_2_title || defaultConfig.benefit_2_title],
+        ["benefit_2_description", config.benefit_2_description || defaultConfig.benefit_2_description],
+        ["benefit_3_title", config.benefit_3_title || defaultConfig.benefit_3_title],
+        ["benefit_3_description", config.benefit_3_description || defaultConfig.benefit_3_description],
+        ["testimonial_1_name", config.testimonial_1_name || defaultConfig.testimonial_1_name],
+        ["testimonial_1_text", config.testimonial_1_text || defaultConfig.testimonial_1_text],
+        ["testimonial_2_name", config.testimonial_2_name || defaultConfig.testimonial_2_name],
+        ["testimonial_2_text", config.testimonial_2_text || defaultConfig.testimonial_2_text],
+        ["testimonial_3_name", config.testimonial_3_name || defaultConfig.testimonial_3_name],
+        ["testimonial_3_text", config.testimonial_3_text || defaultConfig.testimonial_3_text],
+        ["final_cta_title", config.final_cta_title || defaultConfig.final_cta_title],
+        ["final_cta_subtitle", config.final_cta_subtitle || defaultConfig.final_cta_subtitle],
+        ["urgency_text", config.urgency_text || defaultConfig.urgency_text],
+        ["stock_text", config.stock_text || defaultConfig.stock_text],
+        ["footer_text", config.footer_text || defaultConfig.footer_text]
+      ]);
+    }
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b03496ae402209e',t:'MTc2NjEwOTQyMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b8d0a6c3508016e',t:'MTc2NzU1Mzg3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
