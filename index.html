@@ -200,20 +200,30 @@
           button.style.left = maxLeft + 'px';
           successOverlay.style.opacity = '1';
           
-          // Abrir o link imediatamente
-          const link = document.createElement('a');
-          link.href = 'https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8';
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          
+          // Redirecionar imediatamente - funciona em todos os navegadores mobile
           setTimeout(() => {
-            button.style.left = '4px';
-            buttonLeft = 4;
-            successOverlay.style.opacity = '0';
-          }, 1000);
+            const targetUrl = 'https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8';
+            
+            // Tentar múltiplos métodos para garantir funcionamento
+            try {
+              // Método 1: window.open
+              const newWindow = window.open(targetUrl, '_blank', 'noopener,noreferrer');
+              
+              // Método 2: Se window.open falhar, usar location
+              if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                window.location.href = targetUrl;
+              }
+            } catch (error) {
+              // Método 3: Fallback direto
+              window.location.href = targetUrl;
+            }
+            
+            setTimeout(() => {
+              button.style.left = '4px';
+              buttonLeft = 4;
+              successOverlay.style.opacity = '0';
+            }, 500);
+          }, 100);
         } else {
           button.style.left = '4px';
           buttonLeft = 4;
@@ -314,5 +324,5 @@
     startTimer();
     initSlideButton();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bc164c8a3555e0f',t:'MTc2ODEwMjgzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bc166f427135e0f',t:'MTc2ODEwMjkyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
