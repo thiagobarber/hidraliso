@@ -158,28 +158,40 @@
       let isDragging = false;
       let startX = 0;
       let buttonLeft = 4;
-      const maxLeft = container.offsetWidth - button.offsetWidth - 4;
-      const threshold = maxLeft * 0.85;
+      let maxLeft = 0;
+      let threshold = 0;
+      
+      function updateDimensions() {
+        maxLeft = container.offsetWidth - button.offsetWidth - 8;
+        threshold = maxLeft * 0.80;
+      }
+      
+      updateDimensions();
+      window.addEventListener('resize', updateDimensions);
 
       function startDrag(e) {
         isDragging = true;
-        startX = (e.touches ? e.touches[0].clientX : e.clientX) - buttonLeft;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const rect = button.getBoundingClientRect();
+        startX = clientX - rect.left;
         button.style.transition = 'none';
+        e.preventDefault();
       }
 
       function drag(e) {
         if (!isDragging) return;
         e.preventDefault();
         
-        const currentX = e.touches ? e.touches[0].clientX : e.clientX;
-        let newLeft = currentX - startX;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const containerRect = container.getBoundingClientRect();
+        let newLeft = clientX - containerRect.left - startX;
         
         newLeft = Math.max(4, Math.min(newLeft, maxLeft));
         buttonLeft = newLeft;
         button.style.left = newLeft + 'px';
       }
 
-      function endDrag() {
+      function endDrag(e) {
         if (!isDragging) return;
         isDragging = false;
         button.style.transition = 'left 0.3s ease';
@@ -188,15 +200,20 @@
           button.style.left = maxLeft + 'px';
           successOverlay.style.opacity = '1';
           
+          // Abrir o link imediatamente
+          const link = document.createElement('a');
+          link.href = 'https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8';
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          
           setTimeout(() => {
-            window.open('https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8', '_blank', 'noopener,noreferrer');
-            
-            setTimeout(() => {
-              button.style.left = '4px';
-              buttonLeft = 4;
-              successOverlay.style.opacity = '0';
-            }, 1000);
-          }, 500);
+            button.style.left = '4px';
+            buttonLeft = 4;
+            successOverlay.style.opacity = '0';
+          }, 1000);
         } else {
           button.style.left = '4px';
           buttonLeft = 4;
@@ -204,13 +221,16 @@
       }
 
       button.addEventListener('mousedown', startDrag);
-      button.addEventListener('touchstart', startDrag, { passive: true });
+      button.addEventListener('touchstart', startDrag, { passive: false });
       
       document.addEventListener('mousemove', drag);
       document.addEventListener('touchmove', drag, { passive: false });
       
       document.addEventListener('mouseup', endDrag);
       document.addEventListener('touchend', endDrag);
+      
+      // Prevent default touch behavior on container
+      container.addEventListener('touchstart', (e) => e.preventDefault(), { passive: false });
     }
 
     // Config change handler
@@ -294,5 +314,5 @@
     startTimer();
     initSlideButton();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bc16080a4e15e0f',t:'MTc2ODEwMjY2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bc164c8a3555e0f',t:'MTc2ODEwMjgzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
