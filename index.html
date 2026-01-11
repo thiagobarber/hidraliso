@@ -1,984 +1,253 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="h-full">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hidraliso - Transforme Seus Cabelos</title>
+  <title>Hidraliso - Oferta Especial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
   <style>
     body {
       box-sizing: border-box;
     }
     
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
     
-    html, body {
-      height: 100%;
-      width: 100%;
-    }
-    
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: #1a1a1a;
-      overflow-x: hidden;
-    }
-    
-    .page-wrapper {
-      width: 100%;
-      min-height: 100%;
-      background: linear-gradient(180deg, #8b5cf6 0%, #a78bfa 50%, #c4b5fd 100%);
-      overflow-x: hidden;
-    }
-    
-    .app-container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    /* Timer Bar */
-    .timer-bar {
-      width: 100%;
-      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-      color: white;
-      padding: 16px 0;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .timer-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      font-family: 'Courier New', monospace;
-      flex-wrap: wrap;
-      padding: 0 10px;
-    }
-    
-    .timer-label {
-      font-size: 14px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      opacity: 0.95;
-    }
-    
-    .timer-display {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-    
-    .timer-value {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 8px 14px;
-      border-radius: 6px;
-      font-size: 24px;
-      font-weight: 700;
-      min-width: 50px;
-      text-align: center;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    .timer-digit {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    .timer-separator {
-      font-size: 24px;
-      font-weight: 700;
-      margin: 0 4px;
-      opacity: 0.8;
+    .slide-track {
+      background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      border: 2px solid rgba(255, 255, 255, 0.2);
     }
     
-    @media (max-width: 768px) {
-      .timer-container {
-        gap: 12px;
-      }
-      
-      .timer-label {
-        font-size: 11px;
-        letter-spacing: 1px;
-        width: 100%;
-        text-align: center;
-      }
-      
-      .timer-display {
-        gap: 8px;
-      }
-      
-      .timer-value {
-        padding: 6px 10px;
-        font-size: 20px;
-        min-width: 42px;
-      }
-      
-      .timer-separator {
-        font-size: 20px;
-      }
+    .slide-button {
+      background: linear-gradient(135deg, #f8b500 0%, #ffc107 50%, #f8b500 100%);
+      box-shadow: 0 4px 15px rgba(248, 181, 0, 0.4);
+      transition: all 0.3s ease;
     }
     
-    /* Hero Section */
-    .hero-section {
-      padding: 80px 0 100px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    .slide-button:active {
+      transform: scale(0.98);
     }
     
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      animation: rotate 20s linear infinite;
-    }
-    
-    .hero-title {
-      font-size: 56px;
-      font-weight: 900;
-      color: #1a1a1a;
-      margin-bottom: 24px;
-      line-height: 1.1;
-      animation: fadeInUp 0.8s ease-out 0.2s backwards;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      letter-spacing: -1px;
-    }
-    
-    .hero-subtitle {
-      font-size: 22px;
-      color: #374151;
-      margin-bottom: 50px;
-      line-height: 1.6;
-      animation: fadeInUp 0.8s ease-out 0.4s backwards;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      font-weight: 500;
-    }
-    
-    .product-image-container {
-      margin: 50px auto 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 1s ease-out 0.6s backwards;
-      position: relative;
-    }
-    
-    .product-image-container::before {
-      content: '';
-      position: absolute;
-      width: 120%;
-      height: 120%;
-      background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
-      z-index: 0;
-      animation: pulse 3s ease-in-out infinite;
-    }
-    
-    .product-image {
-      max-width: 450px;
-      width: 100%;
-      height: auto;
-      background: transparent;
-      filter: drop-shadow(0 30px 60px rgba(124, 58, 237, 0.4));
-      position: relative;
-      z-index: 1;
-      transition: transform 0.3s ease;
-    }
-    
-    .product-image:hover {
-      transform: scale(1.02);
-    }
-    
-    .cta-button-wrapper {
-      text-align: center;
-      margin: 40px auto 0;
-      display: block;
-      width: 100%;
-    }
-    
-    .cta-button {
-      display: inline-block;
-      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-      color: white;
-      padding: 22px 60px;
-      border-radius: 50px;
-      font-size: 20px;
-      font-weight: 800;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      animation: fadeInUp 0.8s ease-out 0.8s backwards, pulseButton 2.5s ease-in-out 1s infinite;
-      box-shadow: 0 20px 50px rgba(124, 58, 237, 0.4), 0 5px 15px rgba(124, 58, 237, 0.3);
-      position: relative;
-      overflow: hidden;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-    
-    .cta-button:hover::before {
-      left: 100%;
-    }
-    
-    .cta-button:hover {
-      background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 25px 60px rgba(124, 58, 237, 0.5), 0 10px 20px rgba(124, 58, 237, 0.4);
-    }
-    
-    .cta-button:active {
-      transform: translateY(-1px) scale(1);
-    }
-    
-    .guarantee {
-      margin-top: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: white;
-      font-weight: 700;
-      animation: fadeIn 1s ease-out 1s backwards;
-      background: rgba(5, 150, 105, 0.9);
-      padding: 16px 32px;
-      border-radius: 50px;
-      border: 2px solid rgba(5, 150, 105, 1);
-      font-size: 16px;
-      box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3);
-    }
-    
-    .guarantee-wrapper {
-      text-align: center;
-      margin-top: 32px;
-    }
-    
-    /* Benefits Section */
-    .benefits-section {
-      padding: 100px 0;
-      position: relative;
-    }
-    
-    .benefits-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-    }
-    
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
-      margin-top: 60px;
-    }
-    
-    .benefit-card {
-      background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
-      border-radius: 24px;
-      padding: 50px 40px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      animation: fadeInUp 0.8s ease-out backwards;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(124, 58, 237, 0.1);
-    }
-    
-    .benefit-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 6px;
-      background: linear-gradient(90deg, #7c3aed, #a78bfa);
-    }
-    
-    .benefit-card:nth-child(1) {
-      animation-delay: 0.2s;
-    }
-    
-    .benefit-card:nth-child(2) {
-      animation-delay: 0.4s;
-    }
-    
-    .benefit-card:nth-child(2)::before {
-      background: linear-gradient(90deg, #a78bfa, #c4b5fd);
-    }
-    
-    .benefit-card:nth-child(3) {
-      animation-delay: 0.6s;
-    }
-    
-    .benefit-card:nth-child(3)::before {
-      background: linear-gradient(90deg, #c4b5fd, #ddd6fe);
-    }
-    
-    .benefit-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2), 0 5px 20px rgba(0, 0, 0, 0.08);
-    }
-    
-    .benefit-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 64px;
-      height: 64px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-      color: white;
-      font-size: 28px;
-      font-weight: 900;
-      margin-bottom: 28px;
-      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
-    }
-    
-    .benefit-card:nth-child(2) .benefit-number {
-      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-      box-shadow: 0 8px 24px rgba(167, 139, 250, 0.3);
-    }
-    
-    .benefit-card:nth-child(3) .benefit-number {
-      background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%);
-      box-shadow: 0 8px 24px rgba(196, 181, 253, 0.3);
-    }
-    
-    .benefit-title {
-      font-size: 26px;
-      font-weight: 800;
-      color: #1a1a1a;
-      margin-bottom: 16px;
-      letter-spacing: -0.5px;
-    }
-    
-    .benefit-description {
-      font-size: 17px;
-      color: #4b5563;
-      line-height: 1.7;
-      font-weight: 400;
-    }
-    
-    /* Testimonials Section */
-    .testimonials-section {
-      padding: 100px 0;
-      background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
-      position: relative;
-    }
-    
-    .testimonials-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.2), transparent);
-    }
-    
-    .section-title {
-      text-align: center;
-      font-size: 44px;
-      font-weight: 900;
-      color: #1a1a1a;
-      margin-bottom: 70px;
-      letter-spacing: -1px;
-      position: relative;
-      padding-bottom: 20px;
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, #7c3aed, #a78bfa);
-      border-radius: 2px;
-    }
-    
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
-    }
-    
-    .testimonial-card {
-      background: white;
-      border-radius: 24px;
-      padding: 45px 40px;
-      animation: fadeInUp 0.8s ease-out backwards;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: 2px solid transparent;
-      position: relative;
-    }
-    
-    .testimonial-card::before {
-      content: '"';
-      position: absolute;
-      top: 20px;
-      left: 30px;
-      font-size: 80px;
-      color: rgba(124, 58, 237, 0.08);
-      font-family: Georgia, serif;
-      line-height: 1;
-    }
-    
-    .testimonial-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 48px rgba(124, 58, 237, 0.15), 0 4px 16px rgba(0, 0, 0, 0.08);
-      border-color: rgba(124, 58, 237, 0.2);
-    }
-    
-    .testimonial-card:nth-child(1) {
-      animation-delay: 0.2s;
-    }
-    
-    .testimonial-card:nth-child(2) {
-      animation-delay: 0.4s;
-    }
-    
-    .testimonial-card:nth-child(3) {
-      animation-delay: 0.6s;
-    }
-    
-    .stars {
-      color: #fbbf24;
-      font-size: 22px;
-      margin-bottom: 20px;
-      letter-spacing: 4px;
-    }
-    
-    .testimonial-text {
-      font-size: 17px;
-      color: #374151;
-      line-height: 1.8;
-      margin-bottom: 24px;
-      font-style: italic;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .testimonial-name {
-      font-weight: 800;
-      color: #7c3aed;
-      font-size: 17px;
-      font-style: normal;
-    }
-    
-    /* Final CTA Section */
-    .final-cta-section {
-      padding: 100px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .final-cta-section::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
-      animation: pulse 4s ease-in-out infinite;
-    }
-    
-    .final-cta-title {
-      font-size: 48px;
-      font-weight: 900;
-      color: #1a1a1a;
-      margin-bottom: 20px;
-      letter-spacing: -1px;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .final-cta-subtitle {
-      font-size: 22px;
-      color: #374151;
-      margin-bottom: 40px;
-      font-weight: 500;
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* Urgency Section */
-    .urgency-section {
-      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-      color: white;
-      padding: 60px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .urgency-section::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 20px,
-        rgba(255, 255, 255, 0.03) 20px,
-        rgba(255, 255, 255, 0.03) 40px
-      );
-      animation: slide 20s linear infinite;
-    }
-    
-    @keyframes slide {
-      0% {
-        transform: translate(0, 0);
-      }
-      100% {
-        transform: translate(50px, 50px);
-      }
-    }
-    
-    .urgency-text {
-      font-size: 28px;
-      font-weight: 900;
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      animation: pulseText 2s ease-in-out infinite;
-    }
-    
-    @keyframes pulseText {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.85;
-      }
-    }
-    
-    .stock-text {
-      font-size: 20px;
-      opacity: 0.95;
-      position: relative;
-      z-index: 1;
-      font-weight: 600;
-    }
-    
-    /* Footer */
-    .footer-section {
-      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
-      color: white;
-      padding: 50px 0;
-      text-align: center;
-      position: relative;
-    }
-    
-    .footer-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    }
-    
-    .footer-text {
-      font-size: 15px;
-      opacity: 0.7;
-      letter-spacing: 0.3px;
-      line-height: 1.6;
-    }
-    
-    /* Animations */
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    .pulse-animation {
+      animation: pulse 2s infinite;
     }
     
     @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.05);
-        opacity: 0.8;
-      }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
     }
     
-    @keyframes pulseButton {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.03);
-      }
+    .arrow-animation {
+      animation: slideArrow 1.5s infinite;
     }
     
-    @keyframes rotate {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
+    @keyframes slideArrow {
+      0%, 100% { transform: translateX(0); opacity: 0.5; }
+      50% { transform: translateX(10px); opacity: 1; }
     }
     
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 32px;
-      }
-      
-      .hero-subtitle {
-        font-size: 18px;
-      }
-      
-      .benefits-grid,
-      .testimonials-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .final-cta-title {
-        font-size: 28px;
-      }
-      
-      .urgency-text {
-        font-size: 20px;
-      }
+    .product-glow {
+      filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.3));
+    }
+    
+    .success-overlay {
+      background: rgba(16, 185, 129, 0.95);
+      transition: all 0.3s ease;
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
- <body>
-  <div class="page-wrapper"><!-- Timer Bar -->
-   <div class="timer-bar">
-    <div class="timer-container" id="timer"><span class="timer-label">OFERTA EXPIRA EM</span>
-     <div class="timer-display"><span class="timer-value" id="minutes">15</span> <span class="timer-separator">:</span> <span class="timer-value" id="seconds">00</span>
-     </div>
-    </div>
-   </div><!-- Hero Section -->
-   <section class="hero-section">
-    <div class="app-container">
-     <h1 class="hero-title" id="hero-title">Transforme Seus Cabelos em Minutos</h1>
-     <p class="hero-subtitle" id="hero-subtitle">Hidratação profunda e brilho intenso com a fórmula exclusiva do Hidraliso</p>
-     <div class="product-image-container"><img src="https://i.imgur.com/1QsK4Yl.png" alt="Hidraliso - Produto para Cabelos" class="product-image" onerror="this.src=''; this.alt='Imagem do produto'; this.style.display='none';">
-     </div>
-     <div class="cta-button-wrapper"><a href="https://www.hidraliso.co/?pv=proyyn2e&amp;af=afimem4yp8" target="_blank" rel="noopener noreferrer" class="cta-button" id="cta-button">QUERO MEU CABELO LISO</a>
-     </div>
-     <div class="guarantee-wrapper">
-      <div class="guarantee" id="guarantee">
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-       </svg><span>Garantia de Satisfação de 30 Dias</span>
+ <body class="h-full bg-purple-900 overflow-auto">
+  <div id="app-container" class="w-full min-h-full flex flex-col"><!-- Timer Banner -->
+   <div id="timer-banner" class="w-full bg-gradient-to-r from-purple-950 via-purple-900 to-purple-950 py-3 px-4 border-b border-purple-700">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+     <p id="promo-text" class="text-white text-sm sm:text-base font-semibold tracking-wide uppercase pulse-animation">Oferta por tempo limitado</p>
+     <div class="flex items-center gap-2">
+      <div class="timer-digit px-3 py-2 rounded-lg"><span id="minutes" class="text-white text-xl sm:text-2xl font-bold">15</span>
+      </div><span class="text-white text-xl font-bold">:</span>
+      <div class="timer-digit px-3 py-2 rounded-lg"><span id="seconds" class="text-white text-xl sm:text-2xl font-bold">00</span>
       </div>
      </div>
     </div>
-   </section><!-- Benefits Section -->
-   <section class="benefits-section">
-    <div class="app-container">
-     <div class="benefits-grid">
-      <div class="benefit-card">
-       <div class="benefit-number">
-        1
-       </div>
-       <h3 class="benefit-title" id="benefit-1-title">Hidratação Profunda</h3>
-       <p class="benefit-description" id="benefit-1-description">Fórmula exclusiva que penetra nos fios, restaurando a saúde e o brilho natural dos seus cabelos.</p>
-      </div>
-      <div class="benefit-card">
-       <div class="benefit-number">
-        2
-       </div>
-       <h3 class="benefit-title" id="benefit-2-title">Resultado Imediato</h3>
-       <p class="benefit-description" id="benefit-2-description">Veja a transformação já na primeira aplicação. Cabelos macios, brilhosos e incrivelmente sedosos.</p>
-      </div>
-      <div class="benefit-card">
-       <div class="benefit-number">
-        3
-       </div>
-       <h3 class="benefit-title" id="benefit-3-title">Proteção Duradoura</h3>
-       <p class="benefit-description" id="benefit-3-description">Protege seus cabelos contra danos externos, mantendo-os saudáveis e bonitos por muito mais tempo.</p>
+   </div><!-- Main Content -->
+   <main class="flex-1 flex flex-col items-center justify-center px-4 py-4 sm:py-8"><!-- Product Image -->
+    <div class="w-full max-w-md mb-6 sm:mb-8">
+     <div class="relative">
+      <div class="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-transparent rounded-3xl blur-2xl"></div><img src="https://i.imgur.com/Njk4CPC.png" alt="Hidraliso - Produto Premium" class="relative w-full h-auto max-h-64 sm:max-h-96 object-contain product-glow" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="hidden w-full h-48 sm:h-64 bg-purple-800/50 rounded-2xl items-center justify-center border-2 border-dashed border-purple-500"><span class="text-purple-300 text-base sm:text-lg">Imagem do Produto</span>
       </div>
      </div>
-    </div>
-   </section><!-- Testimonials Section -->
-   <section class="testimonials-section">
-    <div class="app-container">
-     <h2 class="section-title">O Que Nossas Clientes Dizem</h2>
-     <div class="testimonials-grid">
-      <div class="testimonial-card">
-       <div class="stars">
-        ★★★★★
-       </div>
-       <p class="testimonial-text" id="testimonial-1-text">"Meu cabelo estava muito danificado e sem vida. Depois do Hidraliso, ele ficou incrível! Nunca imaginei que poderia ter cabelos tão bonitos."</p>
-       <p class="testimonial-name" id="testimonial-1-name">- Maria Silva</p>
-      </div>
-      <div class="testimonial-card">
-       <div class="stars">
-        ★★★★★
-       </div>
-       <p class="testimonial-text" id="testimonial-2-text">"Produto maravilhoso! Uso há 3 meses e meu cabelo mudou completamente. Muito mais hidratado, brilhoso e fácil de pentear."</p>
-       <p class="testimonial-name" id="testimonial-2-name">- Ana Paula Costa</p>
-      </div>
-      <div class="testimonial-card">
-       <div class="stars">
-        ★★★★★
-       </div>
-       <p class="testimonial-text" id="testimonial-3-text">"Melhor investimento que fiz para meus cabelos! Resultado profissional em casa. Recomendo para todas as minhas amigas!"</p>
-       <p class="testimonial-name" id="testimonial-3-name">- Juliana Santos</p>
+    </div><!-- CTA Slide Button -->
+    <div class="w-full max-w-sm px-4">
+     <div id="slide-container" class="relative slide-track rounded-full h-14 sm:h-16 overflow-hidden"><!-- Background Text -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none"><span id="cta-text" class="text-white/60 text-sm sm:text-base font-bold tracking-widest uppercase flex items-center gap-1 sm:gap-2"> <span class="hidden xs:inline">Arraste para garantir</span> <span class="inline xs:hidden">SITE OFICIAL</span> <span class="arrow-animation">→→→</span> </span>
+      </div><!-- Success Overlay -->
+      <div id="success-overlay" class="absolute inset-0 success-overlay rounded-full flex items-center justify-center opacity-0 pointer-events-none"><span class="text-white font-bold text-lg">✓ Redirecionando...</span>
+      </div><!-- Draggable Button -->
+      <div id="slide-button" class="slide-button absolute left-1 top-1 bottom-1 w-12 sm:w-14 rounded-full flex items-center justify-center cursor-grab active:cursor-grabbing z-10" style="touch-action: none;">
+       <svg class="w-5 h-5 sm:w-6 sm:h-6 text-purple-900" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+       </svg>
       </div>
      </div>
+     <p class="text-center text-purple-300/70 text-xs sm:text-sm mt-2 sm:mt-3 font-medium">Site 100% seguro • Compra protegida</p>
     </div>
-   </section><!-- Final CTA Section -->
-   <section class="final-cta-section">
-    <div class="app-container">
-     <h2 class="final-cta-title" id="final-cta-title">Pronta Para a Transformação?</h2>
-     <p class="final-cta-subtitle" id="final-cta-subtitle">Junte-se a milhares de mulheres que já transformaram seus cabelos</p><a href="https://www.hidraliso.co/?pv=proyyn2e&amp;af=afimem4yp8" target="_blank" rel="noopener noreferrer" class="cta-button">QUERO MEU CABELO LISO</a>
-    </div>
-   </section><!-- Urgency Section -->
-   <section class="urgency-section">
-    <div class="app-container">
-     <p class="urgency-text" id="urgency-text">⚡ Atenção: Oferta por Tempo Limitado!</p>
-     <p class="stock-text" id="stock-text">Apenas 47 unidades restantes em estoque</p>
-    </div>
-   </section><!-- Footer -->
-   <footer class="footer-section">
-    <div class="app-container">
-     <p class="footer-text" id="footer-text">© 2024 Hidraliso. Todos os direitos reservados. Transforme seus cabelos hoje mesmo.</p>
+   </main><!-- Footer -->
+   <footer id="footer" class="w-full bg-purple-950/80 border-t border-purple-800 py-3 sm:py-4 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+     <p id="footer-text" class="text-purple-300/60 text-xs">© 2024 Hidraliso. Todos os direitos reservados.</p>
+     <p class="text-purple-400/40 text-xs mt-1">Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook.</p>
     </div>
    </footer>
   </div>
   <script>
     const defaultConfig = {
-      background_gradient_start: "#8b5cf6",
-      background_gradient_middle: "#a78bfa",
-      background_gradient_end: "#c4b5fd",
-      primary_color: "#7c3aed",
-      secondary_color: "#a78bfa",
-      text_color: "#1a1a1a",
-      cta_button_color: "#7c3aed",
-      font_family: "Inter",
-      font_size: 16,
-      hero_title: "Transforme Seus Cabelos em Minutos",
-      hero_subtitle: "Hidratação profunda e brilho intenso com a fórmula exclusiva do Hidraliso",
-      cta_button_text: "QUERO MEU CABELO LISO",
-      guarantee_text: "Garantia de Satisfação de 30 Dias",
-      benefit_1_title: "Hidratação Profunda",
-      benefit_1_description: "Fórmula exclusiva que penetra nos fios, restaurando a saúde e o brilho natural dos seus cabelos.",
-      benefit_2_title: "Resultado Imediato",
-      benefit_2_description: "Veja a transformação já na primeira aplicação. Cabelos macios, brilhosos e incrivelmente sedosos.",
-      benefit_3_title: "Proteção Duradoura",
-      benefit_3_description: "Protege seus cabelos contra danos externos, mantendo-os saudáveis e bonitos por muito mais tempo.",
-      testimonial_1_name: "- Maria Silva",
-      testimonial_1_text: "\"Meu cabelo estava muito danificado e sem vida. Depois do Hidraliso, ele ficou incrível! Nunca imaginei que poderia ter cabelos tão bonitos.\"",
-      testimonial_2_name: "- Ana Paula Costa",
-      testimonial_2_text: "\"Produto maravilhoso! Uso há 3 meses e meu cabelo mudou completamente. Muito mais hidratado, brilhoso e fácil de pentear.\"",
-      testimonial_3_name: "- Juliana Santos",
-      testimonial_3_text: "\"Melhor investimento que fiz para meus cabelos! Resultado profissional em casa. Recomendo para todas as minhas amigas!\"",
-      final_cta_title: "Pronta Para a Transformação?",
-      final_cta_subtitle: "Junte-se a milhares de mulheres que já transformaram seus cabelos",
-      urgency_text: "⚡ Atenção: Oferta por Tempo Limitado!",
-      stock_text: "Apenas 47 unidades restantes em estoque",
-      footer_text: "© 2024 Hidraliso. Todos os direitos reservados. Transforme seus cabelos hoje mesmo."
+      promo_text: 'Oferta por tempo limitado',
+      cta_text: 'SITE OFICIAL',
+      footer_text: '© 2024 Hidraliso. Todos os direitos reservados.',
+      background_color: '#581c87',
+      accent_color: '#f8b500',
+      text_color: '#ffffff',
+      font_family: 'Poppins',
+      font_size: 16
     };
 
-    // Timer functionality
+    let config = { ...defaultConfig };
+    let timerInterval;
     let timeLeft = 15 * 60;
-    
-    function updateTimer() {
+
+    // Timer Logic
+    function startTimer() {
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        if (timeLeft > 0) {
+          timeLeft--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerInterval);
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
       const minutes = Math.floor(timeLeft / 60);
       const seconds = timeLeft % 60;
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+
+    // Slide Button Logic
+    function initSlideButton() {
+      const container = document.getElementById('slide-container');
+      const button = document.getElementById('slide-button');
+      const successOverlay = document.getElementById('success-overlay');
       
-      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-      
-      if (timeLeft > 0) {
-        timeLeft--;
-      } else {
-        timeLeft = 15 * 60;
+      let isDragging = false;
+      let startX = 0;
+      let buttonLeft = 4;
+      const maxLeft = container.offsetWidth - button.offsetWidth - 4;
+      const threshold = maxLeft * 0.85;
+
+      function startDrag(e) {
+        isDragging = true;
+        startX = (e.touches ? e.touches[0].clientX : e.clientX) - buttonLeft;
+        button.style.transition = 'none';
       }
-    }
-    
-    setInterval(updateTimer, 1000);
-    updateTimer();
 
-    async function onConfigChange(config) {
-      const baseSize = config.font_size || defaultConfig.font_size;
-      const customFont = config.font_family || defaultConfig.font_family;
-      const baseFontStack = '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif';
+      function drag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        
+        const currentX = e.touches ? e.touches[0].clientX : e.clientX;
+        let newLeft = currentX - startX;
+        
+        newLeft = Math.max(4, Math.min(newLeft, maxLeft));
+        buttonLeft = newLeft;
+        button.style.left = newLeft + 'px';
+      }
+
+      function endDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+        button.style.transition = 'left 0.3s ease';
+
+        if (buttonLeft >= threshold) {
+          button.style.left = maxLeft + 'px';
+          successOverlay.style.opacity = '1';
+          
+          setTimeout(() => {
+            window.open('https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8', '_blank', 'noopener,noreferrer');
+            
+            setTimeout(() => {
+              button.style.left = '4px';
+              buttonLeft = 4;
+              successOverlay.style.opacity = '0';
+            }, 1000);
+          }, 500);
+        } else {
+          button.style.left = '4px';
+          buttonLeft = 4;
+        }
+      }
+
+      button.addEventListener('mousedown', startDrag);
+      button.addEventListener('touchstart', startDrag, { passive: true });
       
-      const pageWrapper = document.querySelector('.page-wrapper');
-      pageWrapper.style.background = `linear-gradient(180deg, ${config.background_gradient_start || defaultConfig.background_gradient_start} 0%, ${config.background_gradient_middle || defaultConfig.background_gradient_middle} 50%, ${config.background_gradient_end || defaultConfig.background_gradient_end} 100%)`;
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('touchmove', drag, { passive: false });
       
-      const ctaButtons = document.querySelectorAll('.cta-button');
-      ctaButtons.forEach(button => {
-        button.style.background = `linear-gradient(135deg, ${config.cta_button_color || defaultConfig.cta_button_color} 0%, ${config.primary_color || defaultConfig.primary_color} 100%)`;
-      });
+      document.addEventListener('mouseup', endDrag);
+      document.addEventListener('touchend', endDrag);
+    }
+
+    // Config change handler
+    async function onConfigChange(newConfig) {
+      config = { ...defaultConfig, ...newConfig };
       
-      const benefitNumbers = document.querySelectorAll('.benefit-number');
-      if (benefitNumbers[0]) benefitNumbers[0].style.background = `linear-gradient(135deg, ${config.primary_color || defaultConfig.primary_color} 0%, ${config.primary_color || defaultConfig.primary_color} 100%)`;
-      if (benefitNumbers[1]) benefitNumbers[1].style.background = `linear-gradient(135deg, ${config.secondary_color || defaultConfig.secondary_color} 0%, ${config.primary_color || defaultConfig.primary_color} 100%)`;
-      if (benefitNumbers[2]) benefitNumbers[2].style.background = `linear-gradient(135deg, ${config.secondary_color || defaultConfig.secondary_color} 0%, ${config.secondary_color || defaultConfig.secondary_color} 100%)`;
+      document.getElementById('promo-text').textContent = config.promo_text || defaultConfig.promo_text;
       
-      const testimonialNames = document.querySelectorAll('.testimonial-name');
-      testimonialNames.forEach(name => {
-        name.style.color = config.primary_color || defaultConfig.primary_color;
-      });
+      const ctaTextEl = document.getElementById('cta-text');
+      ctaTextEl.innerHTML = `${config.cta_text || defaultConfig.cta_text} <span class="arrow-animation">→→→</span>`;
       
-      const urgencySection = document.querySelector('.urgency-section');
-      urgencySection.style.background = `linear-gradient(135deg, ${config.primary_color || defaultConfig.primary_color} 0%, ${config.primary_color || defaultConfig.primary_color} 100%)`;
-      
-      const textElements = document.querySelectorAll('.hero-title, .section-title, .benefit-title, .final-cta-title');
-      textElements.forEach(el => {
-        el.style.color = config.text_color || defaultConfig.text_color;
-      });
-      
-      document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      
-      document.querySelector('.hero-title').style.fontSize = `${baseSize * 3.5}px`;
-      document.querySelector('.hero-subtitle').style.fontSize = `${baseSize * 1.375}px`;
-      document.querySelectorAll('.cta-button').forEach(btn => btn.style.fontSize = `${baseSize * 1.25}px`);
-      document.querySelector('.guarantee').style.fontSize = `${baseSize}px`;
-      document.querySelectorAll('.benefit-title').forEach(el => el.style.fontSize = `${baseSize * 1.625}px`);
-      document.querySelectorAll('.benefit-description').forEach(el => el.style.fontSize = `${baseSize * 1.0625}px`);
-      document.querySelectorAll('.section-title').forEach(el => el.style.fontSize = `${baseSize * 2.75}px`);
-      document.querySelectorAll('.testimonial-text').forEach(el => el.style.fontSize = `${baseSize * 1.0625}px`);
-      document.querySelectorAll('.testimonial-name').forEach(el => el.style.fontSize = `${baseSize * 1.0625}px`);
-      document.querySelector('.final-cta-title').style.fontSize = `${baseSize * 3}px`;
-      document.querySelector('.final-cta-subtitle').style.fontSize = `${baseSize * 1.375}px`;
-      document.querySelector('.urgency-text').style.fontSize = `${baseSize * 1.75}px`;
-      document.querySelector('.stock-text').style.fontSize = `${baseSize * 1.25}px`;
-      document.querySelector('.footer-text').style.fontSize = `${baseSize * 0.9375}px`;
-      
-      document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
-      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
-      
-      const ctaButtonElements = document.querySelectorAll('.cta-button');
-      ctaButtonElements.forEach(btn => btn.textContent = config.cta_button_text || defaultConfig.cta_button_text);
-      
-      const guaranteeSpan = document.querySelector('.guarantee span');
-      guaranteeSpan.textContent = config.guarantee_text || defaultConfig.guarantee_text;
-      
-      document.getElementById('benefit-1-title').textContent = config.benefit_1_title || defaultConfig.benefit_1_title;
-      document.getElementById('benefit-1-description').textContent = config.benefit_1_description || defaultConfig.benefit_1_description;
-      document.getElementById('benefit-2-title').textContent = config.benefit_2_title || defaultConfig.benefit_2_title;
-      document.getElementById('benefit-2-description').textContent = config.benefit_2_description || defaultConfig.benefit_2_description;
-      document.getElementById('benefit-3-title').textContent = config.benefit_3_title || defaultConfig.benefit_3_title;
-      document.getElementById('benefit-3-description').textContent = config.benefit_3_description || defaultConfig.benefit_3_description;
-      
-      document.getElementById('testimonial-1-name').textContent = config.testimonial_1_name || defaultConfig.testimonial_1_name;
-      document.getElementById('testimonial-1-text').textContent = config.testimonial_1_text || defaultConfig.testimonial_1_text;
-      document.getElementById('testimonial-2-name').textContent = config.testimonial_2_name || defaultConfig.testimonial_2_name;
-      document.getElementById('testimonial-2-text').textContent = config.testimonial_2_text || defaultConfig.testimonial_2_text;
-      document.getElementById('testimonial-3-name').textContent = config.testimonial_3_name || defaultConfig.testimonial_3_name;
-      document.getElementById('testimonial-3-text').textContent = config.testimonial_3_text || defaultConfig.testimonial_3_text;
-      
-      document.getElementById('final-cta-title').textContent = config.final_cta_title || defaultConfig.final_cta_title;
-      document.getElementById('final-cta-subtitle').textContent = config.final_cta_subtitle || defaultConfig.final_cta_subtitle;
-      document.getElementById('urgency-text').textContent = config.urgency_text || defaultConfig.urgency_text;
-      document.getElementById('stock-text').textContent = config.stock_text || defaultConfig.stock_text;
       document.getElementById('footer-text').textContent = config.footer_text || defaultConfig.footer_text;
+      
+      const appContainer = document.getElementById('app-container');
+      appContainer.style.fontFamily = `${config.font_family || defaultConfig.font_family}, sans-serif`;
     }
 
+    // Map to capabilities
     function mapToCapabilities(config) {
       return {
         recolorables: [
           {
-            get: () => config.background_gradient_start || defaultConfig.background_gradient_start,
+            get: () => config.background_color || defaultConfig.background_color,
             set: (value) => {
-              config.background_gradient_start = value;
-              window.elementSdk.setConfig({ background_gradient_start: value });
+              config.background_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ background_color: value });
             }
           },
           {
-            get: () => config.background_gradient_middle || defaultConfig.background_gradient_middle,
+            get: () => config.accent_color || defaultConfig.accent_color,
             set: (value) => {
-              config.background_gradient_middle = value;
-              window.elementSdk.setConfig({ background_gradient_middle: value });
-            }
-          },
-          {
-            get: () => config.primary_color || defaultConfig.primary_color,
-            set: (value) => {
-              config.primary_color = value;
-              window.elementSdk.setConfig({ primary_color: value });
-            }
-          },
-          {
-            get: () => config.secondary_color || defaultConfig.secondary_color,
-            set: (value) => {
-              config.secondary_color = value;
-              window.elementSdk.setConfig({ secondary_color: value });
+              config.accent_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ accent_color: value });
             }
           },
           {
             get: () => config.text_color || defaultConfig.text_color,
             set: (value) => {
               config.text_color = value;
-              window.elementSdk.setConfig({ text_color: value });
+              if (window.elementSdk) window.elementSdk.setConfig({ text_color: value });
             }
           }
         ],
@@ -987,45 +256,29 @@
           get: () => config.font_family || defaultConfig.font_family,
           set: (value) => {
             config.font_family = value;
-            window.elementSdk.setConfig({ font_family: value });
+            if (window.elementSdk) window.elementSdk.setConfig({ font_family: value });
           }
         },
         fontSizeable: {
           get: () => config.font_size || defaultConfig.font_size,
           set: (value) => {
             config.font_size = value;
-            window.elementSdk.setConfig({ font_size: value });
+            if (window.elementSdk) window.elementSdk.setConfig({ font_size: value });
           }
         }
       };
     }
 
+    // Map to edit panel values
     function mapToEditPanelValues(config) {
       return new Map([
-        ["hero_title", config.hero_title || defaultConfig.hero_title],
-        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
-        ["cta_button_text", config.cta_button_text || defaultConfig.cta_button_text],
-        ["guarantee_text", config.guarantee_text || defaultConfig.guarantee_text],
-        ["benefit_1_title", config.benefit_1_title || defaultConfig.benefit_1_title],
-        ["benefit_1_description", config.benefit_1_description || defaultConfig.benefit_1_description],
-        ["benefit_2_title", config.benefit_2_title || defaultConfig.benefit_2_title],
-        ["benefit_2_description", config.benefit_2_description || defaultConfig.benefit_2_description],
-        ["benefit_3_title", config.benefit_3_title || defaultConfig.benefit_3_title],
-        ["benefit_3_description", config.benefit_3_description || defaultConfig.benefit_3_description],
-        ["testimonial_1_name", config.testimonial_1_name || defaultConfig.testimonial_1_name],
-        ["testimonial_1_text", config.testimonial_1_text || defaultConfig.testimonial_1_text],
-        ["testimonial_2_name", config.testimonial_2_name || defaultConfig.testimonial_2_name],
-        ["testimonial_2_text", config.testimonial_2_text || defaultConfig.testimonial_2_text],
-        ["testimonial_3_name", config.testimonial_3_name || defaultConfig.testimonial_3_name],
-        ["testimonial_3_text", config.testimonial_3_text || defaultConfig.testimonial_3_text],
-        ["final_cta_title", config.final_cta_title || defaultConfig.final_cta_title],
-        ["final_cta_subtitle", config.final_cta_subtitle || defaultConfig.final_cta_subtitle],
-        ["urgency_text", config.urgency_text || defaultConfig.urgency_text],
-        ["stock_text", config.stock_text || defaultConfig.stock_text],
-        ["footer_text", config.footer_text || defaultConfig.footer_text]
+        ['promo_text', config.promo_text || defaultConfig.promo_text],
+        ['cta_text', config.cta_text || defaultConfig.cta_text],
+        ['footer_text', config.footer_text || defaultConfig.footer_text]
       ]);
     }
 
+    // Initialize
     if (window.elementSdk) {
       window.elementSdk.init({
         defaultConfig,
@@ -1034,6 +287,9 @@
         mapToEditPanelValues
       });
     }
+
+    startTimer();
+    initSlideButton();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b8d0a6c3508016e',t:'MTc2NzU1Mzg3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bc15bf2129d5e0f',t:'MTc2ODEwMjQ3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
