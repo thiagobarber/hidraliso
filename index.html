@@ -216,93 +216,103 @@
         icon: '😔',
         text: 'Qual é a sua MAIOR frustração com seu cabelo hoje?',
         options: [
-          { text: '😫 Frizz incontrolável que me envergonha', icon: '😫' },
-          { text: '⏰ Perco HORAS alisando com chapinha', icon: '⏰' },
-          { text: '💸 Gasto fortunas em salão todo mês', icon: '💸' },
-          { text: '😢 Meu cabelo está danificado e sem vida', icon: '😢' }
+          { text: 'Frizz incontrolavel que me envergonha' },
+          { text: 'Perco HORAS alisando com chapinha' },
+          { text: 'Gasto fortunas em salao todo mes' },
+          { text: 'Meu cabelo esta danificado e sem vida' }
         ]
       },
       {
         icon: '💭',
-        text: 'Já tentou outros produtos alisantes antes?',
+        text: 'Ja tentou outros produtos alisantes antes?',
         options: [
-          { text: '😤 Sim, mas NENHUM funcionou de verdade', icon: '😤' },
-          { text: '😰 Sim, mas tive medo dos químicos', icon: '😰' },
-          { text: '🤷‍♀️ Nunca achei algo prático o suficiente', icon: '🤷‍♀️' },
-          { text: '💔 Desisti de tentar, nada resolve', icon: '💔' }
+          { text: 'Sim, mas NENHUM funcionou de verdade' },
+          { text: 'Sim, mas tive medo dos quimicos' },
+          { text: 'Nunca achei algo pratico o suficiente' },
+          { text: 'Desisti de tentar, nada resolve' }
         ]
       },
       {
         icon: '⏰',
-        text: 'Quanto tempo você gasta por semana cuidando do cabelo?',
+        text: 'Quanto tempo voce gasta por semana cuidando do cabelo?',
         options: [
-          { text: '😱 Mais de 3 horas (é exaustivo!)', icon: '😱' },
-          { text: '😓 Entre 1 e 3 horas', icon: '😓' },
-          { text: '😔 Desisti de cuidar, não tenho tempo', icon: '😔' },
-          { text: '🙏 Queria gastar menos de 30 minutos', icon: '🙏' }
+          { text: 'Mais de 3 horas (e exaustivo!)' },
+          { text: 'Entre 1 e 3 horas' },
+          { text: 'Desisti de cuidar, nao tenho tempo' },
+          { text: 'Queria gastar menos de 30 minutos' }
         ]
       },
       {
         icon: '🪞',
-        text: 'Como você se sente quando olha seu cabelo no espelho?',
+        text: 'Como voce se sente quando olha seu cabelo no espelho?',
         options: [
-          { text: '😞 Insatisfeita, queria que fosse diferente', icon: '😞' },
-          { text: '😤 Frustrada com o frizz e volume', icon: '😤' },
-          { text: '😢 Triste, já nem me arrumo mais', icon: '😢' },
-          { text: '🙈 Evito espelhos, me incomoda ver', icon: '🙈' }
+          { text: 'Insatisfeita, queria que fosse diferente' },
+          { text: 'Frustrada com o frizz e volume' },
+          { text: 'Triste, ja nem me arrumo mais' },
+          { text: 'Evito espelhos, me incomoda ver' }
         ]
       },
       {
         icon: '✨',
-        text: 'Se existisse um produto que alisasse seu cabelo NO CHUVEIRO, em minutos, você experimentaria?',
+        text: 'Se existisse um produto que alisasse seu cabelo NO CHUVEIRO, em minutos, voce experimentaria?',
         options: [
-          { text: '🤩 SIM! Seria um sonho realizado!', icon: '🤩' },
-          { text: '🙌 Com certeza, se for fácil de usar!', icon: '🙌' },
-          { text: '💜 Sim, se realmente funcionasse!', icon: '💜' },
-          { text: '✨ Quero muito! Onde encontro?', icon: '✨' }
+          { text: 'SIM! Seria um sonho realizado!' },
+          { text: 'Com certeza, se for facil de usar!' },
+          { text: 'Sim, se realmente funcionasse!' },
+          { text: 'Quero muito! Onde encontro?' }
         ]
       }
     ];
     
     function startQuiz() {
-      document.getElementById('start-screen').classList.add('hidden');
-      document.getElementById('quiz-screen').classList.remove('hidden');
-      showQuestion(0);
+      const startScreen = document.getElementById('start-screen');
+      const quizScreen = document.getElementById('quiz-screen');
+      if (startScreen && quizScreen) {
+        startScreen.classList.add('hidden');
+        quizScreen.classList.remove('hidden');
+        showQuestion(0);
+      }
     }
     
     function showQuestion(index) {
       currentQuestion = index;
       const q = questions[index];
       
-      document.getElementById('current-q').textContent = index + 1;
-      document.getElementById('progress-percent').textContent = `${((index + 1) / 5) * 100}%`;
-      document.getElementById('progress-bar').style.width = `${((index + 1) / 5) * 100}%`;
+      const currentQEl = document.getElementById('current-q');
+      const progressPercentEl = document.getElementById('progress-percent');
+      const progressBarEl = document.getElementById('progress-bar');
+      const questionIconEl = document.getElementById('question-icon');
+      const questionTextEl = document.getElementById('question-text');
+      const optionsContainer = document.getElementById('options-container');
       
-      document.getElementById('question-icon').textContent = q.icon;
-      document.getElementById('question-text').textContent = q.text;
+      if (currentQEl) currentQEl.textContent = String(index + 1);
+      if (progressPercentEl) progressPercentEl.textContent = String(Math.round(((index + 1) / 5) * 100)) + '%';
+      if (progressBarEl) progressBarEl.style.width = String(((index + 1) / 5) * 100) + '%';
       
-      const container = document.getElementById('options-container');
-      container.innerHTML = '';
+      if (questionIconEl) questionIconEl.textContent = q.icon;
+      if (questionTextEl) questionTextEl.textContent = q.text;
       
-      q.options.forEach((option, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn w-full bg-white/10 backdrop-blur-sm border-2 border-purple-400/30 rounded-2xl p-5 text-left text-white font-medium hover:bg-white/20 hover:border-pink-400';
-        btn.innerHTML = `
-          <div class="flex items-center gap-4">
-            <span class="text-2xl">${option.icon}</span>
-            <span class="flex-1">${option.text.replace(option.icon, '').trim()}</span>
-            <span class="text-purple-400">→</span>
-          </div>
-        `;
-        btn.onclick = () => selectAnswer(i);
-        container.appendChild(btn);
-      });
+      if (optionsContainer) {
+        optionsContainer.innerHTML = '';
+        
+        q.options.forEach((option, i) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'option-btn w-full bg-white/10 backdrop-blur-sm border-2 border-purple-400/30 rounded-2xl p-5 text-left text-white font-medium hover:bg-white/20 hover:border-pink-400';
+          btn.innerHTML = '<div class="flex items-center gap-4"><span class="flex-1">' + option.text + '</span><span class="text-purple-400">→</span></div>';
+          btn.addEventListener('click', function() {
+            selectAnswer(i);
+          });
+          optionsContainer.appendChild(btn);
+        });
+      }
       
-      // Re-trigger animation
       const questionContainer = document.getElementById('question-container');
-      questionContainer.classList.remove('fade-in');
-      void questionContainer.offsetWidth;
-      questionContainer.classList.add('fade-in');
+      if (questionContainer) {
+        questionContainer.classList.remove('fade-in');
+        void questionContainer.offsetWidth;
+        questionContainer.classList.add('fade-in');
+      }
     }
     
     function selectAnswer(optionIndex) {
@@ -314,40 +324,44 @@
     }
     
     function showLoading() {
-      document.getElementById('quiz-screen').classList.add('hidden');
-      document.getElementById('loading-screen').classList.remove('hidden');
+      const quizScreen = document.getElementById('quiz-screen');
+      const loadingScreen = document.getElementById('loading-screen');
+      
+      if (quizScreen) quizScreen.classList.add('hidden');
+      if (loadingScreen) loadingScreen.classList.remove('hidden');
       
       const loadingTexts = [
         'Identificando seu tipo de cabelo...',
         'Analisando suas necessidades...',
-        'Calculando a solução ideal...',
-        'Preparando sua recomendação personalizada...',
-        'Quase lá! Resultado pronto!'
+        'Calculando a solucao ideal...',
+        'Preparando sua recomendacao personalizada...',
+        'Quase la! Resultado pronto!'
       ];
       
       let textIndex = 0;
       const loadingTextEl = document.getElementById('loading-text');
       
-      const interval = setInterval(() => {
+      const interval = setInterval(function() {
         textIndex++;
-        if (textIndex < loadingTexts.length) {
+        if (textIndex < loadingTexts.length && loadingTextEl) {
           loadingTextEl.textContent = loadingTexts[textIndex];
         }
       }, 800);
       
-      setTimeout(() => {
+      setTimeout(function() {
         clearInterval(interval);
         showResult();
       }, 4000);
     }
     
     function showResult() {
-      document.getElementById('loading-screen').classList.add('hidden');
-      document.getElementById('result-screen').classList.remove('hidden');
-      
-      // Re-trigger animation
+      const loadingScreen = document.getElementById('loading-screen');
       const resultScreen = document.getElementById('result-screen');
-      const fadeEl = resultScreen.querySelector('.fade-in');
+      
+      if (loadingScreen) loadingScreen.classList.add('hidden');
+      if (resultScreen) resultScreen.classList.remove('hidden');
+      
+      const fadeEl = resultScreen ? resultScreen.querySelector('.fade-in') : null;
       if (fadeEl) {
         fadeEl.classList.remove('fade-in');
         void fadeEl.offsetWidth;
@@ -355,91 +369,110 @@
       }
     }
     
-    async function onConfigChange(newConfig) {
+    function redirectToAffiliate() {
+      const affiliateLink = config.affiliate_link || defaultConfig.affiliate_link;
+      if (affiliateLink) {
+        window.open(affiliateLink, '_blank');
+      }
+    }
+    
+    function onConfigChange(newConfig) {
       const titleEl = document.getElementById('main-title');
       if (titleEl) {
-        titleEl.innerHTML = `${newConfig.main_title || defaultConfig.main_title} <span class="shimmer-text">Liso e Brilhante</span>`;
+        titleEl.innerHTML = (newConfig.main_title || defaultConfig.main_title) + ' <span class="shimmer-text">Liso e Brilhante</span>';
       }
       
       const ctaBtn = document.getElementById('cta-button');
       if (ctaBtn) {
-        ctaBtn.href = newConfig.affiliate_link || defaultConfig.affiliate_link;
+        ctaBtn.onclick = function(e) {
+          e.preventDefault();
+          redirectToAffiliate();
+        };
       }
       
       const ctaText = document.getElementById('cta-text');
       if (ctaText) {
         ctaText.textContent = newConfig.cta_button_text || defaultConfig.cta_button_text;
       }
+      
+      if (newConfig.affiliate_link) {
+        config.affiliate_link = newConfig.affiliate_link;
+      }
+      if (newConfig.main_title) {
+        config.main_title = newConfig.main_title;
+      }
+      if (newConfig.cta_button_text) {
+        config.cta_button_text = newConfig.cta_button_text;
+      }
     }
     
-    function mapToCapabilities(config) {
+    function mapToCapabilities(cfg) {
       return {
         recolorables: [
           {
-            get: () => config.background_color || defaultConfig.background_color,
-            set: (value) => {
-              config.background_color = value;
-              window.elementSdk.setConfig({ background_color: value });
+            get: function() { return cfg.background_color || defaultConfig.background_color; },
+            set: function(value) {
+              cfg.background_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ background_color: value });
             }
           },
           {
-            get: () => config.card_color || defaultConfig.card_color,
-            set: (value) => {
-              config.card_color = value;
-              window.elementSdk.setConfig({ card_color: value });
+            get: function() { return cfg.card_color || defaultConfig.card_color; },
+            set: function(value) {
+              cfg.card_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ card_color: value });
             }
           },
           {
-            get: () => config.text_color || defaultConfig.text_color,
-            set: (value) => {
-              config.text_color = value;
-              window.elementSdk.setConfig({ text_color: value });
+            get: function() { return cfg.text_color || defaultConfig.text_color; },
+            set: function(value) {
+              cfg.text_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ text_color: value });
             }
           },
           {
-            get: () => config.accent_color || defaultConfig.accent_color,
-            set: (value) => {
-              config.accent_color = value;
-              window.elementSdk.setConfig({ accent_color: value });
+            get: function() { return cfg.accent_color || defaultConfig.accent_color; },
+            set: function(value) {
+              cfg.accent_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ accent_color: value });
             }
           },
           {
-            get: () => config.button_color || defaultConfig.button_color,
-            set: (value) => {
-              config.button_color = value;
-              window.elementSdk.setConfig({ button_color: value });
+            get: function() { return cfg.button_color || defaultConfig.button_color; },
+            set: function(value) {
+              cfg.button_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ button_color: value });
             }
           }
         ],
         borderables: [],
         fontEditable: {
-          get: () => config.font_family || defaultConfig.font_family,
-          set: (value) => {
-            config.font_family = value;
-            window.elementSdk.setConfig({ font_family: value });
+          get: function() { return cfg.font_family || defaultConfig.font_family; },
+          set: function(value) {
+            cfg.font_family = value;
+            if (window.elementSdk) window.elementSdk.setConfig({ font_family: value });
           }
         },
         fontSizeable: undefined
       };
     }
     
-    function mapToEditPanelValues(config) {
+    function mapToEditPanelValues(cfg) {
       return new Map([
-        ['main_title', config.main_title || defaultConfig.main_title],
-        ['cta_button_text', config.cta_button_text || defaultConfig.cta_button_text],
-        ['affiliate_link', config.affiliate_link || defaultConfig.affiliate_link]
+        ['main_title', cfg.main_title || defaultConfig.main_title],
+        ['cta_button_text', cfg.cta_button_text || defaultConfig.cta_button_text],
+        ['affiliate_link', cfg.affiliate_link || defaultConfig.affiliate_link]
       ]);
     }
     
-    // Initialize SDK
     if (window.elementSdk) {
       window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities,
-        mapToEditPanelValues
+        defaultConfig: defaultConfig,
+        onConfigChange: onConfigChange,
+        mapToCapabilities: mapToCapabilities,
+        mapToEditPanelValues: mapToEditPanelValues
       });
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d1b52b6207af19c',t:'MTc3MTczMDE2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d1b61b5371fe3ff',t:'MTc3MTczMDc4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
