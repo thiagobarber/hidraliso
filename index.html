@@ -3,455 +3,185 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Hidraliso</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <title>Hidraliso</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
-    body {
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-    
-    .fade-in {
-      animation: fadeIn 0.6s ease-out forwards;
-    }
-    
-    .pulse-btn {
-      animation: pulse 2s infinite;
-    }
-    
-    .shimmer-text {
-      background: linear-gradient(90deg, #fff 0%, #ffd700 50%, #fff 100%);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 3s infinite;
-    }
-    
-    .float-icon {
-      animation: float 3s ease-in-out infinite;
-    }
-    
-    .progress-bar {
-      transition: width 0.5s ease-out;
-    }
-    
-    .option-btn {
-      transition: all 0.3s ease;
-    }
-    
-    .option-btn:hover {
-      transform: translateX(10px);
-      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
-    }
-    
-    .gradient-border {
-      background: linear-gradient(135deg, #8b5cf6, #d946ef, #8b5cf6);
-      background-size: 200% 200%;
-      animation: shimmer 4s ease infinite;
-    }
+    body { font-family: 'Outfit', sans-serif; }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+    @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(168,85,247,0.4); } 50% { box-shadow: 0 0 40px rgba(168,85,247,0.7); } }
+    .dialog-box { animation: fadeIn 0.5s ease-out; }
+    .glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .float { animation: float 3s ease-in-out infinite; }
   </style>
-  <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
- </head>
- <body class="h-full">
-  <div id="app" class="h-full w-full overflow-auto bg-gradient-to-br from-purple-900 via-violet-800 to-purple-900">
-   <!-- Tela Inicial -->
-   <div id="start-screen" class="min-h-full flex flex-col items-center justify-center p-6 text-center fade-in">
-    <div class="max-w-lg mx-auto">
-     <div class="float-icon text-6xl mb-6">
-      ✨
-     </div>
-     <h1 id="main-title" class="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">Descubra Por Que Seu Cabelo Ainda Não Está <span class="shimmer-text">Liso e Brilhante</span></h1>
-     <p class="text-purple-200 text-lg mb-8">Responda 5 perguntas rápidas e descubra a solução perfeita para transformar seus cabelos em casa!</p>
-     <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 mb-8">
-      <div class="flex items-center justify-center gap-3 text-purple-100">
-       <span class="text-2xl">⏱️</span> <span class="font-medium">Apenas 1 minuto</span> <span class="text-purple-400">•</span> <span class="text-2xl">🎁</span> <span class="font-medium">Resultado instantâneo</span>
-      </div>
-     </div><button onclick="startQuiz()" class="pulse-btn bg-gradient-to-r from-pink-500 to-violet-500 text-white font-bold text-xl px-10 py-5 rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all"> COMEÇAR QUIZ GRÁTIS → </button>
-     <p class="text-purple-300 text-sm mt-6 flex items-center justify-center gap-2"><span>🔒</span> Mais de 47.000 mulheres já descobriram o segredo</p>
-    </div>
-   </div><!-- Tela de Perguntas -->
-   <div id="quiz-screen" class="min-h-full flex flex-col p-6 hidden">
-    <div class="max-w-2xl mx-auto w-full flex-1 flex flex-col">
-     <!-- Barra de Progresso -->
-     <div class="mb-8">
-      <div class="flex justify-between text-purple-200 text-sm mb-2">
-       <span>Pergunta <span id="current-q">1</span> de 5</span> <span id="progress-percent">20%</span>
-      </div>
-      <div class="h-3 bg-purple-950/50 rounded-full overflow-hidden">
-       <div id="progress-bar" class="progress-bar h-full bg-gradient-to-r from-pink-500 to-violet-400 rounded-full" style="width: 20%"></div>
-      </div>
-     </div><!-- Pergunta -->
-     <div id="question-container" class="flex-1 flex flex-col justify-center fade-in">
-      <div class="text-center mb-8">
-       <span id="question-icon" class="text-5xl mb-4 block">😔</span>
-       <h2 id="question-text" class="text-2xl md:text-3xl font-bold text-white leading-tight"></h2>
-      </div>
-      <div id="options-container" class="space-y-4">
-       <!-- Opções serão inseridas aqui -->
-      </div>
-     </div>
-    </div>
-   </div><!-- Tela de Carregamento -->
-   <div id="loading-screen" class="min-h-full flex flex-col items-center justify-center p-6 text-center hidden">
-    <div class="max-w-md mx-auto fade-in">
-     <div class="relative mb-8">
-      <div class="w-24 h-24 border-4 border-purple-300/30 rounded-full mx-auto"></div>
-      <div class="w-24 h-24 border-4 border-transparent border-t-pink-500 rounded-full mx-auto absolute top-0 left-1/2 -translate-x-1/2 animate-spin"></div>
-     </div>
-     <h2 class="text-2xl font-bold text-white mb-4">Analisando suas respostas...</h2>
-     <p id="loading-text" class="text-purple-200">Identificando seu tipo de cabelo...</p>
-    </div>
-   </div><!-- Tela de Resultado -->
-   <div id="result-screen" class="min-h-full flex flex-col p-6 hidden">
-    <div class="max-w-2xl mx-auto w-full flex-1 flex flex-col justify-center fade-in">
-     <!-- Badge de Urgência -->
-     <div class="bg-red-500/20 border border-red-400/50 rounded-full px-6 py-2 mx-auto mb-6">
-      <p class="text-red-300 font-semibold text-sm flex items-center gap-2"><span class="animate-pulse">🔥</span> OFERTA ESPECIAL - Últimas unidades com desconto!</p>
-     </div>
-     <div class="text-center mb-8">
-      <span class="text-6xl mb-4 block">🎉</span>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Parabéns! Encontramos a <span class="text-pink-400">Solução Perfeita</span> Para Você!</h2>
-     </div><!-- Resultado Card -->
-     <div class="gradient-border p-1 rounded-3xl mb-8">
-      <div class="bg-purple-950 rounded-3xl p-6 md:p-8">
-       <div class="flex items-center gap-4 mb-6">
-        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-violet-600 rounded-2xl flex items-center justify-center text-3xl shadow-lg">
-         💜
-        </div>
-        <div>
-         <h3 class="text-xl font-bold text-white">HIDRALISO</h3>
-         <p class="text-purple-300">Alisante de Chuveiro Profissional</p>
-        </div>
-       </div>
-       <div class="space-y-4 mb-6">
-        <div class="flex items-start gap-3">
-         <span class="text-green-400 text-xl">✓</span>
-         <p class="text-purple-100"><strong>Fácil de aplicar:</strong> Basta usar durante o banho, sem precisar de chapinha!</p>
-        </div>
-        <div class="flex items-start gap-3">
-         <span class="text-green-400 text-xl">✓</span>
-         <p class="text-purple-100"><strong>Resultado imediato:</strong> Cabelos lisos, hidratados e sem frizz desde a primeira aplicação</p>
-        </div>
-        <div class="flex items-start gap-3">
-         <span class="text-green-400 text-xl">✓</span>
-         <p class="text-purple-100"><strong>Economia de tempo:</strong> Transforme seu cabelo em minutos, sem sair de casa</p>
-        </div>
-        <div class="flex items-start gap-3">
-         <span class="text-green-400 text-xl">✓</span>
-         <p class="text-purple-100"><strong>100% Seguro:</strong> Fórmula sem formol, testada dermatologicamente</p>
-        </div>
-       </div><!-- Depoimento -->
-       <div class="bg-white/5 rounded-2xl p-4 mb-6">
-        <p class="text-purple-200 italic mb-3">"Eu não acreditava que era possível alisar meu cabelo só no chuveiro! Agora economizo tempo e dinheiro com salão. Meu cabelo nunca esteve tão lindo!"</p>
-        <div class="flex items-center gap-3">
-         <div class="w-10 h-10 bg-gradient-to-br from-pink-400 to-violet-500 rounded-full flex items-center justify-center text-lg">
-          👩
-         </div>
-         <div>
-          <p class="text-white font-semibold text-sm">Marina S.</p>
-          <p class="text-yellow-400 text-xs">⭐⭐⭐⭐⭐ Compradora verificada</p>
-         </div>
-        </div>
-       </div><!-- Garantia -->
-       <div class="flex items-center justify-center gap-3 bg-green-500/10 border border-green-500/30 rounded-xl p-4 mb-6">
-        <span class="text-4xl">🛡️</span>
-        <div>
-         <p class="text-green-400 font-bold">Garantia de 30 dias</p>
-         <p class="text-green-300 text-sm">Se não amar, devolvemos seu dinheiro!</p>
-        </div>
-       </div>
-      </div>
-     </div><!-- CTA Final -->
-     <div class="text-center">
-      <button id="cta-button" class="pulse-btn inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-xl px-12 py-6 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all mb-4 cursor-pointer"> <span id="cta-text">QUERO MEU HIDRALISO COM DESCONTO! 🎁</span> </button>
-      <p class="text-purple-300 text-sm flex items-center justify-center gap-2"><span>🔒</span> Compra segura • Entrega rápida • Satisfação garantida</p>
-      <p class="text-yellow-400 text-sm mt-3 font-semibold animate-pulse">⚡ 127 pessoas estão vendo esta oferta agora!</p>
-     </div>
-    </div>
-   </div>
-  </div>
   <script>
     const defaultConfig = {
-      main_title: 'Descubra Por Que Seu Cabelo Ainda Não Está',
-      cta_button_text: 'QUERO MEU HIDRALISO COM DESCONTO! 🎁',
-      affiliate_link: 'https://www.hidraliso.co/?pv=proyyn2e&af=afimem4yp8',
-      background_color: '#581c87',
-      accent_color: '#ec4899',
-      text_color: '#ffffff',
-      button_color: '#22c55e',
-      card_color: '#3b0764',
-      font_family: 'Poppins'
+      question_text: "Você quer ter cabelos lisos, hidratados e sem frizz por semanas?",
+      button_yes: "✨ Sim, eu quero!",
+      button_no: "Agora não",
+      product_link: "https://app.monetizze.com.br/r/BXL1891010",
+      bg_color: "#2e1065",
+      surface_color: "#1a0536",
+      text_color: "#f3e8ff",
+      primary_action_color: "#a855f7",
+      secondary_action_color: "#7c3aed"
     };
-    
-    let config = { ...defaultConfig };
-    let currentQuestion = 0;
-    
-    const questions = [
-      {
-        icon: '😔',
-        text: 'Qual é a sua MAIOR frustração com seu cabelo hoje?',
-        options: [
-          { text: '😫 Frizz incontrolável que me envergonha', icon: '😫' },
-          { text: '⏰ Perco HORAS alisando com chapinha', icon: '⏰' },
-          { text: '💸 Gasto fortunas em salão todo mês', icon: '💸' },
-          { text: '😢 Meu cabelo está danificado e sem vida', icon: '😢' }
-        ]
-      },
-      {
-        icon: '💭',
-        text: 'Já tentou outros produtos alisantes antes?',
-        options: [
-          { text: '😤 Sim, mas NENHUM funcionou de verdade', icon: '😤' },
-          { text: '😰 Sim, mas tive medo dos químicos', icon: '😰' },
-          { text: '🤷‍♀️ Nunca achei algo prático o suficiente', icon: '🤷‍♀️' },
-          { text: '💔 Desisti de tentar, nada resolve', icon: '💔' }
-        ]
-      },
-      {
-        icon: '⏰',
-        text: 'Quanto tempo você gasta por semana cuidando do cabelo?',
-        options: [
-          { text: '😱 Mais de 3 horas (é exaustivo!)', icon: '😱' },
-          { text: '😓 Entre 1 e 3 horas', icon: '😓' },
-          { text: '😔 Desisti de cuidar, não tenho tempo', icon: '😔' },
-          { text: '🙏 Queria gastar menos de 30 minutos', icon: '🙏' }
-        ]
-      },
-      {
-        icon: '🪞',
-        text: 'Como você se sente quando olha seu cabelo no espelho?',
-        options: [
-          { text: '😞 Insatisfeita, queria que fosse diferente', icon: '😞' },
-          { text: '😤 Frustrada com o frizz e volume', icon: '😤' },
-          { text: '😢 Triste, já nem me arrumo mais', icon: '😢' },
-          { text: '🙈 Evito espelhos, me incomoda ver', icon: '🙈' }
-        ]
-      },
-      {
-        icon: '✨',
-        text: 'Se existisse um produto que alisasse seu cabelo NO CHUVEIRO, em minutos, você experimentaria?',
-        options: [
-          { text: '🤩 SIM! Seria um sonho realizado!', icon: '🤩' },
-          { text: '🙌 Com certeza, se for fácil de usar!', icon: '🙌' },
-          { text: '💜 Sim, se realmente funcionasse!', icon: '💜' },
-          { text: '✨ Quero muito! Onde encontro?', icon: '✨' }
-        ]
-      }
-    ];
-    
-    function startQuiz() {
-      document.getElementById('start-screen').classList.add('hidden');
-      document.getElementById('quiz-screen').classList.remove('hidden');
-      showQuestion(0);
-    }
-    
-    function showQuestion(index) {
-      currentQuestion = index;
-      const q = questions[index];
+
+    function applyConfig(config) {
+      const q = document.getElementById('question');
+      const btnY = document.getElementById('btn-yes');
+      const btnN = document.getElementById('btn-no');
+      const closeBtn = document.getElementById('btn-close');
+      const bg = document.getElementById('bg');
+      const card = document.getElementById('card');
+
+      if (q) q.textContent = config.question_text || defaultConfig.question_text;
+      if (btnY) btnY.textContent = config.button_yes || defaultConfig.button_yes;
+      if (btnN) btnN.textContent = config.button_no || defaultConfig.button_no;
+
+      const link = config.product_link || defaultConfig.product_link;
       
-      document.getElementById('current-q').textContent = index + 1;
-      document.getElementById('progress-percent').textContent = `${((index + 1) / 5) * 100}%`;
-      document.getElementById('progress-bar').style.width = `${((index + 1) / 5) * 100}%`;
-      
-      document.getElementById('question-icon').textContent = q.icon;
-      document.getElementById('question-text').textContent = q.text;
-      
-      const container = document.getElementById('options-container');
-      container.innerHTML = '';
-      
-      q.options.forEach((option, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn w-full bg-white/10 backdrop-blur-sm border-2 border-purple-400/30 rounded-2xl p-5 text-left text-white font-medium hover:bg-white/20 hover:border-pink-400';
-        btn.innerHTML = `
-          <div class="flex items-center gap-4">
-            <span class="text-2xl">${option.icon}</span>
-            <span class="flex-1">${option.text.replace(option.icon, '').trim()}</span>
-            <span class="text-purple-400">→</span>
-          </div>
-        `;
-        btn.onclick = () => selectAnswer(i);
-        container.appendChild(btn);
-      });
-      
-      // Re-trigger animation
-      const questionContainer = document.getElementById('question-container');
-      questionContainer.classList.remove('fade-in');
-      void questionContainer.offsetWidth;
-      questionContainer.classList.add('fade-in');
-    }
-    
-    function selectAnswer(optionIndex) {
-      if (currentQuestion < questions.length - 1) {
-        showQuestion(currentQuestion + 1);
-      } else {
-        showLoading();
-      }
-    }
-    
-    function showLoading() {
-      document.getElementById('quiz-screen').classList.add('hidden');
-      document.getElementById('loading-screen').classList.remove('hidden');
-      
-      const loadingTexts = [
-        'Identificando seu tipo de cabelo...',
-        'Analisando suas necessidades...',
-        'Calculando a solução ideal...',
-        'Preparando sua recomendação personalizada...',
-        'Quase lá! Resultado pronto!'
-      ];
-      
-      let textIndex = 0;
-      const loadingTextEl = document.getElementById('loading-text');
-      
-      const interval = setInterval(() => {
-        textIndex++;
-        if (textIndex < loadingTexts.length) {
-          loadingTextEl.textContent = loadingTexts[textIndex];
-        }
-      }, 800);
-      
-      setTimeout(() => {
-        clearInterval(interval);
-        showResult();
-      }, 4000);
-    }
-    
-    function showResult() {
-      document.getElementById('loading-screen').classList.add('hidden');
-      document.getElementById('result-screen').classList.remove('hidden');
-      
-      // Adiciona o event listener ao botão CTA
-      const ctaBtn = document.getElementById('cta-button');
-      if (ctaBtn) {
-        ctaBtn.onclick = function(e) {
+      if (btnY) {
+        btnY.onclick = async (e) => {
           e.preventDefault();
-          const link = config.affiliate_link || defaultConfig.affiliate_link;
-          if (link) {
-            window.open(link, '_blank', 'noopener,noreferrer');
-          }
+          await recordAction("Clicou em Sim");
+          setTimeout(() => window.open(link, '_blank'), 100);
         };
       }
       
-      // Re-trigger animation
-      const resultScreen = document.getElementById('result-screen');
-      const fadeEl = resultScreen.querySelector('.fade-in');
-      if (fadeEl) {
-        fadeEl.classList.remove('fade-in');
-        void fadeEl.offsetWidth;
-        fadeEl.classList.add('fade-in');
-      }
-    }
-    
-    async function onConfigChange(newConfig) {
-      const titleEl = document.getElementById('main-title');
-      if (titleEl) {
-        titleEl.innerHTML = `${newConfig.main_title || defaultConfig.main_title} <span class="shimmer-text">Liso e Brilhante</span>`;
+      if (btnN) {
+        btnN.onclick = async (e) => {
+          e.preventDefault();
+          await recordAction("Clicou em Agora não");
+          setTimeout(() => window.open(link, '_blank'), 100);
+        };
       }
       
-      const ctaBtn = document.getElementById('cta-button');
-      if (ctaBtn) {
-        ctaBtn.href = newConfig.affiliate_link || defaultConfig.affiliate_link;
+      if (closeBtn) {
+        closeBtn.onclick = async (e) => {
+          e.preventDefault();
+          await recordAction("Fechou o diálogo");
+          setTimeout(() => window.open(link, '_blank'), 100);
+        };
       }
-      
-      const ctaText = document.getElementById('cta-text');
-      if (ctaText) {
-        ctaText.textContent = newConfig.cta_button_text || defaultConfig.cta_button_text;
-      }
+
+      const bgC = config.bg_color || defaultConfig.bg_color;
+      const surfC = config.surface_color || defaultConfig.surface_color;
+      const txtC = config.text_color || defaultConfig.text_color;
+      const priC = config.primary_action_color || defaultConfig.primary_action_color;
+      const secC = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+      if (bg) bg.style.background = `radial-gradient(ellipse at top, ${priC}33 0%, ${bgC} 70%)`;
+      if (card) { card.style.background = `linear-gradient(135deg, ${surfC}, ${bgC})`; card.style.borderColor = priC + '55'; }
+      if (q) q.style.color = txtC;
+      if (btnY) { btnY.style.background = `linear-gradient(135deg, ${priC}, ${secC})`; btnY.style.color = '#fff'; }
+      if (btnN) { btnN.style.color = txtC + 'aa'; btnN.style.borderColor = txtC + '33'; }
+      if (closeBtn) closeBtn.style.color = txtC + '88';
+
+      const font = config.font_family || defaultConfig.font_family || 'Outfit';
+      const size = config.font_size || defaultConfig.font_size || 16;
+      document.body.style.fontFamily = `${font}, Outfit, sans-serif`;
+      if (q) q.style.fontSize = `${size * 1.5}px`;
+      if (btnY) btnY.style.fontSize = `${size}px`;
+      if (btnN) btnN.style.fontSize = `${size * 0.9}px`;
     }
-    
-    function mapToCapabilities(config) {
-      return {
+
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (config) => applyConfig(config),
+      mapToCapabilities: (config) => ({
         recolorables: [
-          {
-            get: () => config.background_color || defaultConfig.background_color,
-            set: (value) => {
-              config.background_color = value;
-              window.elementSdk.setConfig({ background_color: value });
-            }
-          },
-          {
-            get: () => config.card_color || defaultConfig.card_color,
-            set: (value) => {
-              config.card_color = value;
-              window.elementSdk.setConfig({ card_color: value });
-            }
-          },
-          {
-            get: () => config.text_color || defaultConfig.text_color,
-            set: (value) => {
-              config.text_color = value;
-              window.elementSdk.setConfig({ text_color: value });
-            }
-          },
-          {
-            get: () => config.accent_color || defaultConfig.accent_color,
-            set: (value) => {
-              config.accent_color = value;
-              window.elementSdk.setConfig({ accent_color: value });
-            }
-          },
-          {
-            get: () => config.button_color || defaultConfig.button_color,
-            set: (value) => {
-              config.button_color = value;
-              window.elementSdk.setConfig({ button_color: value });
-            }
-          }
+          { get: () => config.bg_color || defaultConfig.bg_color, set: v => { config.bg_color = v; window.elementSdk.setConfig({ bg_color: v }); } },
+          { get: () => config.surface_color || defaultConfig.surface_color, set: v => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: v => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: v => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+          { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: v => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
         ],
         borderables: [],
         fontEditable: {
-          get: () => config.font_family || defaultConfig.font_family,
-          set: (value) => {
-            config.font_family = value;
-            window.elementSdk.setConfig({ font_family: value });
-          }
+          get: () => config.font_family || defaultConfig.font_family || 'Outfit',
+          set: v => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
         },
-        fontSizeable: undefined
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size || 16,
+          set: v => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+        }
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ["question_text", config.question_text || defaultConfig.question_text],
+        ["button_yes", config.button_yes || defaultConfig.button_yes],
+        ["button_no", config.button_no || defaultConfig.button_no],
+        ["product_link", config.product_link || defaultConfig.product_link]
+      ])
+    });
+  </script>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script>
+    let sdkReady = false;
+
+    async function initializeDataSDK() {
+      const handler = {
+        onDataChanged(data) {
+          // Apenas lê os dados, não precisa atualizar UI
+        }
       };
+
+      try {
+        const result = await window.dataSdk.init(handler);
+        if (result && result.isOk) {
+          sdkReady = true;
+        }
+      } catch (e) {
+        console.error('Erro ao inicializar Data SDK:', e);
+      }
     }
-    
-    function mapToEditPanelValues(config) {
-      return new Map([
-        ['main_title', config.main_title || defaultConfig.main_title],
-        ['cta_button_text', config.cta_button_text || defaultConfig.cta_button_text],
-        ['affiliate_link', config.affiliate_link || defaultConfig.affiliate_link]
-      ]);
+
+    // Inicializar SDK imediatamente
+    if (window.dataSdk) {
+      initializeDataSDK();
     }
-    
-    // Initialize SDK
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities,
-        mapToEditPanelValues
-      });
+
+    async function recordAction(action) {
+      if (!window.dataSdk) {
+        return;
+      }
+
+      if (!sdkReady) {
+        await new Promise(resolve => setTimeout(resolve, 200));
+      }
+
+      const timestamp = new Date().toISOString();
+      const record = {
+        timestamp: timestamp,
+        action: action,
+        ip: "tracking"
+      };
+
+      try {
+        const result = await window.dataSdk.create(record);
+        if (result && result.isOk) {
+          console.log(`Ação registrada: ${action}`);
+        }
+      } catch (e) {
+        console.error(`Erro ao registrar: ${action}`, e);
+      }
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d1c1c12233ac6ce',t:'MTc3MTczODQxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ </head>
+ <body class="h-full m-0 overflow-auto">
+  <div id="bg" class="h-full w-full flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat" style="background-image: url('canva://MAHJptzgD0c/1'); background-color: #2e1065; background-size: cover; background-position: center;">
+   <div id="card" class="dialog-box glow float relative max-w-lg w-full rounded-3xl border p-8 md:p-10 text-center" style="background: linear-gradient(135deg, #1a0536, #2e1065); border-color: rgba(168,85,247,0.33); backdrop-filter: blur(8px); background-color: rgba(26, 5, 54, 0.9);"><!-- Close button --> <button id="btn-close" class="absolute top-4 right-4 text-2xl leading-none hover:opacity-100 transition-opacity cursor-pointer" style="color: rgba(243,232,255,0.5);" aria-label="Fechar">✕</button> <!-- Emoji icon -->
+    <div class="text-5xl mb-5">
+     💜💇‍♀️
+    </div><!-- Question -->
+    <h1 id="question" class="font-bold leading-tight mb-8" style="color: #f3e8ff; font-size: 24px;">Você quer ter cabelos lisos, hidratados e sem frizz por semanas?</h1><!-- Buttons -->
+    <div class="flex flex-col gap-3"><button id="btn-yes" class="w-full py-4 rounded-2xl font-bold text-white cursor-pointer hover:brightness-110 transition-all active:scale-95" style="background: linear-gradient(135deg, #a855f7, #7c3aed); font-size: 16px;"> ✨ Sim, eu quero! </button> <button id="btn-no" class="w-full py-3 rounded-2xl font-semibold border cursor-pointer hover:bg-white/5 transition-all active:scale-95 bg-transparent" style="color: rgba(243,232,255,0.67); border-color: rgba(243,232,255,0.2); font-size: 14.4px;"> Agora não </button>
+    </div>
+   </div>
+  </div>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fba9ce185745f0f',t:'MTc3ODc2OTE1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
