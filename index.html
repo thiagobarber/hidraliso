@@ -214,4 +214,24 @@ h1{
     if (el) send("click");
   });
 })();
+</script><!-- Presell Tracker (gerado automaticamente) -->
+<script>
+(function () {
+  var pageId = "hidraliso";
+  var API_BASE = "https://fugapresell.lovable.app";
+  function send(path) {
+    var url = API_BASE + "/api/public/" + path;
+    var body = JSON.stringify({ pageId: pageId });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(url, new Blob([body], { type: "application/json" }));
+      return;
+    }
+    fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {});
+  }
+  send("visit");
+  document.addEventListener("click", function (event) {
+    var el = event.target.closest("[data-cta], .cta");
+    if (el) send("click");
+  });
+})();
 </script></body></html>
