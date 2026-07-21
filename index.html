@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="pt-BR"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Últimas Unidades com Shampoo Grátis</title>
@@ -159,19 +158,9 @@ h1{
         </h1>
     </div>
 
-    <img
-        src="https://i.imgur.com/13ip2UP.jpg"
-        alt="Produto"
-        class="product-image"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-    >
+    <img src="https://i.imgur.com/13ip2UP.jpg" alt="Produto" class="product-image" loading="eager" fetchpriority="high" decoding="async">
 
-    <a class="cta"
-       href="https://hidraliso.com.br/?mcr=BXL1891010"
-       target="_blank"
-       rel="noopener noreferrer">
+    <a class="cta" href="https://hidraliso.com.br/?mcr=BXL1891010" target="_blank" rel="noopener noreferrer">
        QUERO GARANTIR MINHA OFERTA AGORA
     </a>
 
@@ -203,6 +192,26 @@ h1{
 
 </div>
 
-  <script defer src="https://presellfuga.lovable.app/tracker.js?site=09fee814-a944-4a79-994f-2225b06e20ca"></script>
-</body>
-</html>
+  <script defer="" src="https://presellfuga.lovable.app/tracker.js?site=09fee814-a944-4a79-994f-2225b06e20ca"></script>
+
+<!-- Presell Tracker (gerado automaticamente) -->
+<script>
+(function () {
+  var pageId = "hidraliso";
+  var API_BASE = "https://fugapresell.lovable.app";
+  function send(path) {
+    var url = API_BASE + "/api/public/" + path;
+    var body = JSON.stringify({ pageId: pageId });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(url, new Blob([body], { type: "application/json" }));
+      return;
+    }
+    fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {});
+  }
+  send("visit");
+  document.addEventListener("click", function (event) {
+    var el = event.target.closest("[data-cta], .cta");
+    if (el) send("click");
+  });
+})();
+</script></body></html>
