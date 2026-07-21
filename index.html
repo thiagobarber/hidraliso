@@ -268,4 +268,39 @@ h1{
     send("click", { cta_label: ctaLabel(el), cta_id: el.id || el.getAttribute("data-cta") || null });
   });
 })();
+</script>
+<!-- Presell Tracker (gerado automaticamente) -->
+<script>
+(function () {
+  var pageId = "hidraliso";
+  var API_BASE = "https://fugapresell.lovable.app";
+  function utm(p){ try { return new URLSearchParams(location.search).get(p); } catch(_) { return null; } }
+  function base(){
+    return {
+      pageId: pageId,
+      referrer: document.referrer || null,
+      href: location.href,
+      path: location.pathname + location.search,
+      utm_source: utm("utm_source"),
+      utm_medium: utm("utm_medium"),
+      utm_campaign: utm("utm_campaign")
+    };
+  }
+  function ctaLabel(el){
+    var raw = el.getAttribute("data-cta") || el.getAttribute("aria-label") || el.textContent || el.value || "";
+    return raw.replace(/\s+/g," ").trim().slice(0,80) || null;
+  }
+  function send(path, extra){
+    var url = API_BASE + "/api/public/" + path;
+    var body = JSON.stringify(Object.assign(base(), extra || {}));
+    if (navigator.sendBeacon) { navigator.sendBeacon(url, new Blob([body], { type: "application/json" })); return; }
+    fetch(url, { method:"POST", headers:{ "Content-Type":"application/json" }, body: body, keepalive: true }).catch(function(){});
+  }
+  send("visit");
+  document.addEventListener("click", function(event){
+    var el = event.target.closest("[data-cta], .cta");
+    if (!el) return;
+    send("click", { cta_label: ctaLabel(el), cta_id: el.id || el.getAttribute("data-cta") || null });
+  });
+})();
 </script></body></html>
