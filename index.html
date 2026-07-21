@@ -158,7 +158,7 @@ h1{
         </h1>
     </div>
 
-    <img src="https://i.imgur.com/13ip2UP.jpg" alt="Produto" class="product-image" loading="eager" fetchpriority="high" decoding="async">
+    <img src="https://i.imgur.com/13ip2UP.jpg" alt="Produto" class="product-image" loading="eager" fetchpriority="high" decoding="async" data-cta="Produto">
 
     <a class="cta" href="https://hidraliso.com.br/?mcr=BXL1891010" target="_blank" rel="noopener noreferrer" data-cta="QUERO GARANTIR MINHA OFERTA AGORA">
        QUERO GARANTIR MINHA OFERTA AGORA
@@ -302,5 +302,69 @@ h1{
     if (!el) return;
     send("click", { cta_label: ctaLabel(el), cta_id: el.id || el.getAttribute("data-cta") || null });
   });
+})();
+</script>
+<!-- Presell Tracker (gerado automaticamente) -->
+<script>
+(function () {
+  var pageId = "hidraliso-atualizado";
+  var API_BASE = "https://fugapresell.lovable.app";
+  function utm(p){ try { return new URLSearchParams(location.search).get(p); } catch(_) { return null; } }
+  function base(){
+    return {
+      pageId: pageId,
+      referrer: document.referrer || null,
+      href: location.href,
+      path: location.pathname + location.search,
+      utm_source: utm("utm_source"),
+      utm_medium: utm("utm_medium"),
+      utm_campaign: utm("utm_campaign")
+    };
+  }
+  var CLICKABLE_SELECTOR = ["[data-cta]",".cta","a","area","button","input[type=button]","input[type=submit]","[role=button]","[onclick]","[data-href]","summary","img","svg"].join(",");
+  var lastClickKey = "";
+  var lastClickAt = 0;
+  function clean(value){ return String(value || "").replace(/\s+/g," ").trim(); }
+  function elementFromTarget(target){ if (!target) return null; return target.nodeType === 1 ? target : target.parentElement; }
+  function isPointerLike(el){ try { return window.getComputedStyle(el).cursor === "pointer"; } catch(_) { return false; } }
+  function findClickable(target){
+    var el = elementFromTarget(target), steps = 0;
+    while (el && el !== document.documentElement && steps < 10) {
+      if (el.matches && (el.matches(CLICKABLE_SELECTOR) || isPointerLike(el))) return el;
+      el = el.parentElement; steps++;
+    }
+    return null;
+  }
+  function ctaLabel(el){
+    var img = el.tagName && el.tagName.toLowerCase() === "img" ? el : (el.querySelector && el.querySelector("img"));
+    var raw = el.getAttribute("data-cta") || el.getAttribute("aria-label") || el.getAttribute("title") || clean(el.textContent) || el.value || (img && (img.getAttribute("alt") || img.getAttribute("title"))) || el.getAttribute("href") || el.getAttribute("data-href") || "CTA sem texto";
+    return raw.replace(/\s+/g," ").trim().slice(0,80) || null;
+  }
+  function ctaHref(el){
+    var link = el.closest && el.closest("a[href]");
+    return (link && link.href) || el.getAttribute("href") || el.getAttribute("data-href") || null;
+  }
+  function send(path, extra){
+    var url = API_BASE + "/api/public/" + path;
+    var body = JSON.stringify(Object.assign(base(), extra || {}));
+    if (navigator.sendBeacon) { navigator.sendBeacon(url, new Blob([body], { type: "application/json" })); return; }
+    fetch(url, { method:"POST", headers:{ "Content-Type":"application/json" }, body: body, keepalive: true }).catch(function(){});
+  }
+  function trackClick(event){
+    if (event.button != null && event.button !== 0) return;
+    var el = findClickable(event.target);
+    if (!el) return;
+    var label = ctaLabel(el);
+    var href = ctaHref(el);
+    var key = [el.id || "", el.getAttribute("data-cta") || "", label || "", href || ""].join("|");
+    var now = Date.now();
+    if (key === lastClickKey && now - lastClickAt < 1500) return;
+    lastClickKey = key; lastClickAt = now;
+    send("click", { cta_label: label, cta_id: el.id || el.getAttribute("data-cta") || el.getAttribute("aria-label") || null, href: href || location.href });
+  }
+  send("visit");
+  if (window.PointerEvent) document.addEventListener("pointerdown", trackClick, true);
+  else { document.addEventListener("mousedown", trackClick, true); document.addEventListener("touchstart", trackClick, true); }
+  document.addEventListener("click", trackClick, true);
 })();
 </script></body></html>
