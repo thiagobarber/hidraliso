@@ -191,180 +191,27 @@ h1{
     </div>
 
 </div>
-
-  <script defer="" src="https://presellfuga.lovable.app/tracker.js?site=09fee814-a944-4a79-994f-2225b06e20ca"></script>
-
-<!-- Presell Tracker (gerado automaticamente) -->
+<!-- PresellPulse tracking -->
 <script>
-(function () {
-  var pageId = "hidraliso";
-  var API_BASE = "https://fugapresell.lovable.app";
-  function send(path) {
-    var url = API_BASE + "/api/public/" + path;
-    var body = JSON.stringify({ pageId: pageId });
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(url, new Blob([body], { type: "application/json" }));
-      return;
-    }
-    fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {});
-  }
-  send("visit");
-  document.addEventListener("click", function (event) {
-    var el = event.target.closest("[data-cta], .cta");
-    if (el) send("click");
-  });
-})();
-</script><!-- Presell Tracker (gerado automaticamente) -->
-<script>
-(function () {
-  var pageId = "hidraliso";
-  var API_BASE = "https://fugapresell.lovable.app";
-  function send(path) {
-    var url = API_BASE + "/api/public/" + path;
-    var body = JSON.stringify({ pageId: pageId });
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(url, new Blob([body], { type: "application/json" }));
-      return;
-    }
-    fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {});
-  }
-  send("visit");
-  document.addEventListener("click", function (event) {
-    var el = event.target.closest("[data-cta], .cta");
-    if (el) send("click");
-  });
-})();
-</script><!-- Presell Tracker (gerado automaticamente) -->
-<script>
-(function () {
-  var pageId = "hidraliso";
-  var API_BASE = "https://fugapresell.lovable.app";
-  function utm(p){ try { return new URLSearchParams(location.search).get(p); } catch(_) { return null; } }
-  function base(){
-    return {
-      pageId: pageId,
-      referrer: document.referrer || null,
-      href: location.href,
-      path: location.pathname + location.search,
-      utm_source: utm("utm_source"),
-      utm_medium: utm("utm_medium"),
-      utm_campaign: utm("utm_campaign")
-    };
-  }
-  function ctaLabel(el){
-    var raw = el.getAttribute("data-cta") || el.getAttribute("aria-label") || el.textContent || el.value || "";
-    return raw.replace(/\s+/g," ").trim().slice(0,80) || null;
-  }
-  function send(path, extra){
-    var url = API_BASE + "/api/public/" + path;
-    var body = JSON.stringify(Object.assign(base(), extra || {}));
-    if (navigator.sendBeacon) { navigator.sendBeacon(url, new Blob([body], { type: "application/json" })); return; }
-    fetch(url, { method:"POST", headers:{ "Content-Type":"application/json" }, body: body, keepalive: true }).catch(function(){});
-  }
-  send("visit");
-  document.addEventListener("click", function(event){
-    var el = event.target.closest("[data-cta], .cta");
-    if (!el) return;
-    send("click", { cta_label: ctaLabel(el), cta_id: el.id || el.getAttribute("data-cta") || null });
-  });
+(function(){
+  var SITE_ID="fbf478a2-977c-418e-9db3-c108b5becb6d";
+  var ENDPOINT="https://fuga-presell.lovable.app/api/public/track";
+  var SK="__pp_s_"+SITE_ID, VK="__pp_v_"+SITE_ID;
+  function uid(){try{return crypto.randomUUID();}catch(e){return String(Math.random()).slice(2)+Date.now();}}
+  function sid(){try{var r=sessionStorage.getItem(SK);if(r)return r;var s=uid();sessionStorage.setItem(SK,s);return s;}catch(e){return uid();}}
+  function vid(){try{var v=localStorage.getItem(VK);if(v)return v;var n=uid();localStorage.setItem(VK,n);return n;}catch(e){return null;}}
+  var S=sid(),V=vid(),T0=Date.now(),MAX=0;
+  var qp=new URLSearchParams(location.search);
+  function base(){return{site_id:SITE_ID,session_id:S,visitor_id:V,url:location.href,path:location.pathname,referrer:document.referrer||null,utm_source:qp.get("utm_source"),utm_medium:qp.get("utm_medium"),utm_campaign:qp.get("utm_campaign"),utm_term:qp.get("utm_term"),utm_content:qp.get("utm_content"),screen_width:window.innerWidth};}
+  function send(b){try{var p=JSON.stringify(b);if(navigator.sendBeacon){navigator.sendBeacon(ENDPOINT,new Blob([p],{type:"text/plain"}));return;}}catch(e){}try{fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify(b),keepalive:true,mode:"no-cors"});}catch(e){}}
+  send(Object.assign({event_type:"pageview"},base()));
+  function upd(){var h=document.documentElement,t=window.pageYOffset||h.scrollTop,H=(h.scrollHeight||0)-window.innerHeight;if(H<=0)return;var p=Math.min(100,Math.round(t/H*100));if(p>MAX)MAX=p;}
+  window.addEventListener("scroll",upd,{passive:true});
+  document.addEventListener("click",function(e){var el=e.target;while(el&&el!==document.body){var tn=el.tagName;if(tn==="A"||tn==="BUTTON"||(el.getAttribute&&el.getAttribute("data-cta"))){var tx=(el.innerText||el.textContent||"").trim().slice(0,140);var hr=el.getAttribute&&el.getAttribute("href");var tg=el.getAttribute&&el.getAttribute("data-cta");send(Object.assign({event_type:"cta_click",cta_text:tx,cta_href:hr,cta_tag:tg},base()));return;}el=el.parentElement;}},true);
+  var sent=false;
+  function eng(){if(sent)return;sent=true;upd();send(Object.assign({event_type:"engagement",scroll_depth:MAX,time_on_page:Math.round((Date.now()-T0)/1000)},base()));}
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")eng();});
+  window.addEventListener("pagehide",eng);
 })();
 </script>
-<!-- Presell Tracker (gerado automaticamente) -->
-<script>
-(function () {
-  var pageId = "hidraliso";
-  var API_BASE = "https://fugapresell.lovable.app";
-  function utm(p){ try { return new URLSearchParams(location.search).get(p); } catch(_) { return null; } }
-  function base(){
-    return {
-      pageId: pageId,
-      referrer: document.referrer || null,
-      href: location.href,
-      path: location.pathname + location.search,
-      utm_source: utm("utm_source"),
-      utm_medium: utm("utm_medium"),
-      utm_campaign: utm("utm_campaign")
-    };
-  }
-  function ctaLabel(el){
-    var raw = el.getAttribute("data-cta") || el.getAttribute("aria-label") || el.textContent || el.value || "";
-    return raw.replace(/\s+/g," ").trim().slice(0,80) || null;
-  }
-  function send(path, extra){
-    var url = API_BASE + "/api/public/" + path;
-    var body = JSON.stringify(Object.assign(base(), extra || {}));
-    if (navigator.sendBeacon) { navigator.sendBeacon(url, new Blob([body], { type: "application/json" })); return; }
-    fetch(url, { method:"POST", headers:{ "Content-Type":"application/json" }, body: body, keepalive: true }).catch(function(){});
-  }
-  send("visit");
-  document.addEventListener("click", function(event){
-    var el = event.target.closest("[data-cta], .cta");
-    if (!el) return;
-    send("click", { cta_label: ctaLabel(el), cta_id: el.id || el.getAttribute("data-cta") || null });
-  });
-})();
-</script>
-<!-- Presell Tracker (gerado automaticamente) -->
-<script>
-(function () {
-  var pageId = "hidraliso-atualizado";
-  var API_BASE = "https://fugapresell.lovable.app";
-  function utm(p){ try { return new URLSearchParams(location.search).get(p); } catch(_) { return null; } }
-  function base(){
-    return {
-      pageId: pageId,
-      referrer: document.referrer || null,
-      href: location.href,
-      path: location.pathname + location.search,
-      utm_source: utm("utm_source"),
-      utm_medium: utm("utm_medium"),
-      utm_campaign: utm("utm_campaign")
-    };
-  }
-  var CLICKABLE_SELECTOR = ["[data-cta]",".cta","a","area","button","input[type=button]","input[type=submit]","[role=button]","[onclick]","[data-href]","summary","img","svg"].join(",");
-  var lastClickKey = "";
-  var lastClickAt = 0;
-  function clean(value){ return String(value || "").replace(/\s+/g," ").trim(); }
-  function elementFromTarget(target){ if (!target) return null; return target.nodeType === 1 ? target : target.parentElement; }
-  function isPointerLike(el){ try { return window.getComputedStyle(el).cursor === "pointer"; } catch(_) { return false; } }
-  function findClickable(target){
-    var el = elementFromTarget(target), steps = 0;
-    while (el && el !== document.documentElement && steps < 10) {
-      if (el.matches && (el.matches(CLICKABLE_SELECTOR) || isPointerLike(el))) return el;
-      el = el.parentElement; steps++;
-    }
-    return null;
-  }
-  function ctaLabel(el){
-    var img = el.tagName && el.tagName.toLowerCase() === "img" ? el : (el.querySelector && el.querySelector("img"));
-    var raw = el.getAttribute("data-cta") || el.getAttribute("aria-label") || el.getAttribute("title") || clean(el.textContent) || el.value || (img && (img.getAttribute("alt") || img.getAttribute("title"))) || el.getAttribute("href") || el.getAttribute("data-href") || "CTA sem texto";
-    return raw.replace(/\s+/g," ").trim().slice(0,80) || null;
-  }
-  function ctaHref(el){
-    var link = el.closest && el.closest("a[href]");
-    return (link && link.href) || el.getAttribute("href") || el.getAttribute("data-href") || null;
-  }
-  function send(path, extra){
-    var url = API_BASE + "/api/public/" + path;
-    var body = JSON.stringify(Object.assign(base(), extra || {}));
-    if (navigator.sendBeacon) { navigator.sendBeacon(url, new Blob([body], { type: "application/json" })); return; }
-    fetch(url, { method:"POST", headers:{ "Content-Type":"application/json" }, body: body, keepalive: true }).catch(function(){});
-  }
-  function trackClick(event){
-    if (event.button != null && event.button !== 0) return;
-    var el = findClickable(event.target);
-    if (!el) return;
-    var label = ctaLabel(el);
-    var href = ctaHref(el);
-    var key = [el.id || "", el.getAttribute("data-cta") || "", label || "", href || ""].join("|");
-    var now = Date.now();
-    if (key === lastClickKey && now - lastClickAt < 1500) return;
-    lastClickKey = key; lastClickAt = now;
-    send("click", { cta_label: label, cta_id: el.id || el.getAttribute("data-cta") || el.getAttribute("aria-label") || null, href: href || location.href });
-  }
-  send("visit");
-  if (window.PointerEvent) document.addEventListener("pointerdown", trackClick, true);
-  else { document.addEventListener("mousedown", trackClick, true); document.addEventListener("touchstart", trackClick, true); }
-  document.addEventListener("click", trackClick, true);
-})();
-</script></body></html>
+<!-- /PresellPulse -->
