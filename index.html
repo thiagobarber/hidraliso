@@ -320,10 +320,10 @@ Este site não possui vínculo com Facebook, Instagram, Google ou qualquer outra
 
 <script>
 (function() {
-  var PRESELL_ID = "ps_msj6yf8z";
+  var PRESELL_ID = "ps_msj8bjrv";
   var API_ENDPOINT = "https://presell-fuga-tracking-566318774666.us-east1.run.app/api/track";
   var ANTI_FUGA_ENABLED = true;
-  var ANTI_FUGA_URL = "https://compreoonline.shop";
+  var ANTI_FUGA_URL = "https://www.compreoonline.shop/";
   var EXIT_INTENT_MODAL = true;
   var EXIT_INTENT_MSG = "Aguarde! Não vá embora sem antes conferir esta oferta especial com 50% de desconto!";
 
@@ -356,7 +356,9 @@ Este site não possui vínculo com Facebook, Instagram, Google ou qualquer outra
     var pairs = search.split('&');
     for (var i = 0; i < pairs.length; i++) {
       var pair = pairs[i].split('=');
-      params[decodeURIComponent(pair[0])] = pair[1] ? decodeURIComponent(pair[1]) : '';
+      if (pair[0]) {
+        params[decodeURIComponent(pair[0])] = pair[1] ? decodeURIComponent(pair[1]) : '';
+      }
     }
     return params;
   }
@@ -384,25 +386,29 @@ Este site não possui vínculo com Facebook, Instagram, Google ou qualquer outra
 
     var jsonStr = JSON.stringify(payload);
     
+    // Try sendBeacon first
     if (navigator.sendBeacon) {
       try {
-        var blob = new Blob([jsonStr], { type: 'application/json' });
-        navigator.sendBeacon(API_ENDPOINT, blob);
-        return;
+        var blob = new Blob([jsonStr], { type: 'text/plain;charset=UTF-8' });
+        if (navigator.sendBeacon(API_ENDPOINT, blob)) {
+          return;
+        }
       } catch(e) {}
     }
 
+    // Fallback to fetch with cors
     try {
       fetch(API_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
         body: jsonStr,
-        keepalive: true
+        keepalive: true,
+        mode: 'cors'
       }).catch(function(){});
     } catch(e) {}
   }
 
-  // 1. Send Initial Visit
+  // 1. Send Initial Visit immediately
   sendEvent('visit');
 
   // 2. Heartbeat Ping every 5 seconds
@@ -410,36 +416,26 @@ Este site não possui vínculo com Facebook, Instagram, Google ou qualquer outra
     sendEvent('ping');
   }, 5 * 1000);
 
-  // 3. CTA Click Handlers
-  document.addEventListener('DOMContentLoaded', function() {
-    bindCtas();
-  });
-  if (document.readyState === 'interactive' || document.readyState === 'complete') {
-    bindCtas();
-  }
+  // 3. Universal Capture-Phase Click Delegation
+  document.addEventListener('click', function(e) {
+    var target = e.target;
+    if (!target) return;
+    
+    var ctaEl = target.closest('a, button, [role="button"], .btn, input[type="submit"], input[type="button"], [data-ps-cta]');
+    if (ctaEl) {
+      ctaClicked = true;
+      var ctaId = ctaEl.getAttribute('data-ps-cta') || ctaEl.id || ('cta_' + Math.random().toString(36).substring(2,7));
+      var rawText = ctaEl.getAttribute('data-ps-text') ? decodeURIComponent(ctaEl.getAttribute('data-ps-text')) : (ctaEl.innerText || ctaEl.value || ctaEl.getAttribute('alt') || 'CTA');
+      var ctaText = String(rawText).trim().substring(0, 100);
+      var ctaHref = ctaEl.getAttribute('data-ps-href') ? decodeURIComponent(ctaEl.getAttribute('data-ps-href')) : (ctaEl.getAttribute('href') || '#');
 
-  function bindCtas() {
-    var ctaElements = document.querySelectorAll('[data-ps-cta], a, button');
-    for (var i = 0; i < ctaElements.length; i++) {
-      (function(el) {
-        if (el.getAttribute('data-ps-bound')) return;
-        el.setAttribute('data-ps-bound', 'true');
-
-        el.addEventListener('click', function(e) {
-          ctaClicked = true;
-          var ctaId = el.getAttribute('data-ps-cta') || ('cta_el_' + Math.random().toString(36).substring(2,7));
-          var ctaText = el.getAttribute('data-ps-text') ? decodeURIComponent(el.getAttribute('data-ps-text')) : (el.innerText || 'CTA').trim();
-          var ctaHref = el.getAttribute('data-ps-href') ? decodeURIComponent(el.getAttribute('data-ps-href')) : (el.getAttribute('href') || '#');
-
-          sendEvent('cta_click', {
-            ctaId: ctaId,
-            ctaText: ctaText,
-            ctaHref: ctaHref
-          });
-        });
-      })(ctaElements[i]);
+      sendEvent('cta_click', {
+        ctaId: ctaId,
+        ctaText: ctaText,
+        ctaHref: ctaHref
+      });
     }
-  }
+  }, true);
 
   // 4. Anti-Fuga / Back-Button Hijack
   if (ANTI_FUGA_ENABLED && ANTI_FUGA_URL) {
@@ -459,7 +455,7 @@ Este site não possui vínculo com Facebook, Instagram, Google ou qualquer outra
     document.addEventListener('mouseleave', function(e) {
       if (e.clientY <= 0 && !exitIntentFired && !ctaClicked) {
         exitIntentFired = true;
-        sendEvent('exit_intent', { ctaText: 'Exit Intent Triggered' });
+        sendEvent('fuga', { ctaText: 'Exit Intent Triggered' });
         if (EXIT_INTENT_MSG) {
           alert(EXIT_INTENT_MSG);
         }
@@ -471,8 +467,6 @@ Este site não possui vínculo com Facebook, Instagram, Google ou qualquer outra
   window.addEventListener('beforeunload', function() {
     if (!ctaClicked) {
       sendEvent('fuga', { ctaText: 'Fuga: Abandono de Página' });
-    } else {
-      sendEvent('unload');
     }
   });
 })();
