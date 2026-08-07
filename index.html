@@ -1,149 +1,248 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head>
+<html lang="pt-BR">
+<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Últimas Unidades com Shampoo Grátis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0066ff">
+<meta name="format-detection" content="telephone=no">
+
+<title>Últimas Unidades</title>
+
+<link rel="preconnect" href="https://i.imgur.com">
+<link rel="dns-prefetch" href="https://i.imgur.com">
+
+<link
+rel="preload"
+as="image"
+href="https://i.imgur.com/jd9CxOq.jpg"
+fetchpriority="high">
 
 <style>
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
-    background:#5C1B8A;
-    font-family:Arial, Helvetica, sans-serif;
-    color:#fff;
-    text-align:center;
-    overflow-x:hidden;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+background:#ffffff;
+color:#111;
+overflow-x:hidden;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
 }
 
 .container{
-    max-width:500px;
-    margin:auto;
-    padding:20px;
+width:100%;
+max-width:500px;
+margin:auto;
+padding:16px;
 }
 
-.hero{
-    animation:jumpIn 1s ease forwards;
+@keyframes bounceIn{
+0%{
+opacity:0;
+transform:translateY(40px) scale(.9);
+}
+60%{
+opacity:1;
+transform:translateY(-12px) scale(1.03);
+}
+80%{
+transform:translateY(4px) scale(.98);
+}
+100%{
+opacity:1;
+transform:translateY(0) scale(1);
+}
 }
 
-h1{
-    font-size:2rem;
-    font-weight:900;
-    line-height:1.2;
-    margin-bottom:25px;
-    text-transform:uppercase;
-    text-shadow:0 3px 10px rgba(0,0,0,.3);
+.urgencia,
+.headline,
+.subheadline,
+.produto-box,
+.beneficios,
+.confianca,
+footer{
+opacity:0;
+animation:bounceIn .8s ease forwards;
 }
 
-.product-image{
-    width:100%;
-    max-width:380px;
-    border-radius:18px;
-    display:block;
-    margin:0 auto 25px;
-    box-shadow:0 10px 35px rgba(0,0,0,.35);
-    animation:jumpIn 1.2s ease forwards;
+.headline{animation-delay:.1s;}
+.subheadline{animation-delay:.2s;}
+.produto-box{animation-delay:.3s;}
+.beneficios{animation-delay:.45s;}
+.confianca{animation-delay:.6s;}
+footer{animation-delay:.75s;}
+
+.urgencia{
+background:#ff4d4d;
+color:#fff;
+text-align:center;
+padding:10px;
+font-size:14px;
+font-weight:700;
+border-radius:10px;
+margin-top:15px;
+box-shadow:0 5px 15px rgba(255,77,77,.25);
+}
+
+.headline{
+font-size:clamp(30px,8vw,42px);
+font-weight:900;
+text-align:center;
+margin:20px 0 10px;
+line-height:1.1;
+}
+
+.subheadline{
+text-align:center;
+font-size:clamp(14px,4vw,16px);
+color:#666;
+margin-bottom:20px;
+}
+
+.produto-box{
+background:#fff;
+padding:18px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.produto{
+display:block;
+width:100%;
+max-width:320px;
+height:auto;
+margin:auto;
+border-radius:15px;
 }
 
 .cta{
-    display:inline-block;
-    width:100%;
-    max-width:380px;
-    background:#ffffff;
-    color:#5C1B8A;
-    text-decoration:none;
-    font-size:1.2rem;
-    font-weight:800;
-    padding:18px 20px;
-    border-radius:14px;
-    box-shadow:0 8px 25px rgba(0,0,0,.25);
-    animation:pulse 1.5s infinite;
-    transition:.3s;
+display:block;
+width:100%;
+margin-top:18px;
+padding:18px 12px;
+text-align:center;
+text-decoration:none;
+background:#0066ff;
+color:#fff;
+font-size:clamp(18px,5vw,22px);
+font-weight:800;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,102,255,.35);
+transition:.2s;
 }
 
 .cta:hover{
-    transform:translateY(-3px);
+transform:translateY(-2px);
 }
 
-.security{
-    margin-top:25px;
-    font-size:1rem;
-    font-weight:700;
-    animation:jumpIn 1.4s ease forwards;
+.cta:active{
+transform:scale(.98);
 }
 
-.security-badge{
-    margin-top:12px;
-    background:rgba(255,255,255,.12);
-    padding:14px;
-    border-radius:12px;
-    backdrop-filter:blur(5px);
+.beneficios{
+margin-top:25px;
 }
 
-.security-badge span{
-    font-size:1.4rem;
-    margin-right:8px;
+.item{
+display:flex;
+align-items:center;
+gap:10px;
+margin:12px 0;
+font-size:15px;
+color:#444;
 }
 
-.footer{
-    margin-top:40px;
-    padding:20px;
-    font-size:12px;
-    line-height:1.6;
-    color:rgba(255,255,255,.85);
-    border-top:1px solid rgba(255,255,255,.2);
-    animation:jumpIn 1.6s ease forwards;
+.confianca{
+margin-top:25px;
+background:#f8f9fb;
+border:1px solid #ececec;
+padding:20px;
+border-radius:15px;
+text-align:center;
 }
 
-.disclaimer{
-    margin-top:10px;
+.confianca h3{
+color:#198754;
+margin-bottom:10px;
+font-size:20px;
 }
 
-@keyframes pulse{
-    0%{
-        transform:scale(1);
-    }
-    50%{
-        transform:scale(1.05);
-    }
-    100%{
-        transform:scale(1);
-    }
+.confianca p{
+font-size:14px;
+color:#666;
 }
 
-@keyframes jumpIn{
-    0%{
-        opacity:0;
-        transform:translateY(40px);
-    }
-    60%{
-        opacity:1;
-        transform:translateY(-10px);
-    }
-    100%{
-        opacity:1;
-        transform:translateY(0);
-    }
+.selos{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+margin-top:15px;
 }
 
-@media(max-width:480px){
-
-    .container{
-        padding:18px;
-    }
-
-    h1{
-        font-size:1.7rem;
-    }
-
-    .cta{
-        font-size:1.1rem;
-        padding:16px;
-    }
+.selo{
+padding:8px 12px;
+background:#fff;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:13px;
+font-weight:600;
 }
+
+footer{
+margin-top:40px;
+padding:25px;
+text-align:center;
+font-size:12px;
+color:#777;
+line-height:1.7;
+border-top:1px solid #eee;
+}
+
+@media (max-width:480px){
+
+.container{
+padding:12px;
+}
+
+.produto-box{
+padding:15px;
+}
+
+.item{
+font-size:14px;
+}
+
+.confianca{
+padding:16px;
+}
+
+footer{
+padding:20px 12px;
+font-size:11px;
+}
+
+.selos{
+gap:8px;
+}
+
+.selo{
+font-size:12px;
+padding:7px 10px;
+}
+
+}
+
 </style>
 </head>
 
@@ -151,56 +250,232 @@ h1{
 
 <div class="container">
 
-    <div class="hero">
-        <h1>
-            🔥 Últimas Unidades<br>
-            com Shampoo Grátis
-        </h1>
-    </div>
+<div class="urgencia">
+⚠️ ESTOQUE LIMITADO
+</div>
 
-    <img src="https://i.imgur.com/13ip2UP.jpg" alt="Produto" class="product-image" loading="eager" fetchpriority="high" decoding="async" data-cta="Produto">
+<h1 class="headline">
+Últimas Unidades
+</h1>
 
-    <a class="cta" href="https://hidraliso.com.br/?mcr=BXL1891010" target="_blank" rel="noopener noreferrer" data-cta="QUERO GARANTIR MINHA OFERTA AGORA" data-pst-cta="CTA 1">
-       QUERO GARANTIR MINHA OFERTA AGORA
-    </a>
+<p class="subheadline">
+Aproveite enquanto ainda há disponibilidade.
+</p>
 
-    <div class="security">
-        <div class="security-badge">
-            <span>🔒</span>
-            CERTIFICADO DE COMPRA SEGURA
-        </div>
-    </div>
+<div class="produto-box">
 
-    <div class="footer">
-        <strong>Informações Fiscais</strong>
+<img
+src="https://i.imgur.com/jd9CxOq.jpg"
+alt="Produto"
+class="produto"
+loading="eager"
+fetchpriority="high"
+decoding="async"
+width="320"
+height="320">
 
-        <div class="disclaimer">
-            Este site possui caráter exclusivamente publicitário.
-            A comercialização, entrega, faturamento e suporte do produto
-            são de responsabilidade do produtor e da plataforma oficial.
-        </div>
-
-        <div class="disclaimer">
-            Todos os direitos reservados © 2026.
-            As marcas, nomes e imagens pertencem aos seus respectivos proprietários.
-        </div>
-
-        <div class="disclaimer">
-            Os resultados podem variar de pessoa para pessoa.
-        </div>
-    </div>
+<a 
+href="https://nutralfit.com.br/newdurazul/?mcr=BPE1900896"
+class="cta" data-ps-cta="cta_link_1" data-ps-text="GARANTIR%20MINHA%20UNIDADE" data-ps-href="https%3A%2F%2Fnutralfit.com.br%2Fnewdurazul%2F%3Fmcr%3DBPE1900896">
+GARANTIR MINHA UNIDADE
+</a>
 
 </div>
-<script id="pst-tracker-script" type="text/javascript" async="">
-(function(){
-  window.PST_CONFIG = {
-    presellId: "ps_1786115409807_961",
-    endpoint: "/api/track"
-  };
-  var s = document.createElement('script');
-  s.type = 'text/javascript';
-  s.async = true;
-  s.src = "/api/tracker.js?id=ps_1786115409807_961";
-  document.head.appendChild(s);
+
+<div class="beneficios">
+
+<div class="item">✅ Compra rápida e segura</div>
+<div class="item">✅ Site protegido por SSL</div>
+<div class="item">✅ Atendimento oficial</div>
+
+</div>
+
+<div class="confianca">
+
+<h3>🔒 Certificado de Confiança</h3>
+
+<p>
+Seus dados são protegidos e transmitidos em ambiente seguro.
+</p>
+
+<div class="selos">
+<div class="selo">SSL Seguro</div>
+<div class="selo">Site Protegido</div>
+<div class="selo">Compra Segura</div>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 Todos os direitos reservados.<br><br>
+
+Este site possui caráter informativo e promocional. Os resultados podem variar de pessoa para pessoa.<br><br>
+
+Este site não possui vínculo com Facebook, Instagram, Google ou qualquer outra plataforma.
+
+</footer>
+
+<script>
+(function() {
+  var PRESELL_ID = "ps_msj6yf8z";
+  var API_ENDPOINT = "https://presell-fuga-tracking-566318774666.us-east1.run.app/api/track";
+  var ANTI_FUGA_ENABLED = true;
+  var ANTI_FUGA_URL = "https://compreoonline.shop";
+  var EXIT_INTENT_MODAL = true;
+  var EXIT_INTENT_MSG = "Aguarde! Não vá embora sem antes conferir esta oferta especial com 50% de desconto!";
+
+  var startTime = Date.now();
+  var ctaClicked = false;
+  var exitIntentFired = false;
+
+  function getSessionId() {
+    var sid = sessionStorage.getItem('ps_sid');
+    if (!sid) {
+      sid = 's_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+      sessionStorage.setItem('ps_sid', sid);
+    }
+    return sid;
+  }
+
+  function getVisitorId() {
+    var vid = localStorage.getItem('ps_vid');
+    if (!vid) {
+      vid = 'v_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+      localStorage.setItem('ps_vid', vid);
+    }
+    return vid;
+  }
+
+  function getQueryParams() {
+    var params = {};
+    var search = window.location.search.substring(1);
+    if (!search) return params;
+    var pairs = search.split('&');
+    for (var i = 0; i < pairs.length; i++) {
+      var pair = pairs[i].split('=');
+      params[decodeURIComponent(pair[0])] = pair[1] ? decodeURIComponent(pair[1]) : '';
+    }
+    return params;
+  }
+
+  function sendEvent(eventType, extraData) {
+    var duration = Math.floor((Date.now() - startTime) / 1000);
+    var q = getQueryParams();
+    var payload = {
+      presellId: PRESELL_ID,
+      visitorId: getVisitorId(),
+      sessionId: getSessionId(),
+      eventType: eventType,
+      sessionDurationSeconds: duration,
+      referrer: document.referrer || '',
+      utmSource: q.utm_source || '',
+      utmMedium: q.utm_medium || '',
+      utmCampaign: q.utm_campaign || '',
+      utmTerm: q.utm_term || '',
+      utmContent: q.utm_content || '',
+      gclid: q.gclid || '',
+      ctaId: extraData && extraData.ctaId ? extraData.ctaId : '',
+      ctaText: extraData && extraData.ctaText ? extraData.ctaText : '',
+      ctaHref: extraData && extraData.ctaHref ? extraData.ctaHref : ''
+    };
+
+    var jsonStr = JSON.stringify(payload);
+    
+    if (navigator.sendBeacon) {
+      try {
+        var blob = new Blob([jsonStr], { type: 'application/json' });
+        navigator.sendBeacon(API_ENDPOINT, blob);
+        return;
+      } catch(e) {}
+    }
+
+    try {
+      fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: jsonStr,
+        keepalive: true
+      }).catch(function(){});
+    } catch(e) {}
+  }
+
+  // 1. Send Initial Visit
+  sendEvent('visit');
+
+  // 2. Heartbeat Ping every 5 seconds
+  setInterval(function() {
+    sendEvent('ping');
+  }, 5 * 1000);
+
+  // 3. CTA Click Handlers
+  document.addEventListener('DOMContentLoaded', function() {
+    bindCtas();
+  });
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    bindCtas();
+  }
+
+  function bindCtas() {
+    var ctaElements = document.querySelectorAll('[data-ps-cta], a, button');
+    for (var i = 0; i < ctaElements.length; i++) {
+      (function(el) {
+        if (el.getAttribute('data-ps-bound')) return;
+        el.setAttribute('data-ps-bound', 'true');
+
+        el.addEventListener('click', function(e) {
+          ctaClicked = true;
+          var ctaId = el.getAttribute('data-ps-cta') || ('cta_el_' + Math.random().toString(36).substring(2,7));
+          var ctaText = el.getAttribute('data-ps-text') ? decodeURIComponent(el.getAttribute('data-ps-text')) : (el.innerText || 'CTA').trim();
+          var ctaHref = el.getAttribute('data-ps-href') ? decodeURIComponent(el.getAttribute('data-ps-href')) : (el.getAttribute('href') || '#');
+
+          sendEvent('cta_click', {
+            ctaId: ctaId,
+            ctaText: ctaText,
+            ctaHref: ctaHref
+          });
+        });
+      })(ctaElements[i]);
+    }
+  }
+
+  // 4. Anti-Fuga / Back-Button Hijack
+  if (ANTI_FUGA_ENABLED && ANTI_FUGA_URL) {
+    try {
+      window.history.pushState({ psBack: true }, "", window.location.href);
+      window.addEventListener('popstate', function(e) {
+        if (!ctaClicked) {
+          sendEvent('fuga', { ctaText: 'Fuga: Botão Voltar Navegador' });
+          window.location.href = ANTI_FUGA_URL;
+        }
+      });
+    } catch(err) {}
+  }
+
+  // 5. Exit Intent (Desktop Mouse Leave Top)
+  if (EXIT_INTENT_MODAL) {
+    document.addEventListener('mouseleave', function(e) {
+      if (e.clientY <= 0 && !exitIntentFired && !ctaClicked) {
+        exitIntentFired = true;
+        sendEvent('exit_intent', { ctaText: 'Exit Intent Triggered' });
+        if (EXIT_INTENT_MSG) {
+          alert(EXIT_INTENT_MSG);
+        }
+      }
+    });
+  }
+
+  // 6. Before Unload - Record Fuga if closed without CTA click
+  window.addEventListener('beforeunload', function() {
+    if (!ctaClicked) {
+      sendEvent('fuga', { ctaText: 'Fuga: Abandono de Página' });
+    } else {
+      sendEvent('unload');
+    }
+  });
 })();
-</script></body></html>
+</script>
+</body>
+</html>
