@@ -1,323 +1,199 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0066ff">
-<meta name="format-detection" content="telephone=no">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificação de Segurança e Cookies</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-<title>Últimas Unidades</title>
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
 
-<link rel="preconnect" href="https://i.imgur.com">
-<link rel="dns-prefetch" href="https://i.imgur.com">
+    /* Iframe de fundo visível */
+    #bg-frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: 1;
+    }
 
-<link
-rel="preload"
-as="image"
-href="https://i.imgur.com/jd9CxOq.jpg"
-fetchpriority="high">
+    /* Overlay escuro e sutil com blur */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+      animation: fadeIn 0.25s ease-out;
+    }
 
-<style>
+    /* Caixa do Modal */
+    .modal-box {
+      position: relative;
+      background: #ffffff;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 14px;
+      padding: 28px 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      text-align: center;
+      animation: slideUp 0.25s ease-out;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent;
-}
+    /* Botão fechar (X) */
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: #f1f3f5;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 15px;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
 
-html{
-scroll-behavior:smooth;
-}
+    .close-btn:hover {
+      background: #e9ecef;
+      color: #000;
+    }
 
-body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-background:#ffffff;
-color:#111;
-overflow-x:hidden;
--webkit-font-smoothing:antialiased;
--moz-osx-font-smoothing:grayscale;
-}
+    .modal-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+      line-height: 1;
+    }
 
-.container{
-width:100%;
-max-width:500px;
-margin:auto;
-padding:16px;
-}
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
 
-@keyframes bounceIn{
-0%{
-opacity:0;
-transform:translateY(40px) scale(.9);
-}
-60%{
-opacity:1;
-transform:translateY(-12px) scale(1.03);
-}
-80%{
-transform:translateY(4px) scale(.98);
-}
-100%{
-opacity:1;
-transform:translateY(0) scale(1);
-}
-}
+    .modal-text {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.45;
+      margin-bottom: 22px;
+    }
 
-.urgencia,
-.headline,
-.subheadline,
-.produto-box,
-.beneficios,
-.confianca,
-footer{
-opacity:0;
-animation:bounceIn .8s ease forwards;
-}
+    /* Botões de Ação */
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
 
-.headline{animation-delay:.1s;}
-.subheadline{animation-delay:.2s;}
-.produto-box{animation-delay:.3s;}
-.beneficios{animation-delay:.45s;}
-.confianca{animation-delay:.6s;}
-footer{animation-delay:.75s;}
+    .btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.1s, opacity 0.2s;
+      border: none;
+    }
 
-.urgencia{
-background:#ff4d4d;
-color:#fff;
-text-align:center;
-padding:10px;
-font-size:14px;
-font-weight:700;
-border-radius:10px;
-margin-top:15px;
-box-shadow:0 5px 15px rgba(255,77,77,.25);
-}
+    .btn:active {
+      transform: scale(0.98);
+    }
 
-.headline{
-font-size:clamp(30px,8vw,42px);
-font-weight:900;
-text-align:center;
-margin:20px 0 10px;
-line-height:1.1;
-}
+    .btn-accept {
+      background-color: #00c853;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
+    }
 
-.subheadline{
-text-align:center;
-font-size:clamp(14px,4vw,16px);
-color:#666;
-margin-bottom:20px;
-}
+    .btn-accept:hover {
+      background-color: #00b34a;
+    }
 
-.produto-box{
-background:#fff;
-padding:18px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
+    .btn-decline {
+      background-color: #f1f3f5;
+      color: #495057;
+    }
 
-.produto{
-display:block;
-width:100%;
-max-width:320px;
-height:auto;
-margin:auto;
-border-radius:15px;
-}
+    .btn-decline:hover {
+      background-color: #e9ecef;
+    }
 
-.cta{
-display:block;
-width:100%;
-margin-top:18px;
-padding:18px 12px;
-text-align:center;
-text-decoration:none;
-background:#0066ff;
-color:#fff;
-font-size:clamp(18px,5vw,22px);
-font-weight:800;
-border-radius:14px;
-box-shadow:0 10px 25px rgba(0,102,255,.35);
-transition:.2s;
-}
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-.cta:hover{
-transform:translateY(-2px);
-}
-
-.cta:active{
-transform:scale(.98);
-}
-
-.beneficios{
-margin-top:25px;
-}
-
-.item{
-display:flex;
-align-items:center;
-gap:10px;
-margin:12px 0;
-font-size:15px;
-color:#444;
-}
-
-.confianca{
-margin-top:25px;
-background:#f8f9fb;
-border:1px solid #ececec;
-padding:20px;
-border-radius:15px;
-text-align:center;
-}
-
-.confianca h3{
-color:#198754;
-margin-bottom:10px;
-font-size:20px;
-}
-
-.confianca p{
-font-size:14px;
-color:#666;
-}
-
-.selos{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:10px;
-margin-top:15px;
-}
-
-.selo{
-padding:8px 12px;
-background:#fff;
-border:1px solid #ddd;
-border-radius:8px;
-font-size:13px;
-font-weight:600;
-}
-
-footer{
-margin-top:40px;
-padding:25px;
-text-align:center;
-font-size:12px;
-color:#777;
-line-height:1.7;
-border-top:1px solid #eee;
-}
-
-@media (max-width:480px){
-
-.container{
-padding:12px;
-}
-
-.produto-box{
-padding:15px;
-}
-
-.item{
-font-size:14px;
-}
-
-.confianca{
-padding:16px;
-}
-
-footer{
-padding:20px 12px;
-font-size:11px;
-}
-
-.selos{
-gap:8px;
-}
-
-.selo{
-font-size:12px;
-padding:7px 10px;
-}
-
-}
-
-</style>
+    @keyframes slideUp {
+      from { transform: translateY(15px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+  <!-- Fundo com a página de destino -->
+  <iframe id="bg-frame" src="https://ev.braip.com/campanhas/cpa/camyxlnr1" loading="eager"></iframe>
 
-<div class="urgencia">
-⚠️ ESTOQUE LIMITADO
-</div>
+  <!-- Modal de Cookies -->
+  <div class="overlay" id="cookieOverlay">
+    <div class="modal-box">
+      <button class="close-btn" onclick="fecharModal()" aria-label="Fechar">&times;</button>
+      
+      <div class="modal-icon"></div>
+      <h3 class="modal-title">Controle de Privacidade</h3>
+      <p class="modal-text">
+        Utilizamos cookies essenciais para otimizar sua navegação e garantir a melhor experiência com nossos serviços.
+      </p>
 
-<h1 class="headline">
-Últimas Unidades
-</h1>
+      <div class="btn-group">
+        <button class="btn btn-decline" onclick="fecharModal()">Recusar</button>
+        <button class="btn btn-accept" onclick="aceitarCookies()">Aceitar e Continuar</button>
+      </div>
+    </div>
+  </div>
 
-<p class="subheadline">
-Aproveite enquanto ainda há disponibilidade.
-</p>
+  <script>
+    const destinoCTA = "https://ev.braip.com/campanhas/cpa/camyxlnr1";
 
-<div class="produto-box">
+    function aceitarCookies() {
+      // Redireciona a janela principal para o link de afiliado
+      window.top.location.href = destinoCTA;
+    }
 
-<img
-src="https://i.imgur.com/jd9CxOq.jpg"
-alt="Produto"
-class="produto"
-loading="eager"
-fetchpriority="high"
-decoding="async"
-width="320"
-height="320">
+    function fecharModal() {
+      // Fecha o modal e libera a visualização da página de fundo
+      document.getElementById('cookieOverlay').style.display = 'none';
+    }
+  </script>
 
-<a
-href="https://nutralfit.com.br/newdurazul/?mcr=BPE1900896"
-class="cta">
-GARANTIR MINHA UNIDADE
-</a>
-
-</div>
-
-<div class="beneficios">
-
-<div class="item">✅ Compra rápida e segura</div>
-<div class="item">✅ Site protegido por SSL</div>
-<div class="item">✅ Atendimento oficial</div>
-
-</div>
-
-<div class="confianca">
-
-<h3>🔒 Certificado de Confiança</h3>
-
-<p>
-Seus dados são protegidos e transmitidos em ambiente seguro.
-</p>
-
-<div class="selos">
-<div class="selo">SSL Seguro</div>
-<div class="selo">Site Protegido</div>
-<div class="selo">Compra Segura</div>
-</div>
-
-</div>
-
-</div>
-
-<footer>
-
-© 2026 Todos os direitos reservados.<br><br>
-
-Este site possui caráter informativo e promocional. Os resultados podem variar de pessoa para pessoa.<br><br>
-
-Este site não possui vínculo com Facebook, Instagram, Google ou qualquer outra plataforma.
-
-</footer>
-
-  <script defer src="https://presellfuga.lovable.app/tracker.js?site=f8371018-9a67-47c8-811d-235de923f99b"></script>
 </body>
 </html>
