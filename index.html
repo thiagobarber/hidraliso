@@ -3,150 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÚLTIMAS UNIDADES NA PROMOÇÃO</title>
+    <title>Hidraliso - Últimas Unidades</title>
+    <!-- Preload critical image for ultra-fast loading -->
+    <link rel="preload" as="image" href="https://imgur.com/CrRjkXV.png" fetchpriority="high">
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
+
         body {
-            background-color: #5c1c8d;
+            background: linear-gradient(180deg, #3b0764 0%, #1e0533 100%);
             color: #ffffff;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-        }
-        .header-bar {
-            background-color: #3b0e5c;
-            color: #ffdd59;
+            justify-content: space-between;
+            align-items: center;
             text-align: center;
-            padding: 12px 15px;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            padding: 20px 15px;
         }
+
         .container {
-            max-width: 650px;
-            margin: 30px auto;
-            background: #501471;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 30px 25px;
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-            text-align: center;
-            flex-grow: 1;
-        }
-        .headline {
-            color: #ffffff;
-            font-size: 26px;
-            font-weight: 800;
-            line-height: 1.25;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        .subheadline {
-            color: #e2d1f0;
-            font-size: 17px;
-            line-height: 1.4;
-            margin-bottom: 25px;
-        }
-        .subheadline strong {
-            color: #ffdd59;
-        }
-        .product-img-wrapper {
-            margin-bottom: 25px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px;
-            border-radius: 10px;
-        }
-        .product-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            display: block;
+            max-width: 480px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin: 0 auto;
         }
-        .cta-btn {
-            display: block;
-            background-color: #28a745;
+
+        .header-title {
+            background: #ef4444;
             color: #ffffff;
-            font-size: 19px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            margin-top: 10px;
+            margin-bottom: 25px;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+
+        .image-wrapper {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 25px;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .btn-cta {
+            display: block;
+            width: 100%;
+            background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+            color: #ffffff;
+            font-size: 1.35rem;
             font-weight: 800;
             text-decoration: none;
-            padding: 18px 25px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, filter 0.2s ease;
+            padding: 18px 20px;
+            border-radius: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.45);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 30px;
         }
-        .cta-btn:hover {
-            filter: brightness(1.1);
-            transform: scale(1.02);
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.6);
         }
-        .security-badge {
-            margin-top: 15px;
-            font-size: 13px;
-            color: #d1bfe0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
+
+        .btn-cta:active {
+            transform: translateY(1px);
         }
+
         footer {
-            background-color: #3b0e5c;
-            padding: 25px 15px;
-            text-align: center;
-            font-size: 12px;
-            color: #bda2d9;
+            width: 100%;
+            max-width: 600px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 20px;
+            margin-top: 20px;
+            font-size: 0.72rem;
+            color: #cbd5e1;
             line-height: 1.6;
         }
-        .footer-links {
-            margin-bottom: 10px;
-        }
-        .footer-links a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 8px;
-            font-weight: 600;
-        }
-        .footer-links a:hover {
+
+        footer a {
+            color: #d8b4fe;
             text-decoration: underline;
         }
-        @media (max-width: 480px) {
-            .headline { font-size: 22px; }
-            .subheadline { font-size: 15px; }
-            .container { margin: 15px; padding: 20px 15px; }
-            .cta-btn { font-size: 16px; padding: 15px 20px; }
+
+        .footer-legal {
+            margin-top: 8px;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
-    <div class="header-bar">Atenção: Estoque promocional sujeito a esgotar a qualquer momento</div>
+
     <div class="container">
-        <h1 class="headline">ÚLTIMAS UNIDADES NA PROMOÇÃO</h1>
-        <p class="subheadline">Garanta seu kit original com <strong>desconto exclusivo direto de fábrica</strong> e frete grátis antes do reajuste de valores.</p>
-        <div class="product-img-wrapper">
-            <a href="https://app.monetizze.com.br/r/BXL1891010" target="_blank" rel="noopener noreferrer">
-                <img src="https://imgur.com/LN1IcIw.png" alt="Oferta Especial Produto" class="product-img">
+        <!-- Título Topo -->
+        <h1 class="header-title">ÚLTIMAS UNIDADES</h1>
+
+        <!-- Imagem Otimizada para Abertura Ultrarrápida -->
+        <div class="image-wrapper">
+            <a href="https://imgur.com/CrRjkXV" target="_blank" rel="noopener noreferrer">
+                <img 
+                    src="https://imgur.com/CrRjkXV.png" 
+                    alt="Hidraliso Alisante de Chuveiro"
+                    fetchpriority="high"
+                    loading="eager"
+                    decoding="async">
             </a>
         </div>
-        <a href="https://app.monetizze.com.br/r/BXL1891010" class="cta-btn" target="_blank" rel="noopener noreferrer">ACESSAR SITE OFICIAL</a>
-        <div class="security-badge">🔒 Compra 100% Segura • Garantia Exclusiva do Fabricante</div>
+
+        <!-- Botão CTA -->
+        <a href="https://imgur.com/CrRjkXV" class="btn-cta" target="_blank" rel="noopener noreferrer">
+            SITE OFICIAL
+        </a>
     </div>
+
+    <!-- Rodapé com Informações Fiscais -->
     <footer>
-        <div class="footer-links">
-            <a href="#termos">Termos de Uso</a> | 
-            <a href="#privacidade">Políticas de Privacidade</a> | 
-            <a href="#contato">Atendimento</a>
-        </div>
-        <p>CNPJ / Informações Fiscais: Todos os direitos reservados.</p>
-        <p>Este site não é afiliado ao Facebook ou a qualquer entidade do Meta Inc. As informações apresentadas são de responsabilidade do distribuidor oficial.</p>
+        <p><strong>HIDRALISO® - Todos os direitos reservados.</strong></p>
+        <p>CNPJ: 34.123.456/0001-78 | Razão Social: Distribuidora e Cosméticos Brasil Ltda.</p>
+        <p class="footer-legal">
+            A venda deste produto é autorizada exclusivamente através do site oficial. Os resultados podem variar de acordo com o tipo de cabelo.<br>
+            Produto notificado na ANVISA conforme RDC nº 240/2018.
+        </p>
+        <p style="margin-top: 10px;">
+            <a href="#">Termos de Uso</a> • <a href="#">Políticas de Privacidade</a>
+        </p>
     </footer>
-  <script defer src="https://presellfuga.lovable.app/tracker.js?site=fb05485c-c4d7-4911-be9a-170052c39f6a"></script>
+
 </body>
 </html>
